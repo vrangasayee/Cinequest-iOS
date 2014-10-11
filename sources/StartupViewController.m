@@ -36,6 +36,9 @@
     return self;
 }
 
+/**
+ * method hides the statusBar and shows animation with a fade. 
+ */
 - (void) viewDidLoad
 {
     [super viewDidLoad];
