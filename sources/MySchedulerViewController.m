@@ -9,11 +9,9 @@
 #import "MySchedulerViewController.h"
 #import "FilmDetailViewController.h"
 #import "EventDetailViewController.h"
-#import "ForumDetailViewController.h"
 #import "CinequestAppDelegate.h"
 #import "Schedule.h"
 #import "Film.h"
-#import "Forum.h"
 #import "Special.h"
 #import "CinequestItem.h"
 
@@ -328,11 +326,6 @@ static NSString *const kScheduleCellIdentifier = @"ScheduleCell";
 	{
 		EventDetailViewController *eventDetail = [[EventDetailViewController alloc] initWithEvent:schedule.itemID];
 		[[self navigationController] pushViewController:eventDetail animated:YES];
-	}
-	else if([item isKindOfClass:[Forum class]])
-	{
-		ForumDetailViewController *forumDetail = [[ForumDetailViewController alloc] initWithForum:schedule.itemID];
-		[[self navigationController] pushViewController:forumDetail animated:YES];
 	}
 }
 

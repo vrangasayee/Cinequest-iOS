@@ -24,7 +24,6 @@
 #define FILMSBYTITLE_FILE				@"FilmsByTitle.xml"
 #define NEWSFEED_FILE					@"NewsFeed.xml"
 #define EVENTS_FILE						@"Events.xml"
-#define FORUMS_FILE						@"Forums.xml"
 #define VENUES_FILE						@"Venues.xml"
 #define MODE_FILE						@"Mode.xml"
 #define FILMDETAIL_FILE					@"FilmDetail.%d.xml"
@@ -507,7 +506,6 @@
 				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NewsUpdated"];
 				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FilmsUpdated"];
 				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"EventsUpdated"];
-				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ForumsUpdated"];
 				[[NSUserDefaults standardUserDefaults] synchronize];
 			}
 		}
@@ -714,57 +712,6 @@
 	}
 	
 	NSData *queryData = [NSData dataWithNetURLShowingActivity:[NSURL URLWithString:EVENTS]];
-	if(queryData != nil)
-	{
-		[queryData writeToURL:fileUrl atomically:YES];
-		
-		return queryData;
-	}
-	else
-	{
-		return [NSData dataWithContentsOfURL:fileUrl];
-	}
-}
-
-// Return the new forums URL data if there is any
-- (NSData*) forums
-{
-	NSLog(@"Getting forums...");
-	
-	NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:FORUMS_FILE];
-	NSString *key = @"ForumsDate";
-	NSDate *queryDate = [queryDates objectForKey:key];
-	
-	if(![appDelegate connectedToNetwork])
-	{
-		if([fileMgr fileExistsAtPath:[fileUrl path]])
-		{
-			NSLog(@"NO CONNECTION. Getting OLD forums...");
-			
-			return [NSData dataWithContentsOfURL:fileUrl];
-		}
-		else
-		{
-			return nil;
-		}
-	}
-	
-	if(queryDate != nil && [queryDate compare:self.newsFeedDate] == NSOrderedSame)
-	{
-		if([fileMgr fileExistsAtPath:[fileUrl path]])
-		{
-			NSLog(@"Getting OLD forums...");
-
-			return [NSData dataWithContentsOfURL:fileUrl];
-		}
-	}
-	else
-	{
-		queryDate = self.newsFeedDate;
-		[self saveQueryDate:queryDate forKey:key];
-	}
-	
-	NSData *queryData = [NSData dataWithNetURLShowingActivity:[NSURL URLWithString:FORUMS]];
 	if(queryData != nil)
 	{
 		[queryData writeToURL:fileUrl atomically:YES];

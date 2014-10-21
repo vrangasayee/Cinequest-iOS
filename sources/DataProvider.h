@@ -38,7 +38,6 @@ extern NSString *const kUpdatedXMLFeedNotification;
 - (NSData*) filmsByTime;
 - (NSData*) filmsByTitle;
 - (NSData*) events;
-- (NSData*) forums;
 - (NSData*) venues;
 - (NSData*) mode;
 - (NSData*) image:(NSURL*)imageUrl expiration:(NSDate*)expirationDate;

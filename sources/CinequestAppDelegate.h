@@ -11,7 +11,6 @@
 #define FILMSBYTITLE	@"http://mobile.cinequest.org/mobileCQ.php?type=films&iphone"
 #define OLD_NEWS		@"http://mobile.cinequest.org/mobileCQ.php?type=xml&name=ihome"
 #define EVENTS			@"http://mobile.cinequest.org/mobileCQ.php?type=xml&name=ievents"
-#define FORUMS			@"http://mobile.cinequest.org/mobileCQ.php?type=xml&name=iforums&iphone"
 #define DVDs			@"http://mobile.cinequest.org/mobileCQ.php?type=dvds&distribution=none&iphone"
 #define DETAILFORFILMID @"http://mobile.cinequest.org/mobileCQ.php?type=film&iphone&id="
 #define DETAILFORDVDID	@"http://mobile.cinequest.org/mobileCQ.php?type=dvd&iphone&id="
@@ -56,7 +55,7 @@
 #define GOOGLEPLUS_CLIENTID	@"470208679525-9nYBufiT7puYS3jIkOe49Rv6.apps.googleusercontent.com";	// org.cinequest.mobileapp
 // #define GOOGLEPLUS_CLIENTID	@"452265719636-qbqmhro0t3j9jip1npl69a3er7biidd2.apps.googleusercontent.com"; // com.google.GooglePlusPlatformSample
 
-#define CRASHLYTICS_ID @"c3d1ebb5b9d5f416213c217e714ce6a7f1dc0ee6"
+#define CRASHLYTICS_ID @"dfa118a0f8f784b89d3b2619021de8f24bf7524b"
 
 #define appDelegate ((CinequestAppDelegate*)[[UIApplication sharedApplication] delegate])
 #define app [UIApplication sharedApplication]

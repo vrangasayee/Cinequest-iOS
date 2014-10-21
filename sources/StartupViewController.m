@@ -13,7 +13,6 @@
 #import "DataProvider.h"
 #import "NewsViewController.h"
 #import "Film.h"
-#import "Forum.h"
 #import "Special.h"
 
 @implementation StartupViewController
@@ -36,9 +35,6 @@
     return self;
 }
 
-/**
- * method hides the statusBar and shows animation with a fade. 
- */
 - (void) viewDidLoad
 {
     [super viewDidLoad];
