@@ -83,10 +83,10 @@
                 [festival.films addObject:film];
                 [shorts setObject:film forKey:show.ID];
                 [self addItem:film to:festival.alphabetToFilmsDictionary];
-            } else if ([eventType containsObject:@"Forum"]) {
-                Forum *forum = [self getForumFrom:show];
-                [festival.forums addObject:forum];
-                [shorts setObject:forum forKey:show.ID];
+//            } else if ([eventType containsObject:@"Forum"]) {
+//                Forum *forum = [self getForumFrom:show];
+//                [festival.forums addObject:forum];
+//                [shorts setObject:forum forKey:show.ID];
             } else if ([eventType containsObject:@"Special"]) {
                 Special *special = [self getSpecialFrom:show];
                 [festival.specials addObject:special];
