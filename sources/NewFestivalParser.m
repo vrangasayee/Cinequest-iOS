@@ -44,7 +44,7 @@
     return self;
 }
 
-- (Festival*) parseFestival
+-(Festival*)parseFestival
 {
     [self parseShows];
     

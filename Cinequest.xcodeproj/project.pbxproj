@@ -763,7 +763,6 @@
 				81C8B37A17EBAB3200033D4F /* Sources */,
 				81C8B37B17EBAB3200033D4F /* Frameworks */,
 				81C8B37C17EBAB3200033D4F /* Resources */,
-				931DA86118A3D92600F31976 /* ShellScript */,
 			);
 			buildRules = (
 			);
