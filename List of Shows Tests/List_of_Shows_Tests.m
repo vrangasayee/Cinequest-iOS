@@ -9,7 +9,7 @@
 
 #import <XCTest/XCTest.h>
 #import "CinequestAppDelegate.h"
-#import "FestivalParser.h"
+#import "NewFestivalParser.h"
 #import "Show.h"
 #import "Showing.h"
 #import "Venue.h"
@@ -26,8 +26,8 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    FestivalParser *festivalParser = [[FestivalParser alloc] init];
-    [festivalParser parseShows:XML_FEED_URL];
+    NewFestivalParser *festivalParser = [[NewFestivalParser alloc] init];
+    [festivalParser parseShows];
     shows = [festivalParser getShows];
 }
 
