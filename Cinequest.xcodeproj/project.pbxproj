@@ -26,8 +26,6 @@
 		8149DFC917EBB4F90092F8F9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8149DFC817EBB4F90092F8F9 /* SystemConfiguration.framework */; };
 		8149DFCB17EBB5450092F8F9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8149DFCA17EBB5450092F8F9 /* MessageUI.framework */; };
 		8149DFCD17EBB5780092F8F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8149DFCC17EBB5780092F8F9 /* main.m */; };
-		8163D490185C499A0035F67F /* Forums_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 8163D48A185C499A0035F67F /* Forums_black.png */; };
-		8163D491185C499A0035F67F /* Forums_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8163D48B185C499A0035F67F /* Forums_black@2x.png */; };
 		8163D492185C499A0035F67F /* News_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 8163D48C185C499A0035F67F /* News_black.png */; };
 		8163D493185C499A0035F67F /* News_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8163D48D185C499A0035F67F /* News_black@2x.png */; };
 		8163D494185C499A0035F67F /* Schedule_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 8163D48E185C499A0035F67F /* Schedule_black.png */; };
@@ -51,7 +49,6 @@
 		81745A7C17EBAEED008D2C2C /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6017EBAEED008D2C2C /* EventDetailViewController.m */; };
 		81745A7D17EBAEED008D2C2C /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6217EBAEED008D2C2C /* EventsViewController.m */; };
 		81745A7F17EBAEED008D2C2C /* FilmsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6617EBAEED008D2C2C /* FilmsViewController.m */; };
-		81745A8017EBAEED008D2C2C /* ForumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6817EBAEED008D2C2C /* ForumsViewController.m */; };
 		81745A8317EBAEED008D2C2C /* MySchedulerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6E17EBAEED008D2C2C /* MySchedulerViewController.m */; };
 		81745A8417EBAEED008D2C2C /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A7017EBAEED008D2C2C /* NewsViewController.m */; };
 		8180BE6E183AE0FE00DC8997 /* iphone_launch_640_1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 8180BE6D183AE0FE00DC8997 /* iphone_launch_640_1136.png */; };
@@ -71,14 +68,11 @@
 		81B12C66182B759E000D5200 /* EventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A317EBABEE00033D4F /* EventsViewController.xib */; };
 		81B12C67182B759E000D5200 /* FilmDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A417EBABEE00033D4F /* FilmDetailViewController.xib */; };
 		81B12C68182B759E000D5200 /* FilmsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A517EBABEE00033D4F /* FilmsViewController.xib */; };
-		81B12C69182B759E000D5200 /* ForumsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A617EBABEE00033D4F /* ForumsViewController.xib */; };
 		81B12C6C182B759E000D5200 /* MySchedulerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3AA17EBABEE00033D4F /* MySchedulerViewController.xib */; };
 		81B32C91183C2AF9006D2D78 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81B32C90183C2AF9006D2D78 /* Default-568h@2x.png */; };
 		81B32C99183C2DF8006D2D78 /* logoSJSU.png in Resources */ = {isa = PBXBuildFile; fileRef = 81B32C98183C2DF8006D2D78 /* logoSJSU.png */; };
 		81B38F25189323590047AEFE /* NewsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B38F24189323590047AEFE /* NewsDetailViewController.xib */; };
 		81B38F281893239A0047AEFE /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B38F271893239A0047AEFE /* NewsDetailViewController.m */; };
-		81B38F2A18934C7E0047AEFE /* ForumDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B38F2918934C7E0047AEFE /* ForumDetailViewController.xib */; };
-		81B38F2D18934D180047AEFE /* ForumDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B38F2C18934D180047AEFE /* ForumDetailViewController.m */; };
 		81B7C4A8184D1358001F4B16 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7C4A6184D1358001F4B16 /* MapViewController.m */; };
 		81B7C4A9184D1358001F4B16 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B7C4A7184D1358001F4B16 /* MapViewController.xib */; };
 		81C02F24188F040B0019227F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C02F23188F040B0019227F /* AddressBook.framework */; };
@@ -136,7 +130,6 @@
 		C27139401828E8C900BF8DCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C271393E1828E8C900BF8DCB /* InfoPlist.strings */; };
 		C27BC6D8182A1E26006F7D25 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C27BC6D7182A1E26006F7D25 /* VenueLocation.m */; };
 		C27BC6DB182A3734006F7D25 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = C27BC6DA182A3734006F7D25 /* Schedule.m */; };
-		C2B86DF41844C01A0088A958 /* Forum.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B86DF31844C01A0088A958 /* Forum.m */; };
 		C2B86DF71844C0350088A958 /* Special.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B86DF61844C0350088A958 /* Special.m */; };
 		C2B86DFA1847AC560088A958 /* NewFestivalParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B86DF91847AC560088A958 /* NewFestivalParser.m */; };
 		C2D6DC1A182975E5005A6897 /* Festival.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6DC19182975E5005A6897 /* Festival.m */; };
@@ -178,8 +171,6 @@
 		8149DFCA17EBB5450092F8F9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8149DFCC17EBB5780092F8F9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = sources/main.m; sourceTree = SOURCE_ROOT; };
 		815A275018161A5500D9CDCE /* New Features and Bugs.webloc */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "New Features and Bugs.webloc"; sourceTree = "<group>"; };
-		8163D48A185C499A0035F67F /* Forums_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Forums_black.png; path = images/Forums_black.png; sourceTree = SOURCE_ROOT; };
-		8163D48B185C499A0035F67F /* Forums_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Forums_black@2x.png"; path = "images/Forums_black@2x.png"; sourceTree = SOURCE_ROOT; };
 		8163D48C185C499A0035F67F /* News_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = News_black.png; path = images/News_black.png; sourceTree = SOURCE_ROOT; };
 		8163D48D185C499A0035F67F /* News_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "News_black@2x.png"; path = "images/News_black@2x.png"; sourceTree = SOURCE_ROOT; };
 		8163D48E185C499A0035F67F /* Schedule_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Schedule_black.png; path = images/Schedule_black.png; sourceTree = SOURCE_ROOT; };
@@ -221,8 +212,6 @@
 		81745A6417EBAEED008D2C2C /* FilmDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilmDetailViewController.m; path = sources/FilmDetailViewController.m; sourceTree = SOURCE_ROOT; };
 		81745A6517EBAEED008D2C2C /* FilmsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilmsViewController.h; path = sources/FilmsViewController.h; sourceTree = SOURCE_ROOT; };
 		81745A6617EBAEED008D2C2C /* FilmsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilmsViewController.m; path = sources/FilmsViewController.m; sourceTree = SOURCE_ROOT; };
-		81745A6717EBAEED008D2C2C /* ForumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForumsViewController.h; path = sources/ForumsViewController.h; sourceTree = SOURCE_ROOT; };
-		81745A6817EBAEED008D2C2C /* ForumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForumsViewController.m; path = sources/ForumsViewController.m; sourceTree = SOURCE_ROOT; };
 		81745A6917EBAEED008D2C2C /* LoadDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadDataViewController.h; path = sources/LoadDataViewController.h; sourceTree = SOURCE_ROOT; };
 		81745A6A17EBAEED008D2C2C /* LoadDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadDataViewController.m; path = sources/LoadDataViewController.m; sourceTree = SOURCE_ROOT; };
 		81745A6B17EBAEED008D2C2C /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = sources/LogInViewController.h; sourceTree = SOURCE_ROOT; };
@@ -253,9 +242,6 @@
 		81B38F24189323590047AEFE /* NewsDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsDetailViewController.xib; path = resources/NewsDetailViewController.xib; sourceTree = SOURCE_ROOT; };
 		81B38F261893239A0047AEFE /* NewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsDetailViewController.h; path = sources/NewsDetailViewController.h; sourceTree = SOURCE_ROOT; };
 		81B38F271893239A0047AEFE /* NewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsDetailViewController.m; path = sources/NewsDetailViewController.m; sourceTree = SOURCE_ROOT; };
-		81B38F2918934C7E0047AEFE /* ForumDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ForumDetailViewController.xib; path = resources/ForumDetailViewController.xib; sourceTree = SOURCE_ROOT; };
-		81B38F2B18934D180047AEFE /* ForumDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForumDetailViewController.h; path = sources/ForumDetailViewController.h; sourceTree = SOURCE_ROOT; };
-		81B38F2C18934D180047AEFE /* ForumDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForumDetailViewController.m; path = sources/ForumDetailViewController.m; sourceTree = SOURCE_ROOT; };
 		81B7C4A5184D1358001F4B16 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController.h; path = sources/MapViewController.h; sourceTree = SOURCE_ROOT; };
 		81B7C4A6184D1358001F4B16 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = sources/MapViewController.m; sourceTree = SOURCE_ROOT; };
 		81B7C4A7184D1358001F4B16 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MapViewController.xib; path = sources/MapViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -279,7 +265,6 @@
 		81C8B3A317EBABEE00033D4F /* EventsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventsViewController.xib; path = resources/EventsViewController.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3A417EBABEE00033D4F /* FilmDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilmDetailViewController.xib; path = resources/FilmDetailViewController.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3A517EBABEE00033D4F /* FilmsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilmsViewController.xib; path = resources/FilmsViewController.xib; sourceTree = SOURCE_ROOT; };
-		81C8B3A617EBABEE00033D4F /* ForumsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ForumsViewController.xib; path = resources/ForumsViewController.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3A717EBABEE00033D4F /* LoadDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadDataViewController.xib; path = resources/LoadDataViewController.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3A817EBABEE00033D4F /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LogInViewController.xib; path = resources/LogInViewController.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3A917EBABEE00033D4F /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = resources/MainWindow.xib; sourceTree = SOURCE_ROOT; };
@@ -350,8 +335,6 @@
 		C27BC6D7182A1E26006F7D25 /* VenueLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueLocation.m; path = sources/VenueLocation.m; sourceTree = SOURCE_ROOT; };
 		C27BC6D9182A3734006F7D25 /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Schedule.h; path = sources/Schedule.h; sourceTree = SOURCE_ROOT; };
 		C27BC6DA182A3734006F7D25 /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = sources/Schedule.m; sourceTree = SOURCE_ROOT; };
-		C2B86DF21844C01A0088A958 /* Forum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Forum.h; path = sources/Forum.h; sourceTree = SOURCE_ROOT; };
-		C2B86DF31844C01A0088A958 /* Forum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Forum.m; path = sources/Forum.m; sourceTree = SOURCE_ROOT; };
 		C2B86DF51844C0350088A958 /* Special.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Special.h; path = sources/Special.h; sourceTree = SOURCE_ROOT; };
 		C2B86DF61844C0350088A958 /* Special.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Special.m; path = sources/Special.m; sourceTree = SOURCE_ROOT; };
 		C2B86DF81847AC560088A958 /* NewFestivalParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFestivalParser.h; path = sources/NewFestivalParser.h; sourceTree = SOURCE_ROOT; };
@@ -574,8 +557,6 @@
 				81C8B3A417EBABEE00033D4F /* FilmDetailViewController.xib */,
 				81C8B3A317EBABEE00033D4F /* EventsViewController.xib */,
 				81C8B3A217EBABEE00033D4F /* EventDetailViewController.xib */,
-				81C8B3A617EBABEE00033D4F /* ForumsViewController.xib */,
-				81B38F2918934C7E0047AEFE /* ForumDetailViewController.xib */,
 				81C8B3AA17EBABEE00033D4F /* MySchedulerViewController.xib */,
 				81B7C4A7184D1358001F4B16 /* MapViewController.xib */,
 				81C6BA4A188F641200BCEA26 /* GPlusDialogViewController.xib */,
@@ -596,8 +577,6 @@
 				8163D49B185C49BA0035F67F /* Events_black@2x.png */,
 				8163D496185C49AD0035F67F /* Films_black.png */,
 				8163D497185C49AD0035F67F /* Films_black@2x.png */,
-				8163D48A185C499A0035F67F /* Forums_black.png */,
-				8163D48B185C499A0035F67F /* Forums_black@2x.png */,
 				8163D48C185C499A0035F67F /* News_black.png */,
 				8163D48D185C499A0035F67F /* News_black@2x.png */,
 				8163D48E185C499A0035F67F /* Schedule_black.png */,
@@ -680,10 +659,6 @@
 				81745A6217EBAEED008D2C2C /* EventsViewController.m */,
 				81745A5F17EBAEED008D2C2C /* EventDetailViewController.h */,
 				81745A6017EBAEED008D2C2C /* EventDetailViewController.m */,
-				81745A6717EBAEED008D2C2C /* ForumsViewController.h */,
-				81745A6817EBAEED008D2C2C /* ForumsViewController.m */,
-				81B38F2B18934D180047AEFE /* ForumDetailViewController.h */,
-				81B38F2C18934D180047AEFE /* ForumDetailViewController.m */,
 				81745A6D17EBAEED008D2C2C /* MySchedulerViewController.h */,
 				81745A6E17EBAEED008D2C2C /* MySchedulerViewController.m */,
 				81B7C4A5184D1358001F4B16 /* MapViewController.h */,
@@ -750,8 +725,6 @@
 				C2D6DC201829771E005A6897 /* Venue.m */,
 				C27BC6D9182A3734006F7D25 /* Schedule.h */,
 				C27BC6DA182A3734006F7D25 /* Schedule.m */,
-				C2B86DF21844C01A0088A958 /* Forum.h */,
-				C2B86DF31844C01A0088A958 /* Forum.m */,
 				C2B86DF51844C0350088A958 /* Special.h */,
 				C2B86DF61844C0350088A958 /* Special.m */,
 				C2D6DC1D1829771E005A6897 /* Showing.h */,
@@ -824,7 +797,7 @@
 		81C8B37617EBAB3200033D4F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "San Jose State University";
 				TargetAttributes = {
 					81C8B37D17EBAB3200033D4F = {
@@ -898,14 +871,12 @@
 				81A4964D1845A50C0025CCBB /* googleplus@2x.png in Resources */,
 				935D58D6183CE26000BE904F /* News@2x.png in Resources */,
 				811791C2189787F000B6D21F /* safari_icon@2x.png in Resources */,
-				8163D490185C499A0035F67F /* Forums_black.png in Resources */,
 				81C8B3E017EBAC2C00033D4F /* trans_forums_small.png in Resources */,
 				93BD648C18A4BBC600838BEC /* cqthumb.jpg in Resources */,
 				81D6705D183E19D8007E9B99 /* iphone_icon_57.png in Resources */,
 				8163D494185C499A0035F67F /* Schedule_black.png in Resources */,
 				81A496501845A50C0025CCBB /* maps@2x.png in Resources */,
 				81A4964E1845A50C0025CCBB /* mail@2x.png in Resources */,
-				81B38F2A18934C7E0047AEFE /* ForumDetailViewController.xib in Resources */,
 				93E4E0A7182BB1A200515A84 /* cal_unselected@2x.png in Resources */,
 				8163D49C185C49BA0035F67F /* Events_black.png in Resources */,
 				81E1964018530F9C00C1A89D /* browser@2x.png in Resources */,
@@ -923,7 +894,6 @@
 				81B12C68182B759E000D5200 /* FilmsViewController.xib in Resources */,
 				81D67062183E19D8007E9B99 /* iphone_icon_512.jpg in Resources */,
 				811791BA1897783600B6D21F /* calendar_icon@2x.png in Resources */,
-				81B12C69182B759E000D5200 /* ForumsViewController.xib in Resources */,
 				81A496481845A50C0025CCBB /* facebook@2x.png in Resources */,
 				8180BE6E183AE0FE00DC8997 /* iphone_launch_640_1136.png in Resources */,
 				816C4AB7183C160F00BE896C /* Splash5.png in Resources */,
@@ -932,7 +902,6 @@
 				813D3AE218505911004667D5 /* message@2x.png in Resources */,
 				81B12C6C182B759E000D5200 /* MySchedulerViewController.xib in Resources */,
 				811791BD1897840600B6D21F /* messages_icon.png in Resources */,
-				8163D491185C499A0035F67F /* Forums_black@2x.png in Resources */,
 				8163D498185C49AD0035F67F /* Films_black.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -947,6 +916,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		931DA86118A3D92600F31976 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run dfa118a0f8f784b89d3b2619021de8f24bf7524b 04952308aed5f6f642005e17e49d070e4cf212b6960ec0c85a3f9feb85745361";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		81C8B37A17EBAB3200033D4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -960,13 +945,11 @@
 				814910B2188F4EE600ADF0DF /* Showing.m in Sources */,
 				81745A7517EBAEED008D2C2C /* CinequestAppDelegate.m in Sources */,
 				81745A7617EBAEED008D2C2C /* DDXMLDocument.m in Sources */,
-				C2B86DF41844C01A0088A958 /* Forum.m in Sources */,
 				81745A7717EBAEED008D2C2C /* DDXMLElement.m in Sources */,
 				C27BC6D8182A1E26006F7D25 /* VenueLocation.m in Sources */,
 				81745A7817EBAEED008D2C2C /* DDXMLElementAdditions.m in Sources */,
 				81745A7917EBAEED008D2C2C /* DDXMLNode.m in Sources */,
 				81695DCF18C85F3C00AC790E /* LoadImageOperation.m in Sources */,
-				81B38F2D18934D180047AEFE /* ForumDetailViewController.m in Sources */,
 				C2D6DC2C1829E0F7005A6897 /* CinequestItem.m in Sources */,
 				C2B86DF71844C0350088A958 /* Special.m in Sources */,
 				C2D6DC291829B8BF005A6897 /* Film.m in Sources */,
@@ -977,7 +960,6 @@
 				81D62090185ED9FC00FEDD03 /* FilmDetailViewController.m in Sources */,
 				81745A7F17EBAEED008D2C2C /* FilmsViewController.m in Sources */,
 				935D58D4183CE0E300BE904F /* VenueParser.m in Sources */,
-				81745A8017EBAEED008D2C2C /* ForumsViewController.m in Sources */,
 				C2D6DC231829771E005A6897 /* Venue.m in Sources */,
 				81745A8317EBAEED008D2C2C /* MySchedulerViewController.m in Sources */,
 				8127A62318AF1FCF00CC1BDF /* MBProgressHUD.m in Sources */,
@@ -1083,7 +1065,6 @@
 		81C8B39C17EBAB3200033D4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1115,7 +1096,6 @@
 		81C8B39D17EBAB3200033D4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1148,7 +1128,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cinequest.app/Cinequest";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1182,7 +1161,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cinequest.app/Cinequest";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;

@@ -13,7 +13,6 @@
 #define FILMSBYTITLE	@"http://mobile.cinequest.org/mobileCQ.php?type=films&iphone"
 #define NEWS			@"http://mobile.cinequest.org/mobileCQ.php?type=xml&name=ihome"
 //#define EVENTS			@"http://mobile.cinequest.org/mobileCQ.php?type=xml&name=ievents&iphone"
-#define FORUMS			@"http://mobile.cinequest.org/mobileCQ.php?type=xml&name=iforums&iphone"
 #define DVDs			@"http://mobile.cinequest.org/mobileCQ.php?type=dvds&distribution=none&iphone"
 
 #define DETAILFORFILMID @"http://mobile.cinequest.org/mobileCQ.php?type=film&iphone&id="

@@ -10,7 +10,6 @@
 @class ProgramItem;
 @class Film;
 @class Special;
-@class Forum;
 @class CinequestItem;
 
 @interface Festival : NSObject
@@ -22,7 +21,6 @@
 //@property (strong, nonatomic) NSMutableArray *events;
 @property (strong, nonatomic) NSString *lastChanged;
 
-@property (strong, nonatomic) NSMutableArray *forums;
 @property (strong, nonatomic) NSMutableArray *specials;
 
 // data for Date segment in Films Tab
@@ -34,11 +32,6 @@
 @property (strong, nonatomic) NSMutableDictionary *alphabetToFilmsDictionary;				// Films
 @property (strong, nonatomic) NSMutableArray *sortedKeysInAlphabetToFilmsDictionary;		// Sections
 
-// data for Forums Tab
-@property (strong, nonatomic) NSMutableDictionary *dateToForumsDictionary;
-@property (strong, nonatomic) NSMutableArray *sortedKeysInDateToForumsDictionary;
-@property (strong, nonatomic) NSMutableArray *sortedIndexesInDateToForumsDictionary;
-
 // data for Events Tab
 @property (strong, nonatomic) NSMutableDictionary *dateToSpecialsDictionary;
 @property (strong, nonatomic) NSMutableArray *sortedKeysInDateToSpecialsDictionary;
@@ -49,7 +42,6 @@
 - (Film *)getFilmForId:(NSString *)ID;
 - (ProgramItem *) getProgramItemForId:(NSString *)ID;
 - (Special *) getEventForId:(NSString *)ID;
-- (Forum *) getForumForId:(NSString *)ID;
 - (CinequestItem*) getScheduleItem:(NSString *)itemID;
 
 @end
