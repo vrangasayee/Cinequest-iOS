@@ -134,7 +134,7 @@
                         <color key="tintColor" red="1" green="0.061403572560000001" blue="0.08498495817" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <viewControllers>
-                        <viewController nibName="MySchedulerViewController" id="152" customClass="MySchedulerViewController">
+                        <viewController nibName="MySchedulerViewController" id="152" userLabel="My Cinequest View Controller" customClass="MyCinequestViewController">
                             <extendedEdge key="edgesForExtendedLayout"/>
                             <toolbarItems/>
                             <navigationItem key="navigationItem" id="153">
