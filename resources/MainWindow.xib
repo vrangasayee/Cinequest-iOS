@@ -113,7 +113,7 @@
                                     <rect key="frame" x="99" y="8" width="123" height="29"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <segments>
-                                        <segment title="Events"/>
+                                        <segment title="Schedule"/>
                                         <segment title="Second"/>
                                     </segments>
                                 </segmentedControl>
