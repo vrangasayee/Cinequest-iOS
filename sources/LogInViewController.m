@@ -19,7 +19,7 @@
 	usernameLabel.text = parentsView.username;	
 }
 
-- (void)setParent:(MySchedulerViewController *)parent {
+- (void)setParent:(MyCinequestViewController *)parent {
 	self.parentsView = parent;
 }
 

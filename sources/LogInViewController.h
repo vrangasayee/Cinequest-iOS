@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
 
-#import "MySchedulerViewController.h"
+#import "MyCinequestViewController.h"
 
 
 @interface LogInViewController : UIViewController 
@@ -14,16 +14,16 @@
 {
 	IBOutlet UITextField *passwordLabel;
 	IBOutlet UITextField *usernameLabel;	
-	MySchedulerViewController *parentsView;
+	MyCinequestViewController *parentsView;
 }
 @property (nonatomic,strong) IBOutlet UITextField *passwordLabel;
 @property (nonatomic,strong) IBOutlet UITextField *usernameLabel;
-@property (nonatomic,strong) MySchedulerViewController *parentsView;
+@property (nonatomic,strong) MyCinequestViewController *parentsView;
 
 -(IBAction)loginUser:(id)sender;
 -(IBAction)signup:(id)sender;
 -(IBAction)uploadList:(id)sender;
--(void)setParent:(MySchedulerViewController *)parent;
+-(void)setParent:(MyCinequestViewController *)parent;
 -(BOOL)checkInputFields;
 
 @end

@@ -1,12 +1,12 @@
 //
-//  MySchedulerViewController.m
+//  MyCinequestViewController.m
 //  CineQuest
 //
 //  Created by Luca Severini on 10/1/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
 
-#import "MySchedulerViewController.h"
+#import "MyCinequestViewController.h"
 #import "FilmDetailViewController.h"
 #import "EventDetailViewController.h"
 #import "CinequestAppDelegate.h"
@@ -18,7 +18,7 @@
 static NSString *const kScheduleCellIdentifier = @"ScheduleCell";
 
 
-@implementation MySchedulerViewController
+@implementation MyCinequestViewController
 
 @synthesize switchTitle;
 @synthesize scheduleTableView;
