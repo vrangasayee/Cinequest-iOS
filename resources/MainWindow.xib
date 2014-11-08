@@ -94,9 +94,9 @@
                         </viewController>
                     </viewControllers>
                 </navigationController>
-                <navigationController title="Events" id="131">
+                <navigationController title="Schedule" id="131">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Events" image="Events_black.png" id="132"/>
+                    <tabBarItem key="tabBarItem" title="Schedule" image="Events_black.png" id="132"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="135">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -113,7 +113,7 @@
                                     <rect key="frame" x="99" y="8" width="123" height="29"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <segments>
-                                        <segment title="Events"/>
+                                        <segment title="Schedule"/>
                                         <segment title="Second"/>
                                     </segments>
                                 </segmentedControl>
