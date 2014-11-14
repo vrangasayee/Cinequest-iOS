@@ -6,6 +6,10 @@
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
 
+
+#import "EventsViewController.h"
+#import "EventDetailViewController.h"
+#import "NewsViewController.h"
 #import "FilmsViewController.h"
 #import "FilmDetailViewController.h"
 #import "CinequestAppDelegate.h"
@@ -17,6 +21,8 @@
 
 static NSString *const kDateCellIdentifier = @"DateCell";
 static NSString *const kTitleCellIdentifier = @"TitleCell";
+
+
 
 
 @implementation UIView (private)
@@ -61,6 +67,11 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 @synthesize sortedIndexesInDateToFilmsDictionary;
 @synthesize alphabetToFilmsDictionary;
 @synthesize sortedKeysInAlphabetToFilmsDictionary;
+// Adding for Events segment
+@synthesize dateToEventsDictionary;
+@synthesize sortedIndexesInDateToEventsDictionary;
+@synthesize sortedKeysInDateToEventsDictionary;
+
 
 #pragma mark - UIViewController Delegate methods
 
@@ -115,6 +126,9 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 	self.sortedIndexesInDateToFilmsDictionary = [delegate.festival.sortedIndexesInDateToFilmsDictionary mutableCopy];
  	self.alphabetToFilmsDictionary = [delegate.festival.alphabetToFilmsDictionary mutableCopy];
 	self.sortedKeysInAlphabetToFilmsDictionary = [delegate.festival.sortedKeysInAlphabetToFilmsDictionary mutableCopy];
+    // Properties declared for Events view of Segmented Control
+    self.dateToEventsDictionary = [delegate.festival.dateToSpecialsDictionary mutableCopy];
+    
 
 	[self syncTableDataWithScheduler];
 	
@@ -139,6 +153,8 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 	self.sortedIndexesInDateToFilmsDictionary = nil;
  	self.alphabetToFilmsDictionary = nil;
 	self.sortedKeysInAlphabetToFilmsDictionary = nil;
+    // properties necessary for EventsViewController to be ported to this ViewController
+    
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -217,21 +233,29 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 	NSInteger section = [indexPath section];
     Schedule *schedule = nil;
     
+    
+    
+    // Rearrange if blocks on the if(switcher == VIEW_BY_FILMS)
+    // VIEW BY TITLE == VIEW BY FILMS
     if (indexPath != nil)
 	{
-		if(switcher == VIEW_BY_DATE) // VIEW_BY_DATE
+		if(switcher == VIEW_BY_EVENTS) // VIEW_BY_DATE
 		{
-			NSString *day = [self.sortedKeysInDateToFilmsDictionary  objectAtIndex:section];
-			NSDate *date = [self dateFromString:day];
-
-			Film *film = [[self.dateToFilmsDictionary objectForKey:day] objectAtIndex:row];			
-			for(schedule in film.schedules)
-			{
-				if ([self compareStartDate:schedule.startDate withSectionDate:date])
-				{
-					break;
-				}
-			}
+//			NSString *day = [self.sortedKeysInDateToFilmsDictionary  objectAtIndex:section];
+//			NSDate *date = [self dateFromString:day];
+//
+//			Film *film = [[self.dateToFilmsDictionary objectForKey:day] objectAtIndex:row];			
+//			for(schedule in film.schedules)
+//			{
+//				if ([self compareStartDate:schedule.startDate withSectionDate:date])
+//				{
+//					break;
+//				}
+//			}
+            
+        
+            
+            
 		}
 		else // VIEW_BY_TITLE
 		{
@@ -256,12 +280,14 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 	
 	switch (switcher)
 	{
-		case VIEW_BY_DATE:
+            
+            
+		case VIEW_BY_FILMS:
 			listByTitleOffset = [self.filmsTableView contentOffset].y;
 			[self.filmsTableView setContentOffset:CGPointMake(0.0, listByDateOffset) animated:NO];
 			break;
 			
-		case VIEW_BY_TITLE:
+		case VIEW_BY_EVENTS:
 			listByDateOffset = [self.filmsTableView contentOffset].y;
 			[self.filmsTableView setContentOffset:CGPointMake(0.0, listByTitleOffset) animated:NO];
 			break;
@@ -346,11 +372,11 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 {
 	switch(switcher)
 	{
-		case VIEW_BY_DATE:
+		case VIEW_BY_EVENTS:
 			return [self.sortedKeysInDateToFilmsDictionary count];
 			break;
 			
-		case VIEW_BY_TITLE:
+		case VIEW_BY_FILMS:
 			return [self.sortedKeysInAlphabetToFilmsDictionary count];
 			break;
 			
@@ -364,14 +390,14 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 {
 	switch(switcher)
 	{
-		case VIEW_BY_DATE:
+		case VIEW_BY_EVENTS:
 		{
             NSString *day = [self.sortedKeysInDateToFilmsDictionary objectAtIndex:section];
 			return [[self.dateToFilmsDictionary objectForKey:day] count];
 		}
 			break;
 			
-		case VIEW_BY_TITLE:
+		case VIEW_BY_FILMS:
 		{
 			NSString *sort = [self.sortedKeysInAlphabetToFilmsDictionary objectAtIndex:section];
 			return [[self.alphabetToFilmsDictionary objectForKey:sort] count];
@@ -392,7 +418,9 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 	
 	switch(switcher)
 	{
-		case VIEW_BY_DATE:
+            
+            /// Switched from VIEW_BY_DATE to VIEW_BY_EVENTS
+		case VIEW_BY_EVENTS:
 		{
 			NSString *day = [self.sortedKeysInDateToFilmsDictionary objectAtIndex:section];
 			NSDate *date = [self dateFromString:day];
@@ -484,7 +512,9 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 		}
 			break;
 			
-		case VIEW_BY_TITLE:
+            
+            /// Switched from VIEW_BY_TITLE to VIEW_BY_FILMS
+		case VIEW_BY_FILMS:
 		{
 			NSString *letter = [self.sortedKeysInAlphabetToFilmsDictionary objectAtIndex:section];
 			NSArray *films = [self.alphabetToFilmsDictionary objectForKey:letter];
@@ -567,11 +597,12 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 
 	switch (switcher)
 	{
-		case VIEW_BY_DATE:
+            /// Switched from VIEW_BY_DATE to VIEW_BY_EVENTS
+		case VIEW_BY_EVENTS:
 			label.text = [NSString stringWithFormat:@"  %@", [self.sortedKeysInDateToFilmsDictionary objectAtIndex:section]];
 			break;
-			
-		case VIEW_BY_TITLE:
+			/// Switched from VIEW_BY_TITLE to VIEW_BY_FILMS
+		case VIEW_BY_FILMS:
 			label.text = [NSString stringWithFormat:@"  %@", [self.sortedKeysInAlphabetToFilmsDictionary objectAtIndex:section]];
 			break;
 	}
@@ -589,11 +620,12 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 	
 	switch (switcher)
 	{
-		case VIEW_BY_DATE:
+            /// Switched from VIEW_BY_DATE to VIEW_BY_EVENTS
+		case VIEW_BY_EVENTS:
 			return self.sortedIndexesInDateToFilmsDictionary;
 			break;
-			
-		case VIEW_BY_TITLE:
+			 /// Switched from VIEW_BY_TITLE to VIEW_BY_FILMS
+		case VIEW_BY_FILMS:
 			return self.sortedKeysInAlphabetToFilmsDictionary;
 			break;
 			
@@ -617,7 +649,8 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 	
 	switch (switcher)
 	{
-		case VIEW_BY_DATE:
+             /// Switched from VIEW_BY_DATE to VIEW_BY_EVENTS
+		case VIEW_BY_EVENTS:
 		{
 			NSString *day = [self.sortedKeysInDateToFilmsDictionary  objectAtIndex:section];
 			NSDate *date = [self dateFromString:day];
@@ -634,7 +667,8 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 		}
 			break;
 			
-		case VIEW_BY_TITLE:
+             /// Switched from VIEW_BY_TITLE to VIEW_BY_FILMS
+		case VIEW_BY_FILMS:
 		{
 			NSString *sort = [self.sortedKeysInAlphabetToFilmsDictionary objectAtIndex:section];
 			NSArray *films = [self.alphabetToFilmsDictionary objectForKey:sort];
@@ -655,7 +689,8 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 	NSUInteger section = [indexPath section];
 	NSUInteger row = [indexPath row];
 
-	if(switcher == VIEW_BY_DATE)
+     /// Switched from VIEW_BY_DATE to VIEW_BY_EVENTS
+	if(switcher == VIEW_BY_EVENTS)
 	{
 		NSString *day = [self.sortedKeysInDateToFilmsDictionary  objectAtIndex:section];
 		Film *film = [[self.dateToFilmsDictionary objectForKey:day] objectAtIndex:row];
@@ -670,7 +705,7 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 			return 68.0;
 		}
 	}
-	else // VIEW_BY_TITLE
+	else // VIEW_BY_FILMS
 	{
 		NSString *sort = [self.sortedKeysInAlphabetToFilmsDictionary objectAtIndex:section];
 		NSArray *films = [self.alphabetToFilmsDictionary objectForKey:sort];
@@ -697,7 +732,9 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 
 - (void) filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-	if(switcher == VIEW_BY_DATE)
+    
+     /// Switched from VIEW_BY_DATE to VIEW_BY_EVENTS
+	if(switcher == VIEW_BY_EVENTS)
 	{
 		self.sortedKeysInDateToFilmsDictionary = [delegate.festival.sortedKeysInDateToFilmsDictionary mutableCopy];
 		self.sortedIndexesInDateToFilmsDictionary = [self sortedIndexesFromSortedKeys:sortedKeysInDateToFilmsDictionary];
@@ -714,7 +751,9 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@", searchText];
 		NSMutableArray *keysToDelete = [NSMutableArray new];
 		
-		if(switcher == VIEW_BY_DATE)
+        
+         /// Switched from VIEW_BY_DATE to VIEW_BY_EVENTS
+		if(switcher == VIEW_BY_EVENTS)
 		{
 			for(NSString *day in self.sortedKeysInDateToFilmsDictionary)
 			{
@@ -739,7 +778,7 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 			
 			self.sortedIndexesInDateToFilmsDictionary = [self sortedIndexesFromSortedKeys:sortedKeysInDateToFilmsDictionary];
 		}
-		else	// VIEW_BY_TITLE
+		else	// VIEW_BY_FILMS
 		{
 			for(NSString *letter in self.sortedKeysInAlphabetToFilmsDictionary)
 			{
@@ -827,7 +866,8 @@ static NSString *const kTitleCellIdentifier = @"TitleCell";
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-	if(switcher == VIEW_BY_DATE)
+     /// Switched from VIEW_BY_DATE to VIEW_BY_EVENTS
+	if(switcher == VIEW_BY_EVENTS)
 	{
 		self.sortedKeysInDateToFilmsDictionary = [delegate.festival.sortedKeysInDateToFilmsDictionary mutableCopy];
 		self.sortedIndexesInDateToFilmsDictionary = [self sortedIndexesFromSortedKeys:self.sortedKeysInDateToFilmsDictionary];

@@ -43,8 +43,11 @@
 #define EMPTY 0
 #define ONE_YEAR (60.0 * 60.0 * 24.0 * 365.0)
 
-#define VIEW_BY_DATE	0
-#define VIEW_BY_TITLE	1
+
+// Switched from VIEW_BY_DATE and VIEW_BY_TITLE
+// use these to switch into appropriate code blocks
+#define VIEW_BY_FILMS	0
+#define VIEW_BY_EVENTS	1
 
 #define NETWORK_CONNECTION_NONE  0
 #define NETWORK_CONNECTION_WIFI  1
