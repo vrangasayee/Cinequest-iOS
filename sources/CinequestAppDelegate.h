@@ -65,6 +65,7 @@
 @class Reachability;
 @class DataProvider;
 
+#import "CinequestAppDelegate.h"
 #import "Schedule.h"
 #import "Festival.h"
 
