@@ -49,7 +49,7 @@
 		81745A7C17EBAEED008D2C2C /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6017EBAEED008D2C2C /* EventDetailViewController.m */; };
 		81745A7D17EBAEED008D2C2C /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6217EBAEED008D2C2C /* EventsViewController.m */; };
 		81745A7F17EBAEED008D2C2C /* FilmsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6617EBAEED008D2C2C /* FilmsViewController.m */; };
-		81745A8317EBAEED008D2C2C /* MySchedulerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6E17EBAEED008D2C2C /* MySchedulerViewController.m */; };
+		81745A8317EBAEED008D2C2C /* MyCinequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6E17EBAEED008D2C2C /* MyCinequestViewController.m */; };
 		81745A8417EBAEED008D2C2C /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A7017EBAEED008D2C2C /* NewsViewController.m */; };
 		8180BE6E183AE0FE00DC8997 /* iphone_launch_640_1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 8180BE6D183AE0FE00DC8997 /* iphone_launch_640_1136.png */; };
 		8192CC6217EBC91D00DBE036 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8192CC6117EBC91D00DBE036 /* libxml2.dylib */; };
@@ -68,7 +68,7 @@
 		81B12C66182B759E000D5200 /* EventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A317EBABEE00033D4F /* EventsViewController.xib */; };
 		81B12C67182B759E000D5200 /* FilmDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A417EBABEE00033D4F /* FilmDetailViewController.xib */; };
 		81B12C68182B759E000D5200 /* FilmsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A517EBABEE00033D4F /* FilmsViewController.xib */; };
-		81B12C6C182B759E000D5200 /* MySchedulerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3AA17EBABEE00033D4F /* MySchedulerViewController.xib */; };
+		81B12C6C182B759E000D5200 /* MyCinequestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3AA17EBABEE00033D4F /* MyCinequestViewController.xib */; };
 		81B32C91183C2AF9006D2D78 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81B32C90183C2AF9006D2D78 /* Default-568h@2x.png */; };
 		81B32C99183C2DF8006D2D78 /* logoSJSU.png in Resources */ = {isa = PBXBuildFile; fileRef = 81B32C98183C2DF8006D2D78 /* logoSJSU.png */; };
 		81B38F25189323590047AEFE /* NewsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B38F24189323590047AEFE /* NewsDetailViewController.xib */; };
@@ -216,8 +216,8 @@
 		81745A6A17EBAEED008D2C2C /* LoadDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadDataViewController.m; path = sources/LoadDataViewController.m; sourceTree = SOURCE_ROOT; };
 		81745A6B17EBAEED008D2C2C /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = sources/LogInViewController.h; sourceTree = SOURCE_ROOT; };
 		81745A6C17EBAEED008D2C2C /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = sources/LogInViewController.m; sourceTree = SOURCE_ROOT; };
-		81745A6D17EBAEED008D2C2C /* MySchedulerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MySchedulerViewController.h; path = sources/MySchedulerViewController.h; sourceTree = SOURCE_ROOT; };
-		81745A6E17EBAEED008D2C2C /* MySchedulerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MySchedulerViewController.m; path = sources/MySchedulerViewController.m; sourceTree = SOURCE_ROOT; };
+		81745A6D17EBAEED008D2C2C /* MyCinequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCinequestViewController.h; path = sources/MyCinequestViewController.h; sourceTree = SOURCE_ROOT; };
+		81745A6E17EBAEED008D2C2C /* MyCinequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCinequestViewController.m; path = sources/MyCinequestViewController.m; sourceTree = SOURCE_ROOT; };
 		81745A6F17EBAEED008D2C2C /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = sources/NewsViewController.h; sourceTree = SOURCE_ROOT; };
 		81745A7017EBAEED008D2C2C /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = sources/NewsViewController.m; sourceTree = SOURCE_ROOT; };
 		81745A7117EBAEED008D2C2C /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSStringAdditions.h; path = sources/NSStringAdditions.h; sourceTree = SOURCE_ROOT; };
@@ -268,7 +268,7 @@
 		81C8B3A717EBABEE00033D4F /* LoadDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadDataViewController.xib; path = resources/LoadDataViewController.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3A817EBABEE00033D4F /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LogInViewController.xib; path = resources/LogInViewController.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3A917EBABEE00033D4F /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = resources/MainWindow.xib; sourceTree = SOURCE_ROOT; };
-		81C8B3AA17EBABEE00033D4F /* MySchedulerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MySchedulerViewController.xib; path = resources/MySchedulerViewController.xib; sourceTree = SOURCE_ROOT; };
+		81C8B3AA17EBABEE00033D4F /* MyCinequestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyCinequestViewController.xib; path = resources/MyCinequestViewController.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3AB17EBABEE00033D4F /* NewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsViewController.xib; path = resources/NewsViewController.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3BA17EBAC2C00033D4F /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkbox-checked.png"; path = "images/checkbox-checked.png"; sourceTree = SOURCE_ROOT; };
 		81C8B3BB17EBAC2C00033D4F /* checkbox-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkbox-pressed.png"; path = "images/checkbox-pressed.png"; sourceTree = SOURCE_ROOT; };
@@ -557,7 +557,7 @@
 				81C8B3A417EBABEE00033D4F /* FilmDetailViewController.xib */,
 				81C8B3A317EBABEE00033D4F /* EventsViewController.xib */,
 				81C8B3A217EBABEE00033D4F /* EventDetailViewController.xib */,
-				81C8B3AA17EBABEE00033D4F /* MySchedulerViewController.xib */,
+				81C8B3AA17EBABEE00033D4F /* MyCinequestViewController.xib */,
 				81B7C4A7184D1358001F4B16 /* MapViewController.xib */,
 				81C6BA4A188F641200BCEA26 /* GPlusDialogViewController.xib */,
 			);
@@ -659,8 +659,8 @@
 				81745A6217EBAEED008D2C2C /* EventsViewController.m */,
 				81745A5F17EBAEED008D2C2C /* EventDetailViewController.h */,
 				81745A6017EBAEED008D2C2C /* EventDetailViewController.m */,
-				81745A6D17EBAEED008D2C2C /* MySchedulerViewController.h */,
-				81745A6E17EBAEED008D2C2C /* MySchedulerViewController.m */,
+				81745A6D17EBAEED008D2C2C /* MyCinequestViewController.h */,
+				81745A6E17EBAEED008D2C2C /* MyCinequestViewController.m */,
 				81B7C4A5184D1358001F4B16 /* MapViewController.h */,
 				81B7C4A6184D1358001F4B16 /* MapViewController.m */,
 				81C6BA46188F641200BCEA26 /* GPlusDialogView.h */,
@@ -900,7 +900,7 @@
 				81D6705F183E19D8007E9B99 /* iphone_icon_80.png in Resources */,
 				81A496451845A50C0025CCBB /* twitter.png in Resources */,
 				813D3AE218505911004667D5 /* message@2x.png in Resources */,
-				81B12C6C182B759E000D5200 /* MySchedulerViewController.xib in Resources */,
+				81B12C6C182B759E000D5200 /* MyCinequestViewController.xib in Resources */,
 				811791BD1897840600B6D21F /* messages_icon.png in Resources */,
 				8163D498185C49AD0035F67F /* Films_black.png in Resources */,
 			);
@@ -915,22 +915,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		931DA86118A3D92600F31976 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run dfa118a0f8f784b89d3b2619021de8f24bf7524b 04952308aed5f6f642005e17e49d070e4cf212b6960ec0c85a3f9feb85745361";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		81C8B37A17EBAB3200033D4F /* Sources */ = {
@@ -961,7 +945,7 @@
 				81745A7F17EBAEED008D2C2C /* FilmsViewController.m in Sources */,
 				935D58D4183CE0E300BE904F /* VenueParser.m in Sources */,
 				C2D6DC231829771E005A6897 /* Venue.m in Sources */,
-				81745A8317EBAEED008D2C2C /* MySchedulerViewController.m in Sources */,
+				81745A8317EBAEED008D2C2C /* MyCinequestViewController.m in Sources */,
 				8127A62318AF1FCF00CC1BDF /* MBProgressHUD.m in Sources */,
 				81745A8417EBAEED008D2C2C /* NewsViewController.m in Sources */,
 				81C52B85182B62F000D2F55D /* Reachability.m in Sources */,

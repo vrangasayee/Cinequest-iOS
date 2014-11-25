@@ -1,5 +1,5 @@
 //
-//  MySchedulerViewController.h
+//  MyCinequestViewController.h
 //  CineQuest
 //
 //  Created by Luca Severini on 10/1/13.
@@ -10,7 +10,7 @@
 @class EKEventStore;
 @class EKCalendar;
 
-@interface MySchedulerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, EKEventEditViewDelegate>
+@interface MyCinequestViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, EKEventEditViewDelegate>
 {
 	NSMutableArray *index;
 	NSMutableArray *titleForSection;
