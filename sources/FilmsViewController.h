@@ -39,6 +39,13 @@
 @property (nonatomic, strong) NSMutableArray *sortedIndexesInDateToFilmsDictionary;			// Films
 @property (nonatomic, strong) NSMutableDictionary *alphabetToFilmsDictionary;				// Films
 @property (nonatomic, strong) NSMutableArray *sortedKeysInAlphabetToFilmsDictionary;		// Sections
+// Events
+
+@property (nonatomic, strong) NSMutableDictionary *dateToEventsDictionary;
+@property (nonatomic, strong) NSMutableArray *sortedKeysInDateToEventsDictionary;
+@property (nonatomic, strong) NSMutableArray *sortedIndexesInDateToEventsDictionary;
+@property (nonatomic, strong) IBOutlet UITableView *eventsTableView;
+
 
 - (IBAction) switchTitle:(id)sender;
 - (IBAction) calendarButtonTapped:(id)sender event:(id)touchEvent;
