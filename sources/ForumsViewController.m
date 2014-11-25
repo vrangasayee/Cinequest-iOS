@@ -5,6 +5,9 @@
 //  Created by Luca Severini on 10/1/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
+//  Edited by Karan Khare and Ramya Shenoy on 11/23/2014
+//
+//
 
 #import "CinequestAppDelegate.h"
 #import "ForumsViewController.h"
@@ -222,7 +225,8 @@ static NSString *const kForumCellIdentifier = @"ForumCell";
 {
     //Compare Date using Day-Month-year components excluding the time
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSInteger components = (NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
+
+    NSInteger components = (NSDayCalendarUnit | NSMonthCalendarUnit );
     
     NSDateComponents *date1Components = [calendar components:components fromDate: startDate];
     NSDateComponents *date2Components = [calendar components:components fromDate: sectionDate];
