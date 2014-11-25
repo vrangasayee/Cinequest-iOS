@@ -116,11 +116,13 @@
 		item.selectedImage = item.image;
 		item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         
-#pragma mark Hack to Rename Tab Bar Item
-        // Temporary hack to rename tab bar item from Films to Index, where are these titles generated?
-        if ([item.title  isEqual: @"Films"]) {
-            NSString *newTitle = @"Index";
-            item.title = newTitle;
+#pragma mark Rename Tab Bar Items
+        
+        if ([item.title  isEqualToString: @"Films"]) {
+            item.title = @"Index";
+        }
+        if ([item.title isEqualToString:@"Events"]) {
+            item.title = @"Schedule";
         }
 		
 		// Force to draw the title of tabbar items with black or red if selected
