@@ -10,7 +10,6 @@
 #import "Schedule.h"
 #import "Film.h"
 #import "Special.h"
-#import "Forum.h"
 #import "ProgramItem.h"
 #import "CinequestItem.h"
 
@@ -23,7 +22,6 @@
 @synthesize venueLocations;
 @synthesize lastChanged;
 
-@synthesize forums;
 @synthesize specials;
 
 @synthesize dateToFilmsDictionary;
@@ -33,10 +31,6 @@
 @synthesize alphabetToFilmsDictionary;
 @synthesize sortedKeysInAlphabetToFilmsDictionary;
 //@synthesize sortedIndexesInAlphabetToFilmsDictionary;
-
-@synthesize dateToForumsDictionary;
-@synthesize sortedKeysInDateToForumsDictionary;
-@synthesize sortedIndexesInDateToForumsDictionary;
 
 @synthesize dateToSpecialsDictionary;
 @synthesize sortedKeysInDateToSpecialsDictionary;
@@ -54,7 +48,6 @@
 		venueLocations = [[NSMutableArray alloc] init];
 		lastChanged = @"";
         
-        forums = [[NSMutableArray alloc]  init];
         specials = [[NSMutableArray alloc] init];
         
         dateToFilmsDictionary = [[NSMutableDictionary alloc] init];
@@ -64,10 +57,6 @@
         alphabetToFilmsDictionary = [[NSMutableDictionary alloc] init];
         sortedKeysInAlphabetToFilmsDictionary = [[NSMutableArray alloc] init];
         sortedIndexesInDateToFilmsDictionary = [[NSMutableArray alloc] init];
-        
-        dateToForumsDictionary = [[NSMutableDictionary alloc] init];
-        sortedKeysInDateToForumsDictionary = [[NSMutableArray alloc] init];
-        sortedIndexesInDateToForumsDictionary = [[NSMutableArray alloc] init];
         
         dateToSpecialsDictionary = [[NSMutableDictionary alloc] init];
         sortedKeysInDateToSpecialsDictionary = [[NSMutableArray alloc] init];
@@ -105,19 +94,6 @@
     return nil;
 }
 
-- (Forum*) getForumForId:(NSString *)ID
-{
- 	for(Forum* forum in forums)
-	{
-        if ([forum.ID isEqualToString:ID])
-		{
-            return forum;
-		}
-	}
-	
-    return nil;
-}
-
 - (Film*) getFilmForId:(NSString *)ID
 {
  	for(Film* film in films)
@@ -146,15 +122,12 @@
 
 - (CinequestItem*) getScheduleItem:(NSString *)itemID
 {
-	CinequestItem* item = [self getForumForId:itemID];
-	if(item == nil)
-	{
-		item = [self getEventForId:itemID];
+	CinequestItem* item = [self getEventForId:itemID];
 		if(item == nil)
 		{
 			item = [self getFilmForId:itemID];
 		}
-	}
+	
 	
 	return item;
 }

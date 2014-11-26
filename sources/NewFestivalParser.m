@@ -19,7 +19,6 @@
 #import "Schedule.h"
 #import "VenueLocation.h"
 #import "DataProvider.h"
-#import "Forum.h"
 #import "Special.h"
 
 @interface NewFestivalParser(){
@@ -45,7 +44,7 @@
     return self;
 }
 
-- (Festival*) parseFestival
+-(Festival*)parseFestival
 {
     [self parseShows];
     
@@ -83,10 +82,6 @@
                 [festival.films addObject:film];
                 [shorts setObject:film forKey:show.ID];
                 [self addItem:film to:festival.alphabetToFilmsDictionary];
-            } else if ([eventType containsObject:@"Forum"]) {
-                Forum *forum = [self getForumFrom:show];
-                [festival.forums addObject:forum];
-                [shorts setObject:forum forKey:show.ID];
             } else if ([eventType containsObject:@"Special"]) {
                 Special *special = [self getSpecialFrom:show];
                 [festival.specials addObject:special];
@@ -118,9 +113,6 @@
             item = [self getFilmFrom:show];
             [self addItem:item to:festival.alphabetToFilmsDictionary];
             [festival.films addObject:item];
-        } else if ([eventType containsObject:@"Forum"]) {
-            item = [self getForumFrom:show];
-            [festival.forums addObject:item];
         } else if ([eventType containsObject:@"Special"]) {
             item = [self getSpecialFrom:show];
             [festival.specials addObject:item];
@@ -180,16 +172,6 @@
         NSMutableArray *films = (NSMutableArray*)[festival.alphabetToFilmsDictionary objectForKey:key];
         [self sortCinequestItemsAlphabetically:films];
     }
-    
-    
-    // for DateToForumsDictionary
-    festival.sortedKeysInDateToForumsDictionary = [self getSortedKeysFromDateDictionary:[festival dateToForumsDictionary]];
-    festival.sortedIndexesInDateToForumsDictionary = [self getSortedIndexesFromSortedKeys:[festival sortedKeysInDateToForumsDictionary]];
-    for (NSString *key in festival.dateToForumsDictionary) {
-        NSMutableArray *forums = (NSMutableArray *)[festival.dateToForumsDictionary objectForKey:key];
-        [self sortCinequestItemsByStartDate:forums forKey:key];
-    }
-    
     // for DateToSpecialsDictionary
     festival.sortedKeysInDateToSpecialsDictionary = [self getSortedKeysFromDateDictionary:[festival dateToSpecialsDictionary]];
     festival.sortedIndexesInDateToSpecialsDictionary = [self getSortedIndexesFromSortedKeys:[festival sortedKeysInDateToSpecialsDictionary]];
@@ -232,16 +214,6 @@
                 values = [NSMutableArray array];
                 [values addObject:item];
                 [festival.dateToFilmsDictionary setObject:values forKey:date];
-                return;
-            } else {
-                [values addObject:item];
-            }
-        } else if ([item isKindOfClass:[Forum class]]) {
-            values = [festival.dateToForumsDictionary objectForKey:date];
-            if (values == nil) {
-                values = [NSMutableArray array];
-                [values addObject:item];
-                [festival.dateToForumsDictionary setObject:values forKey:date];
                 return;
             } else {
                 [values addObject:item];
@@ -310,7 +282,7 @@
     
     schedule.venueItem = [showing venue];
     
-    //To keep track of Selected User schedules after refresh of table from FilmsView, EventsView or ForumsView
+    //To keep track of Selected User schedules after refresh of table from FilmsView or EventsView
     NSUInteger scheduleCount = [delegate.mySchedule count];
     if (scheduleCount) {
         for (int scheduleIdx = 0; scheduleIdx < scheduleCount; scheduleIdx++) {
@@ -378,19 +350,6 @@
     }
     
     return film;
-}
-
-- (Forum*) getForumFrom:(Show *)show
-{
-    Forum *forum = [[Forum alloc] init];
-    
-    forum.ID = show.ID;
-    forum.name = show.name;
-    forum.description = show.shortDescription;
-    forum.imageURL = show.thumbImageURL;
-    forum.infoLink = show.infoLink;
-    
-    return forum;
 }
 
 - (Special*) getSpecialFrom:(Show *)show

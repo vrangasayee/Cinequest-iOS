@@ -13,7 +13,6 @@
 #import "DataProvider.h"
 #import "NewsViewController.h"
 #import "Film.h"
-#import "Forum.h"
 #import "Special.h"
 
 @implementation StartupViewController

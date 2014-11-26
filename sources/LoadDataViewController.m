@@ -19,7 +19,6 @@
 - (void)loadFILMSBYTIME;
 - (void)loadFILMSBYTITLE;
 - (void)loadDVDs;
-- (void)loadFORUMS;
 - (void)loadEVENTS;
 - (void)loadNEWS;
 
@@ -85,13 +84,6 @@
 			sqlite3_free(errorMsg);			
 		}
 		
-		createSQL ="CREATE TABLE IF NOT EXISTS Forums (id integer, prg_id integer, type varchar(10), title text, start_time varchar(50), venue varchar(10));";
-		result = sqlite3_exec(database, createSQL, NULL, NULL, &errorMsg);
-		if (result != SQLITE_OK)
-		{
-			sqlite3_free(errorMsg);			
-		}
-		
 		createSQL ="CREATE TABLE IF NOT EXISTS DVDs (id integer, title text, sort varchar(5));";
 		result = sqlite3_exec(database, createSQL, NULL, NULL, &errorMsg);
 		if (result != SQLITE_OK)
@@ -141,9 +133,7 @@
 			
 			// Events: http://mobile.cinequest.org/mobileCQ.php?type=xml&name=ievents&iphone
 			[self loadEVENTS];
-			
-			// Forums: http://mobile.cinequest.org/mobileCQ.php?type=xml&name=iforums&iphone
-			[self loadFORUMS];
+        
 			
 			// DVD List: http://mobile.cinequest.org/mobileCQ.php?type=dvds&distribution=none&iphone
 			[self loadDVDs];
@@ -223,56 +213,6 @@
 			NSAssert(0, @"Failed to insert row");
 			sqlite3_free(errorMsg);
 		}
-		
-		
-	}
-}
-
-- (void)loadFORUMS
-{
-	NSURL *link = [NSURL URLWithString:FORUMS];
-	NSData *data = [NSData dataWithContentsOfURL:link];
-	
-	DDXMLDocument *xmlDoc = [[DDXMLDocument alloc] initWithData:data options:0 error:nil];
-	DDXMLNode *rootElement = [xmlDoc rootElement];
-	
-	NSLog(@"Loading forums...");
-
-	
-	NSString *delete = @"DELETE FROM Forums;";
-	char *error;
-	if(sqlite3_exec(database, [delete UTF8String], NULL, NULL, &error) != SQLITE_OK)
-	{
-		NSAssert(0, @"Failed to delete rows");
-		sqlite3_free(error);
-	}
-	
-	int childCount = [rootElement childCount];
-		
-	for (int i = 0; i < childCount; i++) 
-	{
-		DDXMLElement *child = (DDXMLElement*)[rootElement childAtIndex:i];
-		NSDictionary *attributes = [child attributesAsDictionary];
-		
-		NSString *ID		= [attributes objectForKey:@"schedule_id"];
-		NSString *prg_id	= [attributes objectForKey:@"program_item_id"];
-		NSString *type		= [attributes objectForKey:@"type"];
-		NSString *title		= [attributes objectForKey:@"title"];
-		NSString *start		= [attributes objectForKey:@"start_time"];
-		NSString *venue		= [attributes objectForKey:@"venue"];
-		//NSLog(@"%@",title);
-		char *errorMsg;
-		
-		NSString *query = [[NSString alloc] initWithFormat:@"INSERT OR REPLACE INTO Forums VALUES (%@, %@, \"%@\", \"%@\", \"%@\", \"%@\");", 
-						   ID, prg_id, type, title, start, venue];
-		
-		
-		if(sqlite3_exec(database, [query UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK)
-		{
-			NSAssert(0, @"Failed to insert row");
-			sqlite3_free(errorMsg);
-		}
-		
 		
 		
 	}

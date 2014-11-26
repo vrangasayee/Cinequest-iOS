@@ -115,6 +115,15 @@
 		// Force to draw the image of tabbar items with their own color
 		item.selectedImage = item.image;
 		item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        
+#pragma mark Rename Tab Bar Items
+        
+        if ([item.title  isEqualToString: @"Films"]) {
+            item.title = @"Index";
+        }
+        if ([item.title isEqualToString:@"Events"]) {
+            item.title = @"Schedule";
+        }
 		
 		// Force to draw the title of tabbar items with black or red if selected
 		[item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];

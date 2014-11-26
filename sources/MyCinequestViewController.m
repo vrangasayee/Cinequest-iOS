@@ -1,26 +1,24 @@
 //
-//  MySchedulerViewController.m
+//  MyCinequestViewController.m
 //  CineQuest
 //
 //  Created by Luca Severini on 10/1/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
 
-#import "MySchedulerViewController.h"
+#import "MyCinequestViewController.h"
 #import "FilmDetailViewController.h"
 #import "EventDetailViewController.h"
-#import "ForumDetailViewController.h"
 #import "CinequestAppDelegate.h"
 #import "Schedule.h"
 #import "Film.h"
-#import "Forum.h"
 #import "Special.h"
 #import "CinequestItem.h"
 
 static NSString *const kScheduleCellIdentifier = @"ScheduleCell";
 
 
-@implementation MySchedulerViewController
+@implementation MyCinequestViewController
 
 @synthesize switchTitle;
 @synthesize scheduleTableView;
@@ -328,11 +326,6 @@ static NSString *const kScheduleCellIdentifier = @"ScheduleCell";
 	{
 		EventDetailViewController *eventDetail = [[EventDetailViewController alloc] initWithEvent:schedule.itemID];
 		[[self navigationController] pushViewController:eventDetail animated:YES];
-	}
-	else if([item isKindOfClass:[Forum class]])
-	{
-		ForumDetailViewController *forumDetail = [[ForumDetailViewController alloc] initWithForum:schedule.itemID];
-		[[self navigationController] pushViewController:forumDetail animated:YES];
 	}
 }
 
