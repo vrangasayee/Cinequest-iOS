@@ -448,7 +448,6 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 - (UITableViewCell*) tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSUInteger section = [indexPath section];
-    NSUInteger row = [indexPath row];
     UITableViewCell *cell = nil;
     
     switch(switcher)
