@@ -174,8 +174,9 @@
 {
 	if(![appDelegate connectedToNetwork])
 	{
-#pragma message "Better to show a popup to warn the user?"
-		NSLog(@"NO CONNECTION. Can't show route");
+        // Show an alert message if network connection fails
+        UIAlertView *noConnectionAlert =[[UIAlertView alloc] initWithTitle: @"No Connection" message: @"Can't show route" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [noConnectionAlert show];
 		return;
 	}
 

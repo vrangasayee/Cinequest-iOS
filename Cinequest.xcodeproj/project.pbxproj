@@ -765,7 +765,6 @@
 				81C8B37C17EBAB3200033D4F /* Resources */,
 				931DA86118A3D92600F31976 /* ShellScript */,
 				9E694EF01A0F34DE0033F87E /* ShellScript */,
-
 			);
 			buildRules = (
 			);
@@ -804,7 +803,7 @@
 				ORGANIZATIONNAME = "San Jose State University";
 				TargetAttributes = {
 					81C8B37D17EBAB3200033D4F = {
-						DevelopmentTeam = 4L8PJU4P6D;
+						DevelopmentTeam = 2ZA68DRGAD;
 					};
 					C27139351828E8C800BF8DCB = {
 						DevelopmentTeam = 4L8PJU4P6D;
@@ -948,7 +947,6 @@
 			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
-
 
 /* Begin PBXSourcesBuildPhase section */
 		81C8B37A17EBAB3200033D4F /* Sources */ = {
