@@ -66,6 +66,8 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 - (void) viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+    
+    [self.eventsTableView setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
 	
 	self.dateToEventsDictionary = [delegate.festival.dateToSpecialsDictionary mutableCopy];
 	self.sortedKeysInDateToEventsDictionary = [delegate.festival.sortedKeysInDateToSpecialsDictionary mutableCopy];
