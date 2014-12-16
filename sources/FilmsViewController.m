@@ -114,11 +114,12 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     [self.filmsTableView addSubview:refreshControl];
     [self.eventsTableView addSubview:refreshControl];
     
-    filmsTableView.tableHeaderView = nil;
+    filmsTableView.tableHeaderView = self.filmSearchBar;
     filmsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    eventsTableView.tableHeaderView = nil;
+    eventsTableView.tableHeaderView = self.filmSearchBar;
     eventsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
 }
 
 - (BOOL) prefersStatusBarHidden
@@ -129,6 +130,10 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    
+    [self.filmsTableView setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
+    [self.eventsTableView setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
     
     self.dateToFilmsDictionary = [delegate.festival.dateToFilmsDictionary mutableCopy];
     self.sortedKeysInDateToFilmsDictionary = [delegate.festival.sortedKeysInDateToFilmsDictionary mutableCopy];
