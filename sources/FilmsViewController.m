@@ -114,9 +114,11 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     [self.filmsTableView addSubview:refreshControl];
     [self.eventsTableView addSubview:refreshControl];
     
+    
+    //Sets the header of the film view to search bar
     filmsTableView.tableHeaderView = self.filmSearchBar;
     filmsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+    //Sets the header of the event view to search bar
     eventsTableView.tableHeaderView = self.filmSearchBar;
     eventsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
@@ -131,10 +133,12 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 {
     [super viewWillAppear:animated];
     
-    
+    //Set the offset to 44 so that when view appears the search bar is hidden
     [self.filmsTableView setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
     [self.eventsTableView setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
     
+    
+    //extracts the date, alphabets and indexes and make sortable form from festival to sore in the local dataToFilmDictionary
     self.dateToFilmsDictionary = [delegate.festival.dateToFilmsDictionary mutableCopy];
     self.sortedKeysInDateToFilmsDictionary = [delegate.festival.sortedKeysInDateToFilmsDictionary mutableCopy];
     self.sortedIndexesInDateToFilmsDictionary = [delegate.festival.sortedIndexesInDateToFilmsDictionary mutableCopy];
@@ -152,6 +156,8 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     
     [self syncTableDataWithScheduler];
     
+    
+    //Perform Search and than based on search roload the data
     if(searchActive)
     {
         [self.searchDisplayController.searchResultsTableView reloadData];
@@ -168,7 +174,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear: animated];
-    
+    //Deallocating objects on disappearance of the view
     self.dateToFilmsDictionary = nil;
     self.sortedKeysInDateToFilmsDictionary = nil;
     self.sortedIndexesInDateToFilmsDictionary = nil;
@@ -203,6 +209,9 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     }
 }
 
+
+//perform various fetch operations like festival fetch, venues fetch on pulling down the screen and refreshing, and than after updating the information
+
 #pragma mark - Private methods
 
 - (void) refresh
@@ -217,6 +226,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     [NSThread sleepForTimeInterval:0.5];
 }
 
+   //Capture the notification and based on it set deaults for films and events
 - (void) receivedNotification:(NSNotification*) notification
 {
     if ([[notification name] isEqualToString:FEED_UPDATED_NOTIFICATION]) // Not really necessary until there is only one notification
@@ -231,8 +241,11 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     }
 }
 
+
+//based on switch i.e. Films or Events udpate user defaults.
 - (void) updateDataAndTable
 {
+
     if (switcher == VIEW_BY_FILMS) {
         self.dateToFilmsDictionary = [delegate.festival.dateToFilmsDictionary mutableCopy];
         self.sortedKeysInDateToFilmsDictionary = [delegate.festival.sortedKeysInDateToFilmsDictionary mutableCopy];
@@ -250,6 +263,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     }
 }
 
+//Extract the date from String data
 - (NSDate*) dateFromString:(NSString*)string
 {
     __block NSDate *detectedDate;
@@ -262,6 +276,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     
     return detectedDate;
 }
+
 
 - (Schedule*) getItemForSender:(id)sender event:(id)touchEvent
 {
@@ -312,6 +327,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     return schedule;
 }
 
+//Generating action for switch i.e. switch between Films and Events in the same view controller
 - (IBAction) switchTitle:(id)sender
 {
     switcher = [sender selectedSegmentIndex];
@@ -337,12 +353,14 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     [self.filmsTableView reloadData];
 }
 
+//Loading film details for the particular schedule item id
 - (void) showFilmDetails:(Schedule*)schedule
 {
     FilmDetailViewController *filmDetail = [[FilmDetailViewController alloc] initWithFilm:schedule.itemID];
     [[self navigationController] pushViewController:filmDetail animated:YES];
 }
 
+//
 - (void) syncTableDataWithScheduler
 {
     [delegate populateCalendarEntries];
@@ -405,6 +423,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     return ([startDate compare:sectionDate] >= NSOrderedSame);
 }
 
+//Calcuating the total number of selectiong in Films view or in Events view
 #pragma mark - UITableView Datasource methods
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*)tableView
@@ -450,6 +469,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     }
 }
 
+//forming the cell for the row in the table view
 - (UITableViewCell*) tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSUInteger section = [indexPath section];
@@ -624,6 +644,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     return cell;
 }
 
+//Setting the properties of the header for the sections
 - (UIView*) tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
     CGFloat width = tableView.bounds.size.width - 17.0;
@@ -653,6 +674,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     return view;
 }
 
+//Fetching Index titles for the rows in the views
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*)tableView
 {
     
@@ -678,16 +700,22 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     }
 }
 
+
+//Setting the height for the header in the view
 #pragma mark - UITableView Delegate methods
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 28.0;
 }
+
+//Setting the height for the footer in the view
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.01;		// This creates a "invisible" footer
 }
+
+//Loading Events detail view for films detail view based on the row selected in teh corresponding view
 - (void) tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSInteger section = [indexPath section];
@@ -733,6 +761,8 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     }
 }
 
+
+//Setting the height for the row, by checking if its for films or th events.
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger section = [indexPath section];
@@ -771,6 +801,8 @@ static NSString *const kEventCellIdentifier = @"EventCell";
         }
     }
 }
+
+//Filtering down content based on the search text
 
 #pragma mark - Content Filtering methods
 
@@ -927,6 +959,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     [self.filmsTableView reloadData];
 }
 
+//End editing for search
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
@@ -961,6 +994,8 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     
     return sortedIndexes;
 }
+
+//Performing the calendar operations based on the calendar button tapped.
 
 #pragma mark - Action methods
 
