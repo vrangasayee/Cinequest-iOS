@@ -27,5 +27,8 @@
 @property (nonatomic, strong) NSMutableDictionary *dateToEventsDictionary;
 @property (nonatomic, strong) NSMutableArray *sortedKeysInDateToEventsDictionary;
 @property (nonatomic, strong) NSMutableArray *sortedIndexesInDateToEventsDictionary;
+@property (nonatomic, strong) NSMutableDictionary *dateToFilmsDictionary;
+@property (nonatomic, strong) NSMutableArray *sortedKeysInDateToFilmsDictionary;
+@property (nonatomic, strong) NSMutableArray *sortedIndexesInDateToFilmsDictionary;
 
 @end
