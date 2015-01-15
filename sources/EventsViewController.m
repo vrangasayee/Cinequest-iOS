@@ -27,6 +27,9 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 @synthesize dateToEventsDictionary;
 @synthesize sortedKeysInDateToEventsDictionary;
 @synthesize sortedIndexesInDateToEventsDictionary;
+@synthesize dateToFilmsDictionary;
+@synthesize sortedKeysInDateToFilmsDictionary;
+@synthesize sortedIndexesInDateToFilmsDictionary;
 
 - (void)didReceiveMemoryWarning
 {
@@ -72,6 +75,11 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 	self.dateToEventsDictionary = [delegate.festival.dateToSpecialsDictionary mutableCopy];
 	self.sortedKeysInDateToEventsDictionary = [delegate.festival.sortedKeysInDateToSpecialsDictionary mutableCopy];
 	self.sortedIndexesInDateToEventsDictionary = [delegate.festival.sortedIndexesInDateToSpecialsDictionary mutableCopy];
+    
+    self.dateToFilmsDictionary = [delegate.festival.dateToFilmsDictionary mutableCopy];
+    self.sortedKeysInDateToFilmsDictionary = [delegate.festival.sortedKeysInDateToFilmsDictionary mutableCopy];
+    self.sortedIndexesInDateToFilmsDictionary = [delegate.festival.sortedIndexesInDateToFilmsDictionary mutableCopy];
+    
 
 	[self syncTableDataWithScheduler];
 	
@@ -87,6 +95,9 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 	self.dateToEventsDictionary = nil;
 	self.sortedKeysInDateToEventsDictionary = nil;
 	self.sortedIndexesInDateToEventsDictionary = nil;
+    
+    self.dateToFilmsDictionary = nil;
+    self.sortedKeysInDateToFilmsDictionary = nil;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -136,7 +147,12 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 	self.dateToEventsDictionary = [delegate.festival.dateToSpecialsDictionary mutableCopy];
 	self.sortedKeysInDateToEventsDictionary = [delegate.festival.sortedKeysInDateToSpecialsDictionary mutableCopy];
 	self.sortedIndexesInDateToEventsDictionary = [delegate.festival.sortedIndexesInDateToSpecialsDictionary mutableCopy];
-	
+    
+    self.dateToFilmsDictionary = [delegate.festival.dateToFilmsDictionary mutableCopy];
+	self.sortedKeysInDateToFilmsDictionary = [delegate.festival.sortedKeysInDateToFilmsDictionary mutableCopy];
+    self.sortedIndexesInDateToFilmsDictionary = [delegate.festival.sortedIndexesInDateToFilmsDictionary mutableCopy];
+    
+    
 	[self.eventsTableView reloadData];
 }
 
@@ -157,7 +173,9 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 {
     [delegate populateCalendarEntries];
     
-	NSInteger sectionCount = [self.sortedKeysInDateToEventsDictionary count];
+//	NSInteger sectionCount = [self.sortedKeysInDateToEventsDictionary count];
+    NSInteger sectionCount = [self.sortedKeysInDateToFilmsDictionary count];
+    
 	NSInteger myScheduleCount = [mySchedule count];
 	if(myScheduleCount == 0)
 	{
@@ -167,8 +185,11 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 	// Sync current data
 	for (NSUInteger section = 0; section < sectionCount; section++)
 	{
-		NSString *day = [self.sortedKeysInDateToEventsDictionary objectAtIndex:section];
-		NSMutableArray *events =  [self.dateToEventsDictionary objectForKey:day];
+//		NSString *day = [self.sortedKeysInDateToEventsDictionary objectAtIndex:section];
+//		NSMutableArray *events =  [self.dateToEventsDictionary objectForKey:day];
+        NSString *day = [self.sortedKeysInDateToFilmsDictionary objectAtIndex:section];
+        NSMutableArray *events =  [self.dateToFilmsDictionary objectForKey:day];
+        
 		NSInteger eventCount = [events count];
 		
 		for (NSUInteger row = 0; row < eventCount; row++)
@@ -229,11 +250,13 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     
     if (indexPath != nil)
 	{
-		NSString *day = [self.sortedKeysInDateToEventsDictionary  objectAtIndex:section];
+//		NSString *day = [self.sortedKeysInDateToEventsDictionary  objectAtIndex:section];
+        NSString *day = [self.sortedKeysInDateToFilmsDictionary objectAtIndex:section];
 		NSDate *date = [self dateFromString:day];
 		
-		Special *event = [[self.dateToEventsDictionary objectForKey:day] objectAtIndex:row];
-		
+//		Special *event = [[self.dateToEventsDictionary objectForKey:day] objectAtIndex:row];
+		Special *event = [[self.dateToFilmsDictionary objectForKey:day] objectAtIndex:row];
+        
 		for (schedule in event.schedules)
 		{
             if ([self compareStartDate:schedule.startDate withSectionDate:date])
@@ -268,13 +291,19 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.sortedKeysInDateToEventsDictionary count];
+//    NSLog(@"Number of sections: %i: ", [self.sortedKeysInDateToFilmsDictionary count]);
+    return [self.sortedKeysInDateToFilmsDictionary count];
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSString *day = [self.sortedKeysInDateToEventsDictionary objectAtIndex:section];
-	return [[self.dateToEventsDictionary objectForKey:day] count];
+//	NSString *day = [self.sortedKeysInDateToEventsDictionary objectAtIndex:section];
+//	return [[self.dateToEventsDictionary objectForKey:day] count];
+    
+    
+    NSString *day = [self.sortedKeysInDateToFilmsDictionary objectAtIndex:section];
+//    NSLog(@"Number of rows: %i: ", [[self.dateToFilmsDictionary objectForKey:day] count]);
+    return [[self.dateToFilmsDictionary objectForKey:day] count];
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -282,11 +311,13 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 	NSUInteger section = [indexPath section];
 	NSUInteger row = [indexPath row];
 	
-	NSString *day = [self.sortedKeysInDateToEventsDictionary objectAtIndex:section];
+//	NSString *day = [self.sortedKeysInDateToEventsDictionary objectAtIndex:section];
+    NSString *day = [self.sortedKeysInDateToFilmsDictionary objectAtIndex:section];
 	NSDate *date = [self dateFromString:day];
 
-	Special *event = [[self.dateToEventsDictionary objectForKey:day] objectAtIndex:row];
-
+//	Special *event = [[self.dateToEventsDictionary objectForKey:day] objectAtIndex:row];
+    Special *event = [[self.dateToFilmsDictionary objectForKey:day] objectAtIndex:row];
+    
 	Schedule *schedule = nil;
 	for (schedule in event.schedules) {
         
@@ -378,7 +409,8 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 	// http://stackoverflow.com/questions/18918986/uitableview-section-index-related-crashes-under-ios-7
 	// return nil;
 	
-	return self.sortedIndexesInDateToEventsDictionary;
+//	return self.sortedIndexesInDateToEventsDictionary;
+    return self.sortedIndexesInDateToFilmsDictionary;
 }
 
 - (UIView*) tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
@@ -395,8 +427,9 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 	label.font = sectionFont;
 	[view addSubview:label];
 	
-	label.text = [NSString stringWithFormat:@"  %@", [self.sortedKeysInDateToEventsDictionary objectAtIndex:section]];
-	
+//	label.text = [NSString stringWithFormat:@"  %@", [self.sortedKeysInDateToEventsDictionary objectAtIndex:section]];
+	label.text = [NSString stringWithFormat:@"  %@", [self.sortedKeysInDateToFilmsDictionary objectAtIndex:section]];
+    
 	return view;
 }
 
@@ -417,11 +450,14 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 	NSUInteger section = [indexPath section];
 	NSUInteger row = [indexPath row];
 
-	NSString *day = [self.sortedKeysInDateToEventsDictionary  objectAtIndex:section];
+//	NSString *day = [self.sortedKeysInDateToEventsDictionary  objectAtIndex:section];
+    NSString *day = [self.sortedKeysInDateToFilmsDictionary  objectAtIndex:section];
+    
 	NSDate *date = [self dateFromString:day];
 	
-	Special *event = [[self.dateToEventsDictionary objectForKey:day] objectAtIndex:row];
-	
+//	Special *event = [[self.dateToEventsDictionary objectForKey:day] objectAtIndex:row];
+	Special *event = [[self.dateToFilmsDictionary objectForKey:day] objectAtIndex:row];
+    
 	for(Schedule *schedule in event.schedules)
 	{
         if ([self compareStartDate:schedule.startDate withSectionDate:date])
@@ -439,8 +475,10 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 	NSUInteger section = [indexPath section];
 	NSUInteger row = [indexPath row];
     
-	NSString *day = [self.sortedKeysInDateToEventsDictionary  objectAtIndex:section];
-	Special *event = [[self.dateToEventsDictionary objectForKey:day] objectAtIndex:row];
+//	NSString *day = [self.sortedKeysInDateToEventsDictionary  objectAtIndex:section];
+//	Special *event = [[self.dateToEventsDictionary objectForKey:day] objectAtIndex:row];
+    NSString *day = [self.sortedKeysInDateToFilmsDictionary objectAtIndex:section];
+    Special *event = [[self.dateToFilmsDictionary objectForKey:day] objectAtIndex:row];
     
     CGSize size = [event.name sizeWithAttributes:@{ NSFontAttributeName : titleFont }];
     if(size.width >= 256.0)
