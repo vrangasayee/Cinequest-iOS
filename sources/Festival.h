@@ -37,6 +37,10 @@
 @property (strong, nonatomic) NSMutableArray *sortedKeysInDateToSpecialsDictionary;
 @property (strong, nonatomic) NSMutableArray *sortedIndexesInDateToSpecialsDictionary;
 
+//combined data. Used in schedule tab.
+@property (strong, nonatomic) NSMutableDictionary *dateToCombinedDictionary;
+@property (strong, nonatomic) NSMutableArray *sortedKeysInDateToCombinedDictionary;
+@property (strong, nonatomic) NSMutableArray *sortedIndexesInDateToCombinedDictionary;
 
 - (NSMutableArray *) getSchedulesForDay:(NSString *)date;
 - (Film *)getFilmForId:(NSString *)ID;

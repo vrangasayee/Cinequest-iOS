@@ -36,6 +36,9 @@
 @synthesize sortedKeysInDateToSpecialsDictionary;
 @synthesize sortedIndexesInDateToSpecialsDictionary;
 
+@synthesize dateToCombinedDictionary;
+@synthesize sortedKeysInDateToCombinedDictionary;
+@synthesize sortedIndexesInDateToCombinedDictionary;
 
 - (id) init
 {
@@ -61,6 +64,10 @@
         dateToSpecialsDictionary = [[NSMutableDictionary alloc] init];
         sortedKeysInDateToSpecialsDictionary = [[NSMutableArray alloc] init];
         sortedIndexesInDateToSpecialsDictionary = [[NSMutableArray alloc] init];
+        
+        dateToCombinedDictionary = [[NSMutableDictionary alloc] init];
+        sortedKeysInDateToCombinedDictionary = [[NSMutableArray alloc] init];
+        sortedIndexesInDateToCombinedDictionary = [[NSMutableArray alloc] init];
 	}
 	
     return self;
