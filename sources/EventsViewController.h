@@ -31,4 +31,9 @@
 @property (nonatomic, strong) NSMutableArray *sortedKeysInDateToFilmsDictionary;
 @property (nonatomic, strong) NSMutableArray *sortedIndexesInDateToFilmsDictionary;
 
+//combined dictionaries (so all films/events/forums are displayed in schedule.
+@property (nonatomic, strong) NSMutableDictionary *dateToCombinedDictionary;
+@property (nonatomic, strong) NSMutableArray *sortedKeysInDateToCombinedDictionary;
+@property (nonatomic, strong) NSMutableArray *sortedIndexesInDateToCombinedDictionary;
+
 @end

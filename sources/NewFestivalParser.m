@@ -134,6 +134,7 @@
             [festival.schedules addObject:schedule];
             
             [self addItemToDictionary:item with:schedule in:festival];
+            [self addItemToCombinedDictionary:item with:schedule in:festival];
             
             if (![uniqueVenues containsObject:schedule.venue]) {
                 [uniqueVenues addObject:schedule.venue];
@@ -180,6 +181,14 @@
         [self sortCinequestItemsByStartDate:specials forKey:key];
     }
     
+    //for combined dictionary
+    festival.sortedKeysInDateToCombinedDictionary = [self getSortedKeysFromDateDictionary:[festival dateToCombinedDictionary]];
+    festival.sortedIndexesInDateToCombinedDictionary = [self getSortedIndexesFromSortedKeys:[festival sortedKeysInDateToCombinedDictionary]];
+    for (NSString *key in festival.dateToCombinedDictionary) {
+        NSMutableArray *specials = (NSMutableArray *)[festival.dateToCombinedDictionary objectForKey:key];
+        [self sortCinequestItemsByStartDate:specials forKey:key];
+    }
+    
     return festival;
 }
 
@@ -207,13 +216,24 @@
 {
     NSString *date = [schedule longDateString];
     NSMutableArray *values;
+    
+    //test
+//    NSMutableArray *values_combined;
+    
     if ([date length] > 0) {
         if ([item isKindOfClass:[Film class]]) {
             values = [festival.dateToFilmsDictionary objectForKey:date];
+            
+//            values_combined = [festival.dateToCombinedDictionary objectForKey:date];
+            
             if (values == nil) {
                 values = [NSMutableArray array];
                 [values addObject:item];
                 [festival.dateToFilmsDictionary setObject:values forKey:date];
+                
+                //add to combined dictionary (for schedule tab)
+//                [festival.dateToCombinedDictionary setObject:values forKey:date];
+                
                 return;
             } else {
                 [values addObject:item];
@@ -224,9 +244,35 @@
                 values = [NSMutableArray array];
                 [values addObject:item];
                 [festival.dateToSpecialsDictionary setObject:values forKey:date];
+                
+                //add to combined dictionary (for schedule tab)
+//                [festival.dateToCombinedDictionary setObject:values forKey:date];
+                
                 return;
             } else {
                 [values addObject:item];
+            }
+        }
+    }
+}
+
+- (void) addItemToCombinedDictionary:(CinequestItem *)item with:(Schedule *)schedule in:(Festival*)festival
+{
+    NSString *date = [schedule longDateString];
+    NSMutableArray *values;
+    
+    if ([date length] > 0) {
+        values = [festival.dateToCombinedDictionary objectForKey:date];
+        
+        if (values == nil) {
+            values = [NSMutableArray array];
+            [values addObject:item];
+            [festival.dateToCombinedDictionary setObject:values forKey:date];
+            
+            return;
+        } else {
+            if(item != nil){
+               [values addObject:item];
             }
         }
     }
