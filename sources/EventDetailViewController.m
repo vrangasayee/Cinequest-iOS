@@ -37,20 +37,50 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 #pragma mark - UIViewController
 
-- (id) initWithEvent:(NSString*)eventId
+//- (id) initWithEvent:(NSString*)eventId
+//{
+//	self = [super init];
+//	if(self != nil)
+//	{
+//		delegate = appDelegate;
+//		mySchedule = delegate.mySchedule;
+//		
+//		self.navigationItem.title = @"Event";
+//        
+//        //test
+//        NSLog(@"eventID in EDVC is: %@", eventId );
+//		
+//		event = [delegate.festival getEventForId:eventId];
+//        
+//        //test
+//        NSLog(@"event in EDVC is: %@", event );
+//	}
+//	
+//	return self;
+//}
+
+//test
+- (id) initWithEvent:(Special*)evnt
 {
-	self = [super init];
-	if(self != nil)
-	{
-		delegate = appDelegate;
-		mySchedule = delegate.mySchedule;
-		
-		self.navigationItem.title = @"Event";
-		
-		event = [delegate.festival getEventForId:eventId];
-	}
-	
-	return self;
+    self = [super init];
+    if(self != nil)
+    {
+        delegate = appDelegate;
+        mySchedule = delegate.mySchedule;
+        
+        self.navigationItem.title = @"Event";
+        
+        //test
+//        NSLog(@"eventID in EDVC is: %@", eventId );
+        
+//        event = [delegate.festival getEventForId:eventId];
+        event = evnt;
+        
+        //test
+        NSLog(@"event in EDVC is: %@", event );
+    }
+    
+    return self;
 }
 
 - (void) viewDidLoad
