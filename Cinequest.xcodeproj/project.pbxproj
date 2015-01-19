@@ -124,10 +124,6 @@
 		93E4E0A7182BB1A200515A84 /* cal_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93E4E0A3182BB1A200515A84 /* cal_unselected@2x.png */; };
 		93E6F1BE18A3E67E00EBC384 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E6F1BD18A3E67E00EBC384 /* Crashlytics.framework */; };
 		93F451D417FDEE6C0091CEE7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F451D317FDEE6C0091CEE7 /* Social.framework */; };
-		C27139381828E8C900BF8DCB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27139371828E8C900BF8DCB /* XCTest.framework */; };
-		C27139391828E8C900BF8DCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C8B38317EBAB3200033D4F /* Foundation.framework */; };
-		C271393A1828E8C900BF8DCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C8B38117EBAB3200033D4F /* UIKit.framework */; };
-		C27139401828E8C900BF8DCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C271393E1828E8C900BF8DCB /* InfoPlist.strings */; };
 		C27BC6D8182A1E26006F7D25 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C27BC6D7182A1E26006F7D25 /* VenueLocation.m */; };
 		C27BC6DB182A3734006F7D25 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = C27BC6DA182A3734006F7D25 /* Schedule.m */; };
 		C2B86DF71844C0350088A958 /* Special.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B86DF61844C0350088A958 /* Special.m */; };
@@ -139,16 +135,6 @@
 		C2D6DC2C1829E0F7005A6897 /* CinequestItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6DC2B1829E0F7005A6897 /* CinequestItem.m */; };
 		C2D6DC2F1829E1CE005A6897 /* ProgramItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6DC2E1829E1CE005A6897 /* ProgramItem.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C27139441828E8C900BF8DCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81C8B37617EBAB3200033D4F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 81C8B37D17EBAB3200033D4F;
-			remoteInfo = Cinequest;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		811791B71897783600B6D21F /* calendar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calendar_icon.png; path = images/calendar_icon.png; sourceTree = SOURCE_ROOT; };
@@ -325,8 +311,6 @@
 		93E4E0A3182BB1A200515A84 /* cal_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cal_unselected@2x.png"; path = "images/cal_unselected@2x.png"; sourceTree = SOURCE_ROOT; };
 		93E6F1BD18A3E67E00EBC384 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		93F451D317FDEE6C0091CEE7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		C27139361828E8C800BF8DCB /* List of Shows Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "List of Shows Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C27139371828E8C900BF8DCB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C271393D1828E8C900BF8DCB /* List of Shows Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "List of Shows Tests-Info.plist"; sourceTree = "<group>"; };
 		C271393F1828E8C900BF8DCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C27139411828E8C900BF8DCB /* List_of_Shows_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = List_of_Shows_Tests.m; sourceTree = "<group>"; };
@@ -385,16 +369,6 @@
 				8192CC6417EBC92D00DBE036 /* libsqlite3.0.dylib in Frameworks */,
 				81D62085185ED65700FEDD03 /* Security.framework in Frameworks */,
 				81D62083185ED5E700FEDD03 /* CoreMotion.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C27139331828E8C800BF8DCB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C27139381828E8C900BF8DCB /* XCTest.framework in Frameworks */,
-				C271393A1828E8C900BF8DCB /* UIKit.framework in Frameworks */,
-				C27139391828E8C900BF8DCB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,7 +485,6 @@
 			isa = PBXGroup;
 			children = (
 				81C8B37E17EBAB3200033D4F /* Cinequest.app */,
-				C27139361828E8C800BF8DCB /* List of Shows Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -540,7 +513,6 @@
 				93F451D317FDEE6C0091CEE7 /* Social.framework */,
 				8149DFC817EBB4F90092F8F9 /* SystemConfiguration.framework */,
 				81C8B38117EBAB3200033D4F /* UIKit.framework */,
-				C27139371828E8C900BF8DCB /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -763,8 +735,6 @@
 				81C8B37A17EBAB3200033D4F /* Sources */,
 				81C8B37B17EBAB3200033D4F /* Frameworks */,
 				81C8B37C17EBAB3200033D4F /* Resources */,
-				931DA86118A3D92600F31976 /* ShellScript */,
-				9E694EF01A0F34DE0033F87E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -774,24 +744,6 @@
 			productName = Cinequest;
 			productReference = 81C8B37E17EBAB3200033D4F /* Cinequest.app */;
 			productType = "com.apple.product-type.application";
-		};
-		C27139351828E8C800BF8DCB /* List of Shows Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C27139461828E8C900BF8DCB /* Build configuration list for PBXNativeTarget "List of Shows Tests" */;
-			buildPhases = (
-				C27139321828E8C800BF8DCB /* Sources */,
-				C27139331828E8C800BF8DCB /* Frameworks */,
-				C27139341828E8C800BF8DCB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C27139451828E8C900BF8DCB /* PBXTargetDependency */,
-			);
-			name = "List of Shows Tests";
-			productName = "List of Shows Tests";
-			productReference = C27139361828E8C800BF8DCB /* List of Shows Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -804,10 +756,6 @@
 				TargetAttributes = {
 					81C8B37D17EBAB3200033D4F = {
 						DevelopmentTeam = 2ZA68DRGAD;
-					};
-					C27139351828E8C800BF8DCB = {
-						DevelopmentTeam = 4L8PJU4P6D;
-						TestTargetID = 81C8B37D17EBAB3200033D4F;
 					};
 				};
 			};
@@ -824,7 +772,6 @@
 			projectRoot = "";
 			targets = (
 				81C8B37D17EBAB3200033D4F /* Cinequest */,
-				C27139351828E8C800BF8DCB /* List of Shows Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -909,44 +856,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C27139341828E8C800BF8DCB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C27139401828E8C900BF8DCB /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		931DA86118A3D92600F31976 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run c3d1ebb5b9d5f416213c217e714ce6a7f1dc0ee6 dc9ea62837685605d23ddce1981e3a34939265821b45edfeeccbc0060ff605b0";
-		};
-		9E694EF01A0F34DE0033F87E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		81C8B37A17EBAB3200033D4F /* Sources */ = {
@@ -989,22 +899,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C27139321828E8C800BF8DCB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C27139451828E8C900BF8DCB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 81C8B37D17EBAB3200033D4F /* Cinequest */;
-			targetProxy = C27139441828E8C900BF8DCB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C271393E1828E8C900BF8DCB /* InfoPlist.strings */ = {
@@ -1140,75 +1035,6 @@
 			};
 			name = Release;
 		};
-		C27139471828E8C900BF8DCB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cinequest.app/Cinequest";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "List of Shows Tests/List of Shows Tests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "List of Shows Tests/List of Shows Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		C27139481828E8C900BF8DCB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cinequest.app/Cinequest";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "List of Shows Tests/List of Shows Tests-Prefix.pch";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "List of Shows Tests/List of Shows Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1226,15 +1052,6 @@
 			buildConfigurations = (
 				81C8B39C17EBAB3200033D4F /* Debug */,
 				81C8B39D17EBAB3200033D4F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C27139461828E8C900BF8DCB /* Build configuration list for PBXNativeTarget "List of Shows Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C27139471828E8C900BF8DCB /* Debug */,
-				C27139481828E8C900BF8DCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
