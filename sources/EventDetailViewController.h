@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) Special *event;
 
-- (id) initWithEvent:(NSString*)eventId;
+- (id) initWithEvent:(Special*)evnt;
+
 
 @end

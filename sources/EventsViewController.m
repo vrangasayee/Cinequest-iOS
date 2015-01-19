@@ -366,6 +366,9 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     //combined dict.
     Special *event = [[self.dateToCombinedDictionary objectForKey:day] objectAtIndex:row];
     
+    //test
+    NSLog(@"event in EVC is: %@", event );
+    
 	Schedule *schedule = nil;
 	for (schedule in event.schedules) {
         
@@ -522,7 +525,12 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 	{
         if ([self compareStartDate:schedule.startDate withSectionDate:date])
 		{
-			EventDetailViewController *eventDetail = [[EventDetailViewController alloc] initWithEvent:schedule.itemID];
+//			EventDetailViewController *eventDetail = [[EventDetailViewController alloc] initWithEvent:schedule.itemID];
+            
+            //test
+            EventDetailViewController *eventDetail = [[EventDetailViewController alloc] initWithEvent:event];
+            
+//            NSLog(@"item id: %@",schedule.itemID);
 			[self.navigationController pushViewController:eventDetail animated:YES];
 
 			break;
