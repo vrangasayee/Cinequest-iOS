@@ -245,7 +245,7 @@ static NSString *const kScheduleCellIdentifier = @"ScheduleCell";
 
 		calendarButton = [UIButton buttonWithType:UIButtonTypeCustom];
         calendarButton.tag = CELL_LEFTBUTTON_TAG;
-		[calendarButton setImage:[UIImage imageNamed:@"calendar_icon.png"] forState:UIControlStateNormal];
+		[calendarButton setImage:[UIImage imageNamed:@"cal_selected.png"] forState:UIControlStateNormal];
         [calendarButton addTarget:self action:@selector(calendarButtonTapped:event:) forControlEvents:UIControlEventTouchDown];
         [cell.contentView addSubview:calendarButton];
 	}
