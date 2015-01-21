@@ -5,6 +5,8 @@
 //  Created by Hai Nguyen on 11/28/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
+//  Edited by Kenan Ozdamar on Jan 2015.
+//
 
 #import "NewFestivalParser.h"
 
@@ -217,22 +219,14 @@
     NSString *date = [schedule longDateString];
     NSMutableArray *values;
     
-    //test
-//    NSMutableArray *values_combined;
-    
     if ([date length] > 0) {
         if ([item isKindOfClass:[Film class]]) {
             values = [festival.dateToFilmsDictionary objectForKey:date];
-            
-//            values_combined = [festival.dateToCombinedDictionary objectForKey:date];
-            
+        
             if (values == nil) {
                 values = [NSMutableArray array];
                 [values addObject:item];
                 [festival.dateToFilmsDictionary setObject:values forKey:date];
-                
-                //add to combined dictionary (for schedule tab)
-//                [festival.dateToCombinedDictionary setObject:values forKey:date];
                 
                 return;
             } else {
@@ -244,9 +238,6 @@
                 values = [NSMutableArray array];
                 [values addObject:item];
                 [festival.dateToSpecialsDictionary setObject:values forKey:date];
-                
-                //add to combined dictionary (for schedule tab)
-//                [festival.dateToCombinedDictionary setObject:values forKey:date];
                 
                 return;
             } else {

@@ -5,6 +5,7 @@
 //  Created by Luca Severini on 10/1/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
+//  Edited by Kenan Ozdamar on Jan 2015.
 
 #import "EventDetailViewController.h"
 #import "CinequestAppDelegate.h"
@@ -37,6 +38,9 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 #pragma mark - UIViewController
 
+// Before I combined events into one dictionary this was the method
+// to get event. Event is retreived with id. this was returning a null
+// event.
 //- (id) initWithEvent:(NSString*)eventId
 //{
 //	self = [super init];
@@ -44,22 +48,16 @@ static NSString *kActionsCellID	= @"ActionsCell";
 //	{
 //		delegate = appDelegate;
 //		mySchedule = delegate.mySchedule;
-//		
 //		self.navigationItem.title = @"Event";
-//        
-//        //test
-//        NSLog(@"eventID in EDVC is: %@", eventId );
-//		
 //		event = [delegate.festival getEventForId:eventId];
-//        
-//        //test
-//        NSLog(@"event in EDVC is: %@", event );
 //	}
 //	
 //	return self;
 //}
 
-//test
+// This is the new version of the method so null value is not
+// returned for event. Instead of looking it up through an
+// eventID event is passed directly.
 - (id) initWithEvent:(Special*)evnt
 {
     self = [super init];
@@ -69,15 +67,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
         mySchedule = delegate.mySchedule;
         
         self.navigationItem.title = @"Event";
-        
-        //test
-//        NSLog(@"eventID in EDVC is: %@", eventId );
-        
-//        event = [delegate.festival getEventForId:eventId];
         event = evnt;
-        
-        //test
-        NSLog(@"event in EDVC is: %@", event );
     }
     
     return self;
