@@ -18,7 +18,7 @@
 #define DETAILFORITEM	@"http://mobile.cinequest.org/mobileCQ.php?type=xml&name=items&iphone&id="
 #define MODE			@"http://mobile.cinequest.org/mobileCQ.php?type=mode"
 #define NEWS_FEED		@"http://www.cinequest.org/news.php"
-#define MAIN_FEED		@"http://payments.cinequest.org/websales/feed.ashx?guid=70d8e056-fa45-4221-9cc7-b6dc88f62c98&showslist=true"
+#define MAIN_FEED		@"http://payments.cinequest.org/websales/feed.ashx?guid=d52499c1-3164-429f-b057-384dd7ec4b23&showslist=true&"
 #define VENUES			@"http://www.cinequest.org/venuelist.php"
 #define CALENDAR_FILE   @"calendar.plist"
 
