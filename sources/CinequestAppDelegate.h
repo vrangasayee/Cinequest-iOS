@@ -7,19 +7,19 @@
 //
 
 
-#define FILMSBYTIME		@"http://mobile.cinequest.org/mobileCQ.php?type=schedules&filmtitles&iphone"
-#define FILMSBYTITLE	@"http://mobile.cinequest.org/mobileCQ.php?type=films&iphone"
-#define OLD_NEWS		@"http://mobile.cinequest.org/mobileCQ.php?type=xml&name=ihome"
-#define EVENTS			@"http://mobile.cinequest.org/mobileCQ.php?type=xml&name=ievents"
-#define DVDs			@"http://mobile.cinequest.org/mobileCQ.php?type=dvds&distribution=none&iphone"
-#define DETAILFORFILMID @"http://mobile.cinequest.org/mobileCQ.php?type=film&iphone&id="
-#define DETAILFORDVDID	@"http://mobile.cinequest.org/mobileCQ.php?type=dvd&iphone&id="
-#define DETAILFORPrgId	@"http://mobile.cinequest.org/mobileCQ.php?type=program_item&iphone&id="
-#define DETAILFORITEM	@"http://mobile.cinequest.org/mobileCQ.php?type=xml&name=items&iphone&id="
-#define MODE			@"http://mobile.cinequest.org/mobileCQ.php?type=mode"
-#define NEWS_FEED		@"http://www.cinequest.org/news.php"
-#define MAIN_FEED		@"http://payments.cinequest.org/websales/feed.ashx?guid=d52499c1-3164-429f-b057-384dd7ec4b23&showslist=true&"
-#define VENUES			@"http://www.cinequest.org/venuelist.php"
+#define FILMSBYTIME		@"https://mobile.cinequest.org/mobileCQ.php?type=schedules&filmtitles&iphone"
+#define FILMSBYTITLE	@"https://mobile.cinequest.org/mobileCQ.php?type=films&iphone"
+#define OLD_NEWS		@"https://mobile.cinequest.org/mobileCQ.php?type=xml&name=ihome"
+#define EVENTS			@"https://mobile.cinequest.org/mobileCQ.php?type=xml&name=ievents"
+#define DVDs			@"https://mobile.cinequest.org/mobileCQ.php?type=dvds&distribution=none&iphone"
+#define DETAILFORFILMID @"https://mobile.cinequest.org/mobileCQ.php?type=film&iphone&id="
+#define DETAILFORDVDID	@"https://mobile.cinequest.org/mobileCQ.php?type=dvd&iphone&id="
+#define DETAILFORPrgId	@"https://mobile.cinequest.org/mobileCQ.php?type=program_item&iphone&id="
+#define DETAILFORITEM	@"https://mobile.cinequest.org/mobileCQ.php?type=xml&name=items&iphone&id="
+#define MODE			@"https://mobile.cinequest.org/mobileCQ.php?type=mode"
+#define NEWS_FEED		@"https://www.cinequest.org/news.php"
+#define MAIN_FEED		@"https://payments.cinequest.org/websales/feed.ashx?guid=d52499c1-3164-429f-b057-384dd7ec4b23&showslist=true&"
+#define VENUES			@"https://www.cinequest.org/venuelist.php"
 #define CALENDAR_FILE   @"calendar.plist"
 
 #define CELL_TITLE_LABEL_TAG	1
