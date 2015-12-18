@@ -1,8 +1,8 @@
 //
-//  NewsDetailViewController.h
+//  TrendingDetailViewController.h
 //  CineQuest
 //
-//  Created by Luca Severini on 1/24/14.
+//  Modified by Chris Pollett from NewsDetailViewController (Luca Severini)
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
 
@@ -11,10 +11,10 @@
 @class Schedule;
 @class CinequestAppDelegate;
 
-@interface NewsDetailViewController : UIViewController <UIWebViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate, GPPSignInDelegate, GPPShareDelegate>
+@interface TrendingDetailViewController : UIViewController <UIWebViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate, GPPSignInDelegate, GPPShareDelegate>
 {
 	CinequestAppDelegate *delegate;
-	NSString *newsName;
+	NSString *trendingName;
 	NSString *infoLink;
 	UIFont *actionFont;
 	UIFont *sectionFont;
@@ -25,8 +25,8 @@
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) IBOutlet UITableView *detailTableView;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, strong) NSDictionary *news;
+@property (nonatomic, strong) NSDictionary *trending;
 
-- (id) initWithNews:(NSDictionary*)newsData;
+- (id) initWithNews:(NSDictionary*)trendingData;
 
 @end

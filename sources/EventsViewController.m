@@ -14,7 +14,7 @@
 #import "EventDetailViewController.h"
 #import "CinequestAppDelegate.h"
 #import "Schedule.h"
-#import "NewsViewController.h"
+#import "TrendingViewController.h"
 #import "Special.h"
 #import "DataProvider.h"
 

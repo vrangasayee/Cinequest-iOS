@@ -10,7 +10,7 @@
 
 #import "EventsViewController.h"
 #import "EventDetailViewController.h"
-#import "NewsViewController.h"
+#import "TrendingViewController.h"
 #import "FilmsViewController.h"
 #import "FilmDetailViewController.h"
 #import "CinequestAppDelegate.h"

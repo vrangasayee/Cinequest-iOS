@@ -158,7 +158,7 @@
 	justChecking = NO;
 	connectionError = noErr;
 		
-	NSURL *url = [NSURL URLWithString:NEWS_FEED];
+	NSURL *url = [NSURL URLWithString:TRENDING_FEED];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:NEWSFEED_TIMEOUT];
     if([NSURLConnection canHandleRequest:urlRequest])
     {
@@ -441,9 +441,9 @@
 			return;
 		}
 
-		NSLog(@"Checking news feed...");
+		NSLog(@"Checking trending feed...");
 		
-		NSURL *url = [NSURL URLWithString:NEWS_FEED];
+		NSURL *url = [NSURL URLWithString:TRENDING_FEED];
 		
 		feedData = [[NSMutableData alloc] init];
 		feedDataLen = 0;

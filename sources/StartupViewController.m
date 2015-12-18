@@ -8,10 +8,9 @@
 
 #import "StartupViewController.h"
 #import "CinequestAppDelegate.h"
-#import "FestivalParser.h"
 #import "Reachability.h"
 #import "DataProvider.h"
-#import "NewsViewController.h"
+#import "TrendingViewController.h"
 #import "Film.h"
 #import "Special.h"
 
@@ -121,7 +120,6 @@
 			{
 				[NSThread sleepForTimeInterval:0.01];
 			}
-			
 			window.rootViewController = [appDelegate tabBar];
 		}
 		completion:nil];

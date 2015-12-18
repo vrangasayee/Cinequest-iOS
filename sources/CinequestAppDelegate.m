@@ -11,7 +11,6 @@
 #import <EventKit/EventKitDefines.h>
 #import <EventKit/EKCalendarItem.h>
 #import "CinequestAppDelegate.h"
-#import "FestivalParser.h"
 #import "Reachability.h"
 #import "StartupViewController.h"
 #import "DataProvider.h"
@@ -28,7 +27,7 @@
 @synthesize isPresentingModalView;
 @synthesize isLoggedInFacebook;
 @synthesize isOffSeason;
-@synthesize newsView;
+@synthesize trendingView;
 @synthesize festival;
 @synthesize venuesDictionary;
 @synthesize reachability;
@@ -109,7 +108,6 @@
     
     // Set UITextFields to have light appearance instead of dark appearance
     [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceLight];
-
 	for(UITabBarItem *item in tabBar.tabBar.items)
 	{
 		// Force to draw the image of tabbar items with their own color
@@ -117,14 +115,7 @@
 		item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         
 #pragma mark Rename Tab Bar Items
-        
-        if ([item.title  isEqualToString: @"Films"]) {
-            item.title = @"Index";
-        }
-        if ([item.title isEqualToString:@"Events"]) {
-            item.title = @"Schedule";
-        }
-		
+        		
 		// Force to draw the title of tabbar items with black or red if selected
 		[item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
 		[item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
@@ -135,7 +126,6 @@
 	[shadow setShadowColor: [UIColor redColor]];
 	[shadow setShadowOffset: CGSizeMake(0.0, 1.0)];
 	[[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-
 	return YES;
 }
 

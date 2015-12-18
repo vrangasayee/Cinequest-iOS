@@ -17,7 +17,8 @@
 #define DETAILFORPrgId	@"https://mobile.cinequest.org/mobileCQ.php?type=program_item&iphone&id="
 #define DETAILFORITEM	@"https://mobile.cinequest.org/mobileCQ.php?type=xml&name=items&iphone&id="
 #define MODE			@"https://mobile.cinequest.org/mobileCQ.php?type=mode"
-#define NEWS_FEED		@"https://www.cinequest.org/news.php"
+#define TRENDING_FEED	@"https://www.cinequest.org/mobileCQ.php?type=xml&name=trending"
+#define VIDEO_FEED      @"https://payments.cinequest.org/websales/feed.ashx?guid=d52499c1-3164-429f-b057-384dd7ec4b23&showslist=true&"
 #define MAIN_FEED		@"https://payments.cinequest.org/websales/feed.ashx?guid=d52499c1-3164-429f-b057-384dd7ec4b23&showslist=true&"
 #define VENUES			@"https://www.cinequest.org/venuelist.php"
 #define CALENDAR_FILE   @"calendar.plist"
@@ -63,7 +64,7 @@
 #define appDelegate ((CinequestAppDelegate*)[[UIApplication sharedApplication] delegate])
 #define app [UIApplication sharedApplication]
 
-@class NewsViewController;
+@class TrendingViewController;
 @class Reachability;
 @class DataProvider;
 
@@ -77,7 +78,7 @@
 	NSInteger curTabIndex;
 }
 
-@property (nonatomic, strong) NewsViewController *newsView;
+@property (nonatomic, strong) TrendingViewController *trendingView;
 @property (nonatomic, strong) NSMutableArray *mySchedule;
 @property (readwrite) BOOL isPresentingModalView;
 @property (readwrite) BOOL isLoggedInFacebook;

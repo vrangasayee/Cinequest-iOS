@@ -1,31 +1,31 @@
 //
-//  NewsViewController.m
+//  TrendingViewController.m
 //  CineQuest
 //
-//  Created by Luca Severini on 10/1/13.
-//  Copyright (c) 2013 San Jose State University. All rights reserved.
+//  Converted from NewController by Chris Pollett
+//  Copyright (c) 2015 San Jose State University. All rights reserved.
 //
 
 #import "CinequestAppDelegate.h"
-#import "NewsViewController.h"
-#import "NewsDetailViewController.h"
+#import "TrendingViewController.h"
+#import "TrendingDetailViewController.h"
 #import "DDXML.h"
 #import "DataProvider.h"
 
-static NSString *const kNewsCellIdentifier = @"NewsCell";
+static NSString *const kTrendingCellIdentifier = @"TrendingCell";
 
 /*
  * This menu item loads the news from an array of news and displays them as a table.
  * Each cell of the table contains a thumbnail image and a short description of what the image is about (news).
  */
 
-@implementation NewsViewController
+@implementation TrendingViewController
 
 @synthesize switchTitle;
-@synthesize newsTableView;
+@synthesize trendingTableView;
 @synthesize activityIndicator;
 @synthesize refreshControl;
-@synthesize news;
+@synthesize feed;
 
 - (void) didReceiveMemoryWarning
 {
@@ -50,17 +50,16 @@ static NSString *const kNewsCellIdentifier = @"NewsCell";
     
 	NSDictionary *attribute = [NSDictionary dictionaryWithObject:[UIFont boldSystemFontOfSize:16.0f] forKey:NSFontAttributeName];
 	[switchTitle setTitleTextAttributes:attribute forState:UIControlStateNormal];
-	[switchTitle removeSegmentAtIndex:1 animated:NO];
     
 	refreshControl = [UIRefreshControl new];
-	// refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Updating News..."];
+	// refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Updating Trending..."];
 	[refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
-	[((UITableViewController*)self.newsTableView.delegate) setRefreshControl:refreshControl];
-	[self.newsTableView addSubview:refreshControl];
+	[((UITableViewController*)self.trendingTableView.delegate) setRefreshControl:refreshControl];
+	[self.trendingTableView addSubview:refreshControl];
     
     // Sets the header and footer descriptions for the screen
-	newsTableView.tableHeaderView = nil;
-	newsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+	trendingTableView.tableHeaderView = nil;
+	trendingTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 /*
@@ -114,11 +113,11 @@ static NSString *const kNewsCellIdentifier = @"NewsCell";
 		tabBarAnimation = NO;
 	}
 	
-	if([[NSUserDefaults standardUserDefaults] boolForKey:@"NewsUpdated"])
+	if([[NSUserDefaults standardUserDefaults] boolForKey:@"TrendingUpdated"])
 	{   // If the current news is updated, display News Updated message
-		[appDelegate showMessage:@"News have been updated" onView:self.view hideAfter:3.0];
+		[appDelegate showMessage:@"Trending have been updated" onView:self.view hideAfter:3.0];
 		
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NewsUpdated"];
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"TrendingUpdated"];
         [[NSUserDefaults standardUserDefaults] synchronize];
 	}
 }
@@ -147,9 +146,9 @@ static NSString *const kNewsCellIdentifier = @"NewsCell";
 	{
  		[self performSelectorOnMainThread:@selector(loadData) withObject:nil waitUntilDone:NO];
         
-		[appDelegate showMessage:@"News have been updated" onView:self.view hideAfter:3.0];
+		[appDelegate showMessage:@"Trending have been updated" onView:self.view hideAfter:3.0];
         // Set User Defaults to persist data across app launches
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NewsUpdated"];
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"TrendingUpdated"];
         [[NSUserDefaults standardUserDefaults] synchronize];
 	}
 }
@@ -160,7 +159,7 @@ static NSString *const kNewsCellIdentifier = @"NewsCell";
  */
 - (void) loadData
 {
-	news = [NSMutableArray new];
+	feed = [NSMutableArray new];
 	
 	NSData *xmlData = [appDelegate.dataProvider newsFeed];
 	
@@ -229,13 +228,13 @@ static NSString *const kNewsCellIdentifier = @"NewsCell";
 					[newsItem setObject:info forKey:@"info"];
 					[newsItem setObject:thumbImageUrl forKey:@"thumbImage"];
 					
-					[news addObject:newsItem];
+					[feed addObject:newsItem];
 				}
 			}
 		}
 	}
     
-	[self.newsTableView reloadData];
+	[self.trendingTableView reloadData];
 }
 
 #pragma mark - UITableView Data Source
@@ -250,7 +249,7 @@ static NSString *const kNewsCellIdentifier = @"NewsCell";
  */
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [news count];
+	return [feed count];
 }
 /*
  * Function to place each news item in each cell of the table
@@ -259,12 +258,12 @@ static NSString *const kNewsCellIdentifier = @"NewsCell";
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSUInteger row = [indexPath row];
-	NSMutableDictionary *newsData = [news objectAtIndex:row];
+	NSMutableDictionary *newsData = [feed objectAtIndex:row];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNewsCellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTrendingCellIdentifier];
     if(cell == nil)
 	{
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kNewsCellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kTrendingCellIdentifier];
 	}
 	else
 	{
@@ -319,9 +318,9 @@ static NSString *const kNewsCellIdentifier = @"NewsCell";
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSUInteger row = [indexPath row];
-	NSDictionary *newsData = [news objectAtIndex:row];
+	NSDictionary *newsData = [feed objectAtIndex:row];
     
-	NewsDetailViewController *eventDetail = [[NewsDetailViewController alloc] initWithNews:newsData];
+	TrendingDetailViewController *eventDetail = [[TrendingDetailViewController alloc] initWithNews:newsData];
 	[self.navigationController pushViewController:eventDetail animated:YES];
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -333,7 +332,7 @@ static NSString *const kNewsCellIdentifier = @"NewsCell";
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //Creates a news array
-	NSMutableDictionary *newsData = [news objectAtIndex:[indexPath row]];
+	NSMutableDictionary *newsData = [feed objectAtIndex:[indexPath row]];
     
 	CGFloat height = 54.0;
     // After setting cell height, display title and image
