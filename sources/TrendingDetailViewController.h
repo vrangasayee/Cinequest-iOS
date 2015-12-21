@@ -1,5 +1,5 @@
 //
-//  HotPicksDetailViewController.h
+//  TrendingDetailViewController.h
 //  CineQuest
 //
 //  Modified by Chris Pollett from NewsDetailViewController (Luca Severini)
@@ -11,10 +11,10 @@
 @class Schedule;
 @class CinequestAppDelegate;
 
-@interface HotPicksDetailViewController : UIViewController <UIWebViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate, GPPSignInDelegate, GPPShareDelegate>
+@interface TrendingDetailViewController : UIViewController <UIWebViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate, GPPSignInDelegate, GPPShareDelegate>
 {
 	CinequestAppDelegate *delegate;
-	NSString *hotPicksName;
+	NSString *trendingName;
 	NSString *infoLink;
 	UIFont *actionFont;
 	UIFont *sectionFont;
@@ -25,8 +25,8 @@
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) IBOutlet UITableView *detailTableView;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, strong) NSDictionary *hotPicks;
+@property (nonatomic, strong) NSDictionary *trending;
 
-- (id) initWithData:(NSDictionary*)hotPicksData;
+- (id) initWithData:(NSDictionary*)trendingData;
 
 @end

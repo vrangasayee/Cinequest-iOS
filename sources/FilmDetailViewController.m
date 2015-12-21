@@ -1,77 +1,83 @@
 //
-//  ScheduleDetailViewController.m
+//  FilmDetailViewController.m
 //  CineQuest
 //
 //  Created by Luca Severini on 10/1/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
-//
-//  Edited by Kenan Ozdamar on Jan 2015.
 //  Renamed Chris Pollett 2015
+//
 
-#import "ScheduleDetailViewController.h"
-#import "CinequestAppDelegate.h"
+#import "FilmDetailViewController.h"
+#import "DDXML.h"
 #import "Schedule.h"
-#import "Special.h"
+#import "CinequestAppDelegate.h"
 #import "DataProvider.h"
+#import "Festival.h"
+#import "Film.h"
+#import "Venue.h"
 #import "MapViewController.h"
 #import "GPlusDialogView.h"
 #import "GPlusDialogViewController.h"
 
 
-#define web @"<style type=\"text/css\">h1{font-size:23px;text-align:center;}p.image{text-align:center;}</style><h1>%@</h1><p class=\"image\"><img style=\"max-height:200px;max-width:250px;\"src=\"%@\"/></p><p>%@</p>"
+#define web @"<style type=\"text/css\">h1{font-size:23px;text-align:center;}p.image{text-align:center;}p{margin-bottom:5px;}h4{background-color:#F3F3F3; border-radius:4px 4px 4px 4px;text-align:center;margin-bottom:5px;margin-top:5px;}</style><h1>%@</h1><p class=\"image\"><img style=\"max-height:200px;max-width:250px;\"src=\"%@\"/></p><p>%@</p>"
 
+static NSString *kShortProgCellID = @"ShortProgCell";
 static NSString *kScheduleCellID = @"ScheduleCell";
 static NSString *kSocialMediaCellID = @"SocialMediaCell";
 static NSString *kActionsCellID	= @"ActionsCell";
 
 
-@implementation ScheduleDetailViewController
+@implementation FilmDetailViewController
 
 @synthesize detailTableView;
 @synthesize webView;
 @synthesize activityIndicator;
-@synthesize event;
+@synthesize film;
 
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - UIViewController
+#pragma mark - UIViewController Methods
 
-- (id) initWithEventID:(NSString*)eventId
+- (id) initWithFilm:(NSString*)filmId
 {
 	self = [super init];
 	if(self != nil)
 	{
 		delegate = appDelegate;
 		mySchedule = delegate.mySchedule;
-		self.navigationItem.title = @"Event";
-		event = [delegate.festival getEventForId:eventId];
+		
+		self.navigationItem.title = @"Film";
+
+		film = [delegate.festival getFilmForId:filmId];
 	}
 	
 	return self;
 }
 
-- (id) initWithEvent:(Special*)evnt
+- (id) initWithShortFilm:(NSString*)shortFilmId;
 {
-    self = [super init];
-    if(self != nil)
-    {
-        delegate = appDelegate;
-        mySchedule = delegate.mySchedule;
-        
-        self.navigationItem.title = @"Event";
-        event = evnt;
-    }
-    
-    return self;
+	self = [super init];
+	if(self != nil)
+	{
+		delegate = appDelegate;
+		mySchedule = delegate.mySchedule;
+		
+		self.navigationItem.title = @"Short Film";
+		
+		film = [delegate.festival getFilmForId:shortFilmId];
+	}
+	
+	return self;
 }
 
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
-    
+	
 	[GPPSignIn sharedInstance].delegate = self;
 	[GPPSignIn sharedInstance].clientID = GOOGLEPLUS_CLIENTID;
 	[GPPSignIn sharedInstance].shouldFetchGooglePlusUser = YES;
@@ -79,27 +85,26 @@ static NSString *kActionsCellID	= @"ActionsCell";
 	[GPPSignIn sharedInstance].shouldFetchGoogleUserID = YES;
 	[GPPSignIn sharedInstance].scopes = @[ kGTLAuthScopePlusLogin ];
 
-	delegate = appDelegate;
-	mySchedule = delegate.mySchedule;
-
-	self.detailTableView.hidden = YES;
 	self.view.userInteractionEnabled = NO;
-
-	self.activityIndicator.color = [UIColor grayColor];
-
+    
+	titleFont = [UIFont systemFontOfSize:14.0];
 	timeFont = [UIFont systemFontOfSize:[UIFont systemFontSize]];
 	sectionFont = [UIFont boldSystemFontOfSize:18.0];
 	venueFont = timeFont;
 	actionFont = [UIFont systemFontOfSize:12.0];
-
+	
 	UISegmentedControl *switchTitle = [[UISegmentedControl alloc] initWithFrame:CGRectMake(98.5, 7.5, 123.0, 29.0)];
-	[switchTitle insertSegmentWithTitle:@"Detail" atIndex:0 animated:NO];
+	[switchTitle insertSegmentWithTitle:[NSString stringWithFormat:@"%@ Detail", self.navigationItem.title] atIndex:0 animated:NO];
 	[switchTitle setSelectedSegmentIndex:0];
 	NSDictionary *attribute = [NSDictionary dictionaryWithObject:[UIFont boldSystemFontOfSize:16.0f] forKey:NSFontAttributeName];
 	[switchTitle setTitleTextAttributes:attribute forState:UIControlStateNormal];
 	self.navigationItem.titleView = switchTitle;
-
+	
+	self.activityIndicator.color = [UIColor grayColor];
+    
 	[(UIWebView*)self.detailTableView.tableHeaderView setSuppressesIncrementalRendering:YES]; // Avoids scrolling problems when the WebView is showed
+
+	self.detailTableView.hidden = YES;
 
 	[self.activityIndicator startAnimating];
 
@@ -125,20 +130,20 @@ static NSString *kActionsCellID	= @"ActionsCell";
 - (void) viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-    
+	   
     [self.detailTableView reloadSections:[NSIndexSet indexSetWithIndex:SCHEDULE_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void) loadData
 {
-	NSString *cachedImage = [appDelegate.dataProvider cacheImage:[event imageURL]];
-	
+	NSString *cachedImage = [appDelegate.dataProvider cacheImage:[film imageURL]];
+
 	// Don't execute unuseful code if the view is going to disappear shortly
 	if(!viewWillDisappear)
 	{
-		NSString *weba = [NSString stringWithFormat:web, [event name], cachedImage, [event description]];
-		weba = [self htmlEntityDecode:weba];
-		
+		NSString *weba = [NSString stringWithFormat:web, film.name, cachedImage, [film description]];
+		weba = [weba stringByAppendingString:film.webString];
+
 		[webView loadHTMLString:weba baseURL:nil];
 	}
 }
@@ -154,68 +159,42 @@ static NSString *kActionsCellID	= @"ActionsCell";
 	
 	if(indexPath != nil)
 	{
-		NSMutableArray *schedules = [event schedules];
+		NSMutableArray *schedules = [film schedules];
 		schedule = [schedules objectAtIndex:row];
     }
     
     return schedule;
 }
 
+- (void) showShortFilmDetails:(Film*)shortFilm
+{
+	FilmDetailViewController *filmDetail = [[FilmDetailViewController alloc] initWithShortFilm:shortFilm.ID];
+	[[self navigationController] pushViewController:filmDetail animated:YES];
+}
+
 #pragma mark - UIWebView delegate
 
-- (void) webViewDidFinishLoad:(UIWebView *)webView
+- (void) webViewDidFinishLoad:(UIWebView *)_webView
 {
-	// Updates the WebView and force it to redisplay correctly
+	// Updates the WebView and force it to redisplay correctly 
 	[self.detailTableView.tableHeaderView sizeToFit];
 	[self.detailTableView setTableHeaderView:self.detailTableView.tableHeaderView];
-	
+
 	[self.activityIndicator stopAnimating];
 	
 	self.view.userInteractionEnabled = YES;
 	self.detailTableView.hidden = NO;
 }
 
-- (BOOL) webView:(UIWebView *)inWeb shouldStartLoadWithRequest:(NSURLRequest *)inRequest navigationType:(UIWebViewNavigationType)inType
-{
-    if(inType == UIWebViewNavigationTypeLinkClicked)
-	{
-        [app openURL:[inRequest URL]];
-		
-        return NO;
-    }
-	
-    return YES;
-}
-
 #pragma mark - UITableView Datasource
-
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-{
-	return 4;
-}
-
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	switch (section)
-	{
-		case SCHEDULE_SECTION:
-			return 1;
-			break;
-			
-		case SOCIAL_MEDIA_SECTION:
-			return 1;
-			break;
-			
-		case ACTION_SECTION:
-			return 1;
-			break;
-	}
-	
-	return 0;
-}
 
 - (UIView*) tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
+	if(section == SHORT_PROGRAM_SECTION && [[film shortItems] count] == 0)
+	{
+		return nil;
+	}
+	
 	CGFloat width = tableView.bounds.size.width;
 	CGFloat height = 24.0;
 	
@@ -230,12 +209,16 @@ static NSString *kActionsCellID	= @"ActionsCell";
 	
 	switch(section)
 	{
+		case SHORT_PROGRAM_SECTION:
+			label.text = [NSString stringWithFormat:@"  %@", @"Short Programs"];
+			break;
+			
 		case SCHEDULE_SECTION:
 			label.text = [NSString stringWithFormat:@"  %@", @"Schedule"];
 			break;
 			
 		case SOCIAL_MEDIA_SECTION:
-			label.text =  [NSString stringWithFormat:@"  %@", @"Share Event Detail"];
+			label.text = [NSString stringWithFormat:@"  %@", @"Share Film Detail"];
 			break;
 			
 		case ACTION_SECTION:
@@ -246,21 +229,141 @@ static NSString *kActionsCellID	= @"ActionsCell";
     return view;
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 4;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	switch (section)
+	{
+		case SHORT_PROGRAM_SECTION:
+			return [[film shortItems] count];
+			break;
+
+		case SCHEDULE_SECTION:
+			return [[film schedules] count];
+			break;
+			
+		case SOCIAL_MEDIA_SECTION:
+			return 1;
+			break;
+			
+		case ACTION_SECTION:
+			return 1;
+			break;
+	}
+	
+	return 0;
+}
+
+#pragma mark - UITableView delegate
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	if(section == SHORT_PROGRAM_SECTION && [[film shortItems] count] == 0)
+	{
+		return 0.0;
+	}
+	else
+	{
+		return 28.0;
+	}
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSInteger section = [indexPath section];
-	UITableViewCell *cell = nil;
-	
-	switch(section)
+	switch (section)
 	{
+		case SHORT_PROGRAM_SECTION:
+		{
+			NSInteger row = [indexPath row];
+			
+			Film *shortFilm = [[film shortItems] objectAtIndex:row];
+			assert(shortFilm);
+
+			CGSize size = [shortFilm.name sizeWithAttributes:@{ NSFontAttributeName : titleFont }];
+			if(size.width >= 292.0)
+			{
+				return 48.0;
+			}
+			else
+			{
+				return 30.0;
+			}
+		}
+			break;
+
+		case SCHEDULE_SECTION:
+			return 50.0;
+			break;
+			
+		case SOCIAL_MEDIA_SECTION:
+			return 70.0;
+			break;
+			
+		case ACTION_SECTION:
+			return 70.0;
+			break;
+			
+		default:
+			return 50.0;
+			break;
+	}
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	UITableViewCell *cell = nil;
+	NSInteger section = [indexPath section];
+	
+	switch (section)
+	{
+		case SHORT_PROGRAM_SECTION:
+		{
+			NSInteger row = [indexPath row];
+			
+			Film *shortFilm = [[film shortItems] objectAtIndex:row];
+			assert(shortFilm);
+
+			cell = [tableView dequeueReusableCellWithIdentifier:kShortProgCellID];
+			if (cell == nil)
+			{
+				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kShortProgCellID];
+				cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			}
+			else
+			{
+				[[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+			}
+
+			NSInteger titleNumLines = 1;
+			CGSize size = [shortFilm.name sizeWithAttributes:@{ NSFontAttributeName : titleFont }];
+			if(size.width >= 292.0)
+			{
+				titleNumLines = 2;
+			}
+			
+			UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleNumLines == 1 ? CGRectMake(16.0, 6.0, 292.0, 18.0) : CGRectMake(16.0, 6.0, 292.0, 34.0)];
+			titleLabel.tag = CELL_TITLE_LABEL_TAG;
+			[titleLabel setNumberOfLines:titleNumLines];
+			titleLabel.font = titleFont;
+			titleLabel.text = shortFilm.name;
+			[cell.contentView addSubview:titleLabel];
+
+			break;
+		}
+			
 		case SCHEDULE_SECTION:
 		{
 			NSInteger row = [indexPath row];
 			
 			// get all schedules
-			NSMutableArray *schedules = [event schedules];
+			NSMutableArray *schedules = [film schedules];
 			Schedule *schedule = [schedules objectAtIndex:row];
-			
+						
 			NSUInteger count = [mySchedule count];
             
             if (count) {
@@ -272,23 +375,23 @@ static NSString *kActionsCellID	= @"ActionsCell";
                         schedule.isSelected = YES;
                     }
                 }
-                
+
             } else {
                 schedule.isSelected = NO;
             }
 			
-			UIImage *buttonImage = (schedule.isSelected) ? [UIImage imageNamed:@"cal_selected.png"] : [UIImage imageNamed:@"cal_unselected.png"];
 			UILabel *timeLabel = nil;
 			UILabel *venueLabel = nil;
 			UIButton *calButton = nil;
 			UIButton *mapsButton = nil;
+			UIImage *buttonImage = (schedule.isSelected) ? [UIImage imageNamed:@"cal_selected.png"] : [UIImage imageNamed:@"cal_unselected.png"];
 
 			cell = [tableView dequeueReusableCellWithIdentifier:kScheduleCellID];
 			if (cell == nil)
 			{
 				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kScheduleCellID];
-				cell.accessoryType = UITableViewCellAccessoryNone;
-							
+				cell.selectionStyle = UITableViewCellSelectionStyleNone;
+				
 				timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(52.0, 4.0, 250.0, 20.0)];
 				timeLabel.tag = CELL_TIME_LABEL_TAG;
 				timeLabel.font = timeFont;
@@ -316,7 +419,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 			
 			timeLabel = (UILabel*)[cell viewWithTag:CELL_TIME_LABEL_TAG];
 			timeLabel.text = [NSString stringWithFormat:@"%@ %@ - %@", schedule.dateString, schedule.startTime, schedule.endTime];
-			
+
 			venueLabel = (UILabel*)[cell viewWithTag:CELL_VENUE_LABEL_TAG];
 			venueLabel.text = [NSString stringWithFormat:@"Venue: %@", schedule.venue];
 			
@@ -325,74 +428,74 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 			break;
 		}
-	
+		
 		case SOCIAL_MEDIA_SECTION:
 		{
 			cell = [tableView dequeueReusableCellWithIdentifier:kSocialMediaCellID];
-			if(cell == nil)
+			if (cell == nil)
 			{
 				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kSocialMediaCellID];
 				cell.selectionStyle = UITableViewCellSelectionStyleNone;
 				
-				UIButton *fbButton = [UIButton buttonWithType:UIButtonTypeCustom];
-				fbButton.frame = CGRectMake(20.0, 6.0, 40.0, 40.0);
-				[fbButton addTarget:self action:@selector(shareToFacebook:) forControlEvents:UIControlEventTouchDown];
-				[fbButton setImage:[UIImage imageNamed:@"facebook.png"] forState:UIControlStateNormal];
-				[cell.contentView addSubview:fbButton];
-				
-				UILabel *lblFacebook = [[UILabel alloc] initWithFrame:CGRectMake(12.0, 46.0, 56.0, 20)];
-				lblFacebook.text = @"Facebook";
-				[lblFacebook setFont:actionFont];
-				[lblFacebook setTextAlignment:NSTextAlignmentCenter];
-				[cell.contentView addSubview:lblFacebook];
-				
-				UIButton *twButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                UIButton *fbButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                fbButton.frame = CGRectMake(20.0, 6.0, 40.0, 40.0);
+                [fbButton addTarget:self action:@selector(shareToFacebook:) forControlEvents:UIControlEventTouchDown];
+                [fbButton setImage:[UIImage imageNamed:@"facebook.png"] forState:UIControlStateNormal];
+                [cell.contentView addSubview:fbButton];
+                
+                UILabel *lblFacebook = [[UILabel alloc] initWithFrame:CGRectMake(12.0, 46.0, 56.0, 20)];
+                lblFacebook.text = @"Facebook";
+                [lblFacebook setFont:actionFont];
+                [lblFacebook setTextAlignment:NSTextAlignmentCenter];
+                [cell.contentView addSubview:lblFacebook];
+                
+                UIButton *twButton = [UIButton buttonWithType:UIButtonTypeCustom];
 				twButton.frame = CGRectMake(80.0, 6.0, 40.0, 40.0);
 				[twButton addTarget:self action:@selector(shareToTwitter:) forControlEvents:UIControlEventTouchDown];
-				[twButton setImage:[UIImage imageNamed:@"twitter.png"] forState:UIControlStateNormal];
-				[cell.contentView addSubview:twButton];
-				
-				UILabel *lblTwitter = [[UILabel alloc] initWithFrame:CGRectMake(72.0, 46.0, 56.0, 20)];
-				lblTwitter.text = @"Twitter";
-				[lblTwitter setFont:actionFont];
-				[lblTwitter setTextAlignment:NSTextAlignmentCenter];
-				[cell.contentView addSubview:lblTwitter];
-				
+                [twButton setImage:[UIImage imageNamed:@"twitter.png"] forState:UIControlStateNormal];
+                [cell.contentView addSubview:twButton];
+
+                UILabel *lblTwitter = [[UILabel alloc] initWithFrame:CGRectMake(72.0, 46.0, 56.0, 20)];
+                lblTwitter.text = @"Twitter";
+                [lblTwitter setFont:actionFont];
+                [lblTwitter setTextAlignment:NSTextAlignmentCenter];
+                [cell.contentView addSubview:lblTwitter];
+
 				UIButton *googleButton = [UIButton buttonWithType:UIButtonTypeCustom];
 				googleButton.frame = CGRectMake(140.0, 6.0, 40.0, 40.0);
 				[googleButton addTarget:self action:@selector(shareToGooglePlus:) forControlEvents:UIControlEventTouchDown];
-				[googleButton setImage:[UIImage imageNamed:@"googleplus.png"] forState:UIControlStateNormal];
-				[cell.contentView addSubview:googleButton];
-				
-				UILabel *lblGoogle = [[UILabel alloc] initWithFrame:CGRectMake(132.0, 46.0, 56.0, 20)];
-				lblGoogle.text = @"Google+";
-				[lblGoogle setFont:actionFont];
-				[lblGoogle setTextAlignment:NSTextAlignmentCenter];
-				[cell.contentView addSubview:lblGoogle];
-				
+                [googleButton setImage:[UIImage imageNamed:@"googleplus.png"] forState:UIControlStateNormal];
+                [cell.contentView addSubview:googleButton];
+                
+                UILabel *lblGoogle = [[UILabel alloc] initWithFrame:CGRectMake(132.0, 46.0, 56.0, 20)];
+                lblGoogle.text = @"Google+";
+                [lblGoogle setFont:actionFont];
+                [lblGoogle setTextAlignment:NSTextAlignmentCenter];
+                [cell.contentView addSubview:lblGoogle];
+
 				UIButton *mailButton = [UIButton buttonWithType:UIButtonTypeCustom];
 				mailButton.frame = CGRectMake(200.0, 6.0, 40.0, 40.0);
 				[mailButton addTarget:self action:@selector(shareToMail:) forControlEvents:UIControlEventTouchDown];
-				[mailButton setImage:[UIImage imageNamed:@"mail.png"] forState:UIControlStateNormal];
-				[cell.contentView addSubview:mailButton];
-				
-				UILabel *lblMail = [[UILabel alloc] initWithFrame:CGRectMake(192.0, 46.0, 56.0, 20)];
-				lblMail.text = @"Email";
-				[lblMail setFont:actionFont];
-				[lblMail setTextAlignment:NSTextAlignmentCenter];
-				[cell.contentView addSubview:lblMail];
-				
+                [mailButton setImage:[UIImage imageNamed:@"mail.png"] forState:UIControlStateNormal];
+                [cell.contentView addSubview:mailButton];
+                
+                UILabel *lblMail = [[UILabel alloc] initWithFrame:CGRectMake(192.0, 46.0, 56.0, 20)];
+                lblMail.text = @"Email";
+                [lblMail setFont:actionFont];
+                [lblMail setTextAlignment:NSTextAlignmentCenter];
+                [cell.contentView addSubview:lblMail];
+
 				UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
 				messageButton.frame = CGRectMake(263.0, 8.0, 35.0, 35.0);
 				[messageButton addTarget:self action:@selector(shareToMessage:) forControlEvents:UIControlEventTouchDown];
-				[messageButton setImage:[UIImage imageNamed:@"messages_icon.png"] forState:UIControlStateNormal];
-				[cell.contentView addSubview:messageButton];
-				
+                [messageButton setImage:[UIImage imageNamed:@"messages_icon.png"] forState:UIControlStateNormal];
+                [cell.contentView addSubview:messageButton];
+
 				UILabel *lblMessage = [[UILabel alloc] initWithFrame:CGRectMake(252.0, 46.0, 56.0, 20)];
-				lblMessage.text = @"Message";
-				[lblMessage setFont:actionFont];
-				[lblMessage setTextAlignment:NSTextAlignmentCenter];
-				[cell.contentView addSubview:lblMessage];
+                lblMessage.text = @"Message";
+                [lblMessage setFont:actionFont];
+                [lblMessage setTextAlignment:NSTextAlignmentCenter];
+                [cell.contentView addSubview:lblMessage];
 			}
 			
 			break;
@@ -405,103 +508,83 @@ static NSString *kActionsCellID	= @"ActionsCell";
 			{
 				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kActionsCellID];
 				cell.selectionStyle = UITableViewCellSelectionStyleNone;
-				
+
 				UIButton *linkButton = [UIButton buttonWithType:UIButtonTypeCustom];
 				linkButton.frame = CGRectMake(20.0, 6.0, 40.0, 40.0);
 				[linkButton addTarget:self action:@selector(goTicketLink:) forControlEvents:UIControlEventTouchDown];
-				[linkButton setImage:[UIImage imageNamed:@"safari_icon.png"] forState:UIControlStateNormal];
-				[cell.contentView addSubview:linkButton];
-				
-				UILabel *lblWebsite = [[UILabel alloc] initWithFrame:CGRectMake(12.0, 46.0, 56.0, 20)];
-				lblWebsite.text = @"Website";
-				[lblWebsite setFont:actionFont];
-				[lblWebsite setTextAlignment:NSTextAlignmentCenter];
-				[cell.contentView addSubview:lblWebsite];
-				
+                [linkButton setImage:[UIImage imageNamed:@"safari_icon.png"] forState:UIControlStateNormal];
+                [cell.contentView addSubview:linkButton];
+                
+                UILabel *lblWebsite = [[UILabel alloc] initWithFrame:CGRectMake(12.0, 46.0, 56.0, 20)];
+                lblWebsite.text = @"Website";
+                [lblWebsite setFont:actionFont];
+                [lblWebsite setTextAlignment:NSTextAlignmentCenter];
+                [cell.contentView addSubview:lblWebsite];
+
 				UIButton *phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
 				phoneButton.frame = CGRectMake(80.0,6.0, 40.0, 40.0);
 				[phoneButton addTarget:self action:@selector(callTicketLine:) forControlEvents:UIControlEventTouchDown];
-				[phoneButton setImage:[UIImage imageNamed:@"phone.png"] forState:UIControlStateNormal];
-				[cell.contentView addSubview:phoneButton];
-				
-				UILabel *lblPhone = [[UILabel alloc] initWithFrame:CGRectMake(72.0, 46.0, 56.0, 20)];
-				lblPhone.text = @"Call CQ";
-				[lblPhone setFont:actionFont];
-				[lblPhone setTextAlignment:NSTextAlignmentCenter];
-				[cell.contentView addSubview:lblPhone];
+                [phoneButton setImage:[UIImage imageNamed:@"phone.png"] forState:UIControlStateNormal];
+                [cell.contentView addSubview:phoneButton];
+                
+                UILabel *lblPhone = [[UILabel alloc] initWithFrame:CGRectMake(72.0, 46.0, 56.0, 20)];
+                lblPhone.text = @"Call CQ";
+                [lblPhone setFont:actionFont];
+                [lblPhone setTextAlignment:NSTextAlignmentCenter];
+                [cell.contentView addSubview:lblPhone];
 			}
-			
-			break;
 		}
+			break;
+			
+		default:
+			NSLog(@"Unknown section %d", (int)section);
+			break;
 	}
 	
     return cell;
 }
 
-#pragma mark - UITableView delegate
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	NSInteger section = [indexPath section];
+	NSInteger row = [indexPath row];
+
+	switch (section)
+	{
+		case SHORT_PROGRAM_SECTION:
+		{
+			Film *shortFilm = [[film shortItems] objectAtIndex:row];
+			[self showShortFilmDetails:shortFilm];
+			break;
+		}
+	}
+}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
 	return 0.01;		// This creates a "invisible" footer
 }
 
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - Browser integration
+
+- (IBAction) goTicketLink:(id)sender
 {
-	NSInteger section = [indexPath section];
-	switch (section)
-	{
-		case SCHEDULE_SECTION:
-			return 50.0;
-			break;
-			
-		case SOCIAL_MEDIA_SECTION:
-			return 70.0;
-			break;
-			
-		case ACTION_SECTION:
-			return 70.0;
-			break;
-			
-		default:
-			return 50.0;
-			break;
-	}
+    [app openURL:[NSURL URLWithString:film.infoLink]];
 }
 
-- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-	if(section == SHORT_PROGRAM_SECTION)
-	{
-		return 0.0;
-	}
-	else
-	{
-		return 28.0;
-	}
-}
+#pragma mark - Phone call integration
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (IBAction) callTicketLine:(id)sender
 {
-	// NSInteger section = [indexPath section];
-	// NSInteger row = [indexPath row];
-}
-
-#pragma mark - UIAlertView Delegate
-
-- (void) alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	if (buttonIndex == 1)
-	{
-		// NSLog(@"CALL!");
-		[app openURL:[NSURL URLWithString:TICKET_LINE]];
-	}
-	else
-	{
-		// NSLog(@"cancel");
-	}
+/*
+	// Test to try return to the app after the phone call
+	UIWebView *callWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1.0, 1.0)];
+	[[sender superview] addSubview:callWebView];
 	
-	NSIndexPath *tableSelection = [self.detailTableView indexPathForSelectedRow];
-    [self.detailTableView deselectRowAtIndexPath:tableSelection animated:YES];
+	NSURL *telURL = [NSURL URLWithString:TICKET_LINE];
+	[callWebView loadRequest:[NSURLRequest requestWithURL:telURL]];
+*/
+	[app openURL:[NSURL URLWithString:TICKET_LINE]];
 }
 
 #pragma mark - Calendar Integration
@@ -511,11 +594,11 @@ static NSString *kActionsCellID	= @"ActionsCell";
 	Schedule *schedule = [self getItemForSender:sender event:touchEvent];
     schedule.isSelected ^= YES;
     
-    // Call to Delegate to Add/Remove from Calendar
+    //Call to Delegate to Add/Remove from Calendar
     [delegate addOrRemoveScheduleToCalendar:schedule];
     [delegate addOrRemoveSchedule:schedule];
     
-    NSLog(@"Schedule:ID+ItemID:%@-%@", schedule.ID, schedule.itemID);
+    NSLog(@"Schedule:ID+ItemID:%@-%@",schedule.ID,schedule.itemID);
 	
     UIButton *calendarButton = (UIButton*)sender;
     UIImage *buttonImage = (schedule.isSelected) ? [UIImage imageNamed:@"cal_selected.png"] : [UIImage imageNamed:@"cal_unselected.png"];
@@ -553,10 +636,10 @@ static NSString *kActionsCellID	= @"ActionsCell";
         MFMailComposeViewController *controller = [MFMailComposeViewController new];
         controller.mailComposeDelegate = self;
 		
-        NSString *friendlyMessage = @"Hey,\nI found an interesting event from Cinequest festival.\nCheck it out!";
-        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, event.name, event.infoLink];
+        NSString *friendlyMessage = @"Hey,\nI found an interesting film from Cinequest festival.\nCheck it out!";
+        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, film.name, film.infoLink];
         
-		[controller setSubject:event.name];
+		[controller setSubject:film.name];
         [controller setMessageBody:messageBody isHTML:NO];
         
         delegate.isPresentingModalView = YES;
@@ -590,12 +673,12 @@ static NSString *kActionsCellID	= @"ActionsCell";
         MFMessageComposeViewController *controller = [MFMessageComposeViewController new];
         controller.messageComposeDelegate = self;
 		
-        NSString *friendlyMessage = @"Hey,\nI found an interesting event from Cinequest festival.\nCheck it out!";
-        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, event.name, event.infoLink];
+        NSString *friendlyMessage = @"Hey,\nI found an interesting film from Cinequest festival.\nCheck it out!";
+        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, film.name, film.infoLink];
         
 		if([controller respondsToSelector:@selector(setSubject:)])
 		{
-			[controller setSubject:event.name];
+			[controller setSubject:film.name];
 		}
 		
         [controller setBody:messageBody];
@@ -639,23 +722,23 @@ static NSString *kActionsCellID	= @"ActionsCell";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - Social Media Sharing
+#pragma mark - Social Media Sharing integration
 
 - (IBAction) shareToFacebook:(id)sender
 {
 	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
 	{
-	   UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-	   NSLog(@"%@", NSStringFromCGRect(rootViewController.view.frame));
-	   UIView *view = (UIView*)[rootViewController.view.subviews firstObject];
-	   UIView *subview = (UIView*)[view.subviews firstObject];
-	   UIView *subview2 = (UIView*)[subview.subviews firstObject];
-	   UIView *subview3 = (UIView*)[subview2.subviews firstObject];
-	   NSLog(@"%@", subview3.subviews);
-	});
+		UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+		NSLog(@"%@", NSStringFromCGRect(rootViewController.view.frame));
+		UIView *view = (UIView*)[rootViewController.view.subviews firstObject];
+		UIView *subview = (UIView*)[view.subviews firstObject];
+		UIView *subview2 = (UIView*)[subview.subviews firstObject];
+		UIView *subview3 = (UIView*)[subview2.subviews firstObject];
+		NSLog(@"%@", subview3.subviews);
+    });
     
-	NSString *postString = [NSString stringWithFormat:@"I'm planning to attend the event %@\n%@", event.name, event.infoLink];
+	NSString *postString = [NSString stringWithFormat:@"I'm planning to go see %@\n%@", film.name, film.infoLink];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
     {
@@ -678,7 +761,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (IBAction) shareToTwitter:(id)sender
 {
-    NSString *postString = [NSString stringWithFormat:@"I'm planning to attend the event %@\n%@", event.name, event.infoLink];
+    NSString *postString = [NSString stringWithFormat:@"I'm planning to go see %@\n%@", film.name, film.infoLink];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
@@ -700,8 +783,8 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (IBAction) shareToGooglePlus:(id)sender
 {
-    NSString *postString = [NSString stringWithFormat:@"I'm planning to attend the event %@\n%@", event.name, event.infoLink];
-	
+    NSString *postString = [NSString stringWithFormat:@"I'm planning to go see %@\n%@", film.name, film.infoLink];
+
 	googlePlusConnectionDone = 0;
 	if(![[GPPSignIn sharedInstance] trySilentAuthentication])
 	{
@@ -714,7 +797,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 		{
 			[runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 		}
-		
+
 		id<GPPNativeShareBuilder> shareBuilder = [[GPPShare sharedInstance] nativeShareDialog];
 		[shareBuilder setPrefillText:postString];
 		[shareBuilder open];
@@ -789,33 +872,10 @@ static NSString *kActionsCellID	= @"ActionsCell";
     [dialogView show];
 }
 
-#pragma mark - Browser integration
-
-- (IBAction) goTicketLink:(id)sender
-{
-    [app openURL:[NSURL URLWithString:event.infoLink]];
-}
-
-#pragma mark - Phone call integration
-
-- (IBAction) callTicketLine:(id)sender
-{
-	[app openURL:[NSURL URLWithString:TICKET_LINE]];
-}
-
-#pragma mark - Decode NSString for HTML
-
-- (NSString *) htmlEntityDecode:(NSString *)string
-{
-	// string = [string stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
-	// string = [string stringByReplacingOccurrencesOfString:@"&apos;" withString:@"'"];
-    string = [string stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
-    string = [string stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
-    string = [string stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
-    
-    return string;
-}
-
 @end
+
+
+
+
 
 

@@ -10,10 +10,10 @@
 
 
 #import "ScheduleViewController.h"
-#import "ScheduleDetailViewController.h"
+#import "EventDetailViewController.h"
 #import "HotPicksViewController.h"
 #import "IndexViewController.h"
-#import "IndexDetailViewController.h"
+#import "FilmDetailViewController.h"
 #import "CinequestAppDelegate.h"
 #import "Schedule.h"
 #import "DataProvider.h"
@@ -25,10 +25,6 @@
 static NSString *const kDateCellIdentifier = @"DateCell";
 static NSString *const kTitleCellIdentifier = @"TitleCell";
 static NSString *const kEventCellIdentifier = @"EventCell";
-
-
-
-
 
 @implementation UIView (private)
 
@@ -357,7 +353,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 //Loading film details for the particular schedule item id
 - (void) showFilmDetails:(Schedule*)schedule
 {
-    IndexDetailViewController *filmDetail = [[IndexDetailViewController alloc] initWithFilm:schedule.itemID];
+    FilmDetailViewController *filmDetail = [[FilmDetailViewController alloc] initWithFilm:schedule.itemID];
     [[self navigationController] pushViewController:filmDetail animated:YES];
 }
 
@@ -736,8 +732,8 @@ static NSString *const kEventCellIdentifier = @"EventCell";
             {
                 if ([self compareStartDate:schedule.startDate withSectionDate:date])
                 {
-                    ScheduleDetailViewController *scheduleDetail = [[ScheduleDetailViewController alloc] initWithEventID:schedule.itemID];
-                    [self.navigationController pushViewController:scheduleDetail animated:YES];
+                    EventDetailViewController *eventDetail = [[EventDetailViewController alloc] initWithEventID:schedule.itemID];
+                    [self.navigationController pushViewController:eventDetail animated:YES];
                     
                     break;
                 }

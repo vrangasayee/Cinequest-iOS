@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IndexDetailViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilmDetailViewController">
             <connections>
                 <outlet property="activityIndicator" destination="43" id="44"/>
                 <outlet property="detailTableView" destination="5" id="qyv-mQ-fMi"/>

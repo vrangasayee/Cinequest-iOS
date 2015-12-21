@@ -44,7 +44,7 @@
                         <color key="tintColor" red="1" green="0.061403572560000001" blue="0.08498495817" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <viewControllers>
-                        <viewController nibName="HotPicksDetailViewController" id="pA5-d3-IdW" userLabel="Hot Picks View Controller" customClass="HotPicksViewController">
+                        <viewController nibName="HotPicksViewController" id="pA5-d3-IdW" userLabel="Hot Picks View Controller" customClass="HotPicksViewController">
                             <extendedEdge key="edgesForExtendedLayout"/>
                             <navigationItem key="navigationItem" id="YcL-Tj-K8h">
                                 <nil key="title"/>

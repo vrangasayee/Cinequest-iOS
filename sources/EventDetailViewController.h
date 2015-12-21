@@ -1,5 +1,5 @@
 //
-//  ScheduleDetailViewController.h
+//  EventDetailViewController.h
 //  CineQuest
 //
 //  Created by Luca Severini on 10/1/13.
@@ -12,7 +12,7 @@
 @class Schedule;
 @class CinequestAppDelegate;
 
-@interface ScheduleDetailViewController : UIViewController <UIWebViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate, GPPSignInDelegate, GPPShareDelegate>
+@interface EventDetailViewController : UIViewController <UIWebViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate, GPPSignInDelegate, GPPShareDelegate>
 {
 	CinequestAppDelegate *delegate;
 	NSMutableArray *mySchedule;

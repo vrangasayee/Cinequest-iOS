@@ -8,7 +8,7 @@
 
 #import "CinequestAppDelegate.h"
 #import "HotPicksViewController.h"
-#import "HotPicksDetailViewController.h"
+#import "TrendingDetailViewController.h"
 #import "DDXML.h"
 #import "DataProvider.h"
 
@@ -179,7 +179,6 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 		if ([childName isEqualToString:@"ArrayOfShows"])
 		{
 			NSInteger subNodeCount = [child childCount];
-                NSLog(@"num subnode %ld", subNodeCount );
 			for (NSInteger subNodeIdx = 0; subNodeIdx < subNodeCount; subNodeIdx++)
 			{
 				DDXMLElement *newsNode = (DDXMLElement*)[child childAtIndex:subNodeIdx];
@@ -193,14 +192,15 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 				NSInteger subNode2Count = [newsNode childCount];
 				if(subNode2Count != 0)
 				{
-					for (NSInteger subNodeIdx = 0; subNodeIdx < subNode2Count; subNodeIdx++)
+					for (NSInteger subNode2Idx = 0; subNode2Idx < subNode2Count; subNode2Idx++)
 					{
-						DDXMLElement *newsSubNode = (DDXMLElement*)[newsNode childAtIndex:subNodeIdx];
+						DDXMLElement *newsSubNode = (DDXMLElement*)[newsNode childAtIndex:subNode2Idx];
 						NSString *subNodename = [newsSubNode name];
 						//Set each heading as follows
 						if ([subNodename isEqualToString:@"Name"])
 						{
 							name = [newsSubNode stringValue];
+                            NSLog(@"Item %ld named %@", (long)subNodeIdx, name);
 						}
 						else if ([subNodename isEqualToString:@"ShortDescription"])
 						{
@@ -319,8 +319,8 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 	NSUInteger row = [indexPath row];
 	NSDictionary *newsData = [feed objectAtIndex:row];
     
-	HotPicksDetailViewController *hotPicksDetail = [[HotPicksDetailViewController alloc] initWithData:newsData];
-	[self.navigationController pushViewController:hotPicksDetail animated:YES];
+	TrendingDetailViewController *trendingDetail = [[TrendingDetailViewController alloc] initWithData:newsData];
+	[self.navigationController pushViewController:trendingDetail animated:YES];
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

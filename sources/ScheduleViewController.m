@@ -13,7 +13,7 @@
 
 
 #import "ScheduleViewController.h"
-#import "ScheduleDetailViewController.h"
+#import "EventDetailViewController.h"
 #import "CinequestAppDelegate.h"
 #import "Schedule.h"
 #import "HotPicksViewController.h"
@@ -456,12 +456,12 @@ static NSString *const kEventCellIdentifier = @"EventCell";
         if ([self compareStartDate:schedule.startDate withSectionDate:date])
 		{
             
-            //Send currently selected event to ScheduleDetailViewController.
+            //Send currently selected event to EventDetailViewController.
             //old behavior used to send an eventid instead of sending
             //object directly.
-            ScheduleDetailViewController *scheduleDetail = [[ScheduleDetailViewController alloc] initWithEvent:event];
+            EventDetailViewController *eventDetail = [[EventDetailViewController alloc] initWithEvent:event];
             
-			[self.navigationController pushViewController:scheduleDetail animated:YES];
+			[self.navigationController pushViewController:eventDetail animated:YES];
 
 			break;
 		}

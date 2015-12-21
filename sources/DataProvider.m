@@ -23,6 +23,7 @@
 #define FILMSBYTIME_FILE				@"FilmsByTime.xml"
 #define FILMSBYTITLE_FILE				@"FilmsByTitle.xml"
 #define TRENDINGFEED_FILE				@"TrendingFeed.xml"
+#define VIDEOFEED_FILE                  @"VideoFeed.xml"
 #define EVENTS_FILE						@"Events.xml"
 #define VENUES_FILE						@"Venues.xml"
 #define MODE_FILE						@"Mode.xml"
@@ -642,7 +643,7 @@
 	{
 		if([fileMgr fileExistsAtPath:[fileUrl path]])
 		{
-			NSLog(@"Getting OLD nmain feed data...");
+			NSLog(@"Getting OLD main feed data...");
 
 			return [NSData dataWithContentsOfURL:fileUrl];
 		}

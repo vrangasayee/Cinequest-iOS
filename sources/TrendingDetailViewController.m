@@ -1,12 +1,12 @@
 //
-//  HotPicksDetailViewController.m
+//  TrendingDetailViewController.m
 //  CineQuest
 //
 //  Modified by Chris Pollett from NewsDetailViewController (Luca Severini)
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
 
-#import "HotPicksDetailViewController.h"
+#import "TrendingDetailViewController.h"
 #import "CinequestAppDelegate.h"
 #import "DDXML.h"
 #import "Schedule.h"
@@ -25,9 +25,9 @@ static NSString *kSocialMediaCellID = @"SocialMediaCell";
 static NSString *kActionsCellID	= @"ActionsCell";
 
 
-@implementation HotPicksDetailViewController
+@implementation TrendingDetailViewController
 
-@synthesize hotPicks;
+@synthesize trending;
 @synthesize detailTableView;
 @synthesize webView;
 @synthesize activityIndicator;
@@ -39,18 +39,18 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 #pragma mark - UIViewController
 
-- (id) initWithData:(NSDictionary *)hotPicksData
+- (id) initWithData:(NSDictionary *)trendingData
 {
 	self = [super init];
 	if(self != nil)
 	{
 		delegate = appDelegate;
 		
-		self.navigationItem.title = @"HotPicks";
+		self.navigationItem.title = @"TrendingPicks";
 
-		self.hotPicks = hotPicksData;
-		hotPicksName = [hotPicks objectForKey:@"name"];
-		infoLink = [[hotPicks objectForKey:@"info"] lowercaseString];
+		self.trending = trendingData;
+		trendingName = [trending objectForKey:@"name"];
+		infoLink = [[trending objectForKey:@"info"] lowercaseString];
 	}
 	
 	return self;
@@ -110,13 +110,13 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (void) loadData
 {
-	NSString *image = [appDelegate.dataProvider cacheImage:[hotPicks objectForKey:@"eventImage"]];
+	NSString *image = [appDelegate.dataProvider cacheImage:[trending objectForKey:@"eventImage"]];
 	
 	// Don't execute unuseful code if the view is going to disappear shortly
 	if(!viewWillDisappear)
 	{
-		NSString *description = [hotPicks objectForKey:@"description"];
-		NSString *weba = [NSString stringWithFormat:web, hotPicksName, image, description];
+		NSString *description = [trending objectForKey:@"description"];
+		NSString *weba = [NSString stringWithFormat:web, trendingName, image, description];
 		
 		if(infoLink.length != 0 && [infoLink hasPrefix:@"http"])
 		{
@@ -395,9 +395,9 @@ static NSString *kActionsCellID	= @"ActionsCell";
         controller.mailComposeDelegate = self;
 		
         NSString *friendlyMessage = @"Hey,\nI found an interesting news from Cinequest festival.\nCheck it out!";
-        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, hotPicksName, infoLink];
+        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, trendingName, infoLink];
         
-		[controller setSubject:hotPicksName];
+		[controller setSubject:trendingName];
         [controller setMessageBody:messageBody isHTML:NO];
         
         delegate.isPresentingModalView = YES;
@@ -432,11 +432,11 @@ static NSString *kActionsCellID	= @"ActionsCell";
         controller.messageComposeDelegate = self;
 		
         NSString *friendlyMessage = @"Hey,\nI found an interesting news from Cinequest festival.\nCheck it out!";
-        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, hotPicksName, infoLink];
+        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, trendingName, infoLink];
         
 		if([controller respondsToSelector:@selector(setSubject:)])
 		{
-			[controller setSubject:hotPicksName];
+			[controller setSubject:trendingName];
 		}
 		
         [controller setBody:messageBody];
@@ -496,7 +496,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 					   NSLog(@"%@", subview3.subviews);
 				   });
     
-	NSString *postString = [NSString stringWithFormat:@"Interesting trends from Cinequest festival!\n%@\n%@", hotPicksName, infoLink];
+	NSString *postString = [NSString stringWithFormat:@"Interesting trends from Cinequest festival!\n%@\n%@", trendingName, infoLink];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
     {
@@ -519,7 +519,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (IBAction) shareToTwitter:(id)sender
 {
-    NSString *postString = [NSString stringWithFormat:@"Interesting news from Cinequest festival!\n%@\n%@", hotPicksName, infoLink];
+    NSString *postString = [NSString stringWithFormat:@"Interesting news from Cinequest festival!\n%@\n%@", trendingName, infoLink];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
@@ -541,7 +541,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (IBAction) shareToGooglePlus:(id)sender
 {
-    NSString *postString = [NSString stringWithFormat:@"Interesting trends from Cinequest festival!\n%@\n%@", hotPicksName, infoLink];
+    NSString *postString = [NSString stringWithFormat:@"Interesting trends from Cinequest festival!\n%@\n%@", trendingName, infoLink];
 	
 	googlePlusConnectionDone = 0;
 	if(![[GPPSignIn sharedInstance] trySilentAuthentication])

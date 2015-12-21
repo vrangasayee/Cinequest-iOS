@@ -1,5 +1,5 @@
 //
-//  IndexDetailViewController.h
+//  FilmDetailViewController.h
 //  CineQuest
 //
 //  Created by Luca Severini on 10/1/13.
@@ -14,7 +14,7 @@
 @class Film;
 @class ProgramItem;
 
-@interface IndexDetailViewController : UIViewController <UIWebViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate, GPPSignInDelegate, GPPShareDelegate>
+@interface FilmDetailViewController : UIViewController <UIWebViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate, GPPSignInDelegate, GPPShareDelegate>
 {
 	CinequestAppDelegate *delegate;
 	NSMutableArray *mySchedule;

@@ -7,8 +7,8 @@
 //
 
 #import "MyCinequestViewController.h"
-#import "IndexDetailViewController.h"
-#import "ScheduleDetailViewController.h"
+#import "FilmDetailViewController.h"
+#import "EventDetailViewController.h"
 #import "CinequestAppDelegate.h"
 #import "Schedule.h"
 #import "Film.h"
@@ -319,13 +319,13 @@ static NSString *const kScheduleCellIdentifier = @"ScheduleCell";
 	
 	if([item isKindOfClass:[Film class]])
 	{
-		IndexDetailViewController *filmDetail = [[IndexDetailViewController alloc] initWithFilm:schedule.itemID];
+		FilmDetailViewController *filmDetail = [[FilmDetailViewController alloc] initWithFilm:schedule.itemID];
 		[[self navigationController] pushViewController:filmDetail animated:YES];
 	}
 	else if([item isKindOfClass:[Special class]])
 	{
-		ScheduleDetailViewController *scheduleDetail = [[ScheduleDetailViewController alloc] initWithEventID:schedule.itemID];
-		[[self navigationController] pushViewController:scheduleDetail animated:YES];
+		EventDetailViewController *eventDetail = [[EventDetailViewController alloc] initWithEventID:schedule.itemID];
+		[[self navigationController] pushViewController:eventDetail animated:YES];
 	}
 }
 

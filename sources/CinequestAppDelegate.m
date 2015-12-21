@@ -103,25 +103,22 @@
 	
 	tabBar.delegate = self;
 
-	// Force to draw the tabbar items in red color
+	// Set the color of tabbar items to red
 	[[UITabBar appearance] setTintColor:[UIColor redColor]];
     
     // Set UITextFields to have light appearance instead of dark appearance
     [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceLight];
 	for(UITabBarItem *item in tabBar.tabBar.items)
 	{
-		// Force to draw the image of tabbar items with their own color
+		// Draw the images in tabbar  with their own color
 		item.selectedImage = item.image;
 		item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
-#pragma mark Rename Tab Bar Items
-        		
-		// Force to draw the title of tabbar items with black or red if selected
+		// Draw the title of tabbar items with black or red if selected
 		[item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
 		[item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
 	}
 
-	// Change the font color of Cancel button in the searchbar of IndexViewController to colorRed
+	// Change the font color of Cancel button in the searchbar of IndexViewController to red
 	NSShadow *shadow = [NSShadow new];
 	[shadow setShadowColor: [UIColor redColor]];
 	[shadow setShadowOffset: CGSizeMake(0.0, 1.0)];
