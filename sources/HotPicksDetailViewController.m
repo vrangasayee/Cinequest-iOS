@@ -1,14 +1,14 @@
 //
-//  EventDetailViewController.m
+//  HotPicksDetailViewController.m
 //  CineQuest
 //
-//  Created by Luca Severini on 10/1/13.
+//  Modified by Chris Pollett from NewsDetailViewController (Luca Severini)
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
-//  Edited by Kenan Ozdamar on Jan 2015.
 
-#import "EventDetailViewController.h"
+#import "HotPicksDetailViewController.h"
 #import "CinequestAppDelegate.h"
+#import "DDXML.h"
 #import "Schedule.h"
 #import "Special.h"
 #import "DataProvider.h"
@@ -18,18 +18,19 @@
 
 
 #define web @"<style type=\"text/css\">h1{font-size:23px;text-align:center;}p.image{text-align:center;}</style><h1>%@</h1><p class=\"image\"><img style=\"max-height:200px;max-width:250px;\"src=\"%@\"/></p><p>%@</p>"
+#define web_paragraph @"<p>%@</p>"
 
 static NSString *kScheduleCellID = @"ScheduleCell";
 static NSString *kSocialMediaCellID = @"SocialMediaCell";
 static NSString *kActionsCellID	= @"ActionsCell";
 
 
-@implementation EventDetailViewController
+@implementation HotPicksDetailViewController
 
+@synthesize hotPicks;
 @synthesize detailTableView;
 @synthesize webView;
 @synthesize activityIndicator;
-@synthesize event;
 
 - (void) didReceiveMemoryWarning
 {
@@ -38,39 +39,21 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 #pragma mark - UIViewController
 
-// Before I combined events into one dictionary this was the method
-// to get event. Event is retreived with id. this was returning a null
-// event.
-//- (id) initWithEvent:(NSString*)eventId
-//{
-//	self = [super init];
-//	if(self != nil)
-//	{
-//		delegate = appDelegate;
-//		mySchedule = delegate.mySchedule;
-//		self.navigationItem.title = @"Event";
-//		event = [delegate.festival getEventForId:eventId];
-//	}
-//	
-//	return self;
-//}
-
-// This is the new version of the method so null value is not
-// returned for event. Instead of looking it up through an
-// eventID event is passed directly.
-- (id) initWithEvent:(Special*)evnt
+- (id) initWithData:(NSDictionary *)hotPicksData
 {
-    self = [super init];
-    if(self != nil)
-    {
-        delegate = appDelegate;
-        mySchedule = delegate.mySchedule;
-        
-        self.navigationItem.title = @"Event";
-        event = evnt;
-    }
-    
-    return self;
+	self = [super init];
+	if(self != nil)
+	{
+		delegate = appDelegate;
+		
+		self.navigationItem.title = @"HotPicks";
+
+		self.hotPicks = hotPicksData;
+		hotPicksName = [hotPicks objectForKey:@"name"];
+		infoLink = [[hotPicks objectForKey:@"info"] lowercaseString];
+	}
+	
+	return self;
 }
 
 - (void) viewDidLoad
@@ -85,16 +68,12 @@ static NSString *kActionsCellID	= @"ActionsCell";
 	[GPPSignIn sharedInstance].scopes = @[ kGTLAuthScopePlusLogin ];
 
 	delegate = appDelegate;
-	mySchedule = delegate.mySchedule;
 
-	self.detailTableView.hidden = YES;
 	self.view.userInteractionEnabled = NO;
 
 	self.activityIndicator.color = [UIColor grayColor];
 
-	timeFont = [UIFont systemFontOfSize:[UIFont systemFontSize]];
 	sectionFont = [UIFont boldSystemFontOfSize:18.0];
-	venueFont = timeFont;
 	actionFont = [UIFont systemFontOfSize:12.0];
 
 	UISegmentedControl *switchTitle = [[UISegmentedControl alloc] initWithFrame:CGRectMake(98.5, 7.5, 123.0, 29.0)];
@@ -103,6 +82,8 @@ static NSString *kActionsCellID	= @"ActionsCell";
 	NSDictionary *attribute = [NSDictionary dictionaryWithObject:[UIFont boldSystemFontOfSize:16.0f] forKey:NSFontAttributeName];
 	[switchTitle setTitleTextAttributes:attribute forState:UIControlStateNormal];
 	self.navigationItem.titleView = switchTitle;
+
+	self.detailTableView.hidden = YES;
 
 	[(UIWebView*)self.detailTableView.tableHeaderView setSuppressesIncrementalRendering:YES]; // Avoids scrolling problems when the WebView is showed
 
@@ -127,50 +108,30 @@ static NSString *kActionsCellID	= @"ActionsCell";
 	viewWillDisappear = YES;
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-    
-    [self.detailTableView reloadSections:[NSIndexSet indexSetWithIndex:SCHEDULE_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
 - (void) loadData
 {
-	NSString *cachedImage = [appDelegate.dataProvider cacheImage:[event imageURL]];
+	NSString *image = [appDelegate.dataProvider cacheImage:[hotPicks objectForKey:@"eventImage"]];
 	
 	// Don't execute unuseful code if the view is going to disappear shortly
 	if(!viewWillDisappear)
 	{
-		NSString *weba = [NSString stringWithFormat:web, [event name], cachedImage, [event description]];
+		NSString *description = [hotPicks objectForKey:@"description"];
+		NSString *weba = [NSString stringWithFormat:web, hotPicksName, image, description];
+		
+		if(infoLink.length != 0 && [infoLink hasPrefix:@"http"])
+		{
+			weba = [weba stringByAppendingString:[NSString stringWithFormat:web_paragraph, infoLink]];
+		}
 		weba = [self htmlEntityDecode:weba];
 		
-		[webView loadHTMLString:weba baseURL:nil];
+		[self.webView loadHTMLString:weba baseURL:nil];
 	}
-}
-
-- (Schedule*) getItemForSender:(id)sender event:(id)touchEvent
-{
-    NSSet *touches = [touchEvent allTouches];
-	UITouch *touch = [touches anyObject];
-	CGPoint currentTouchPosition = [touch locationInView:self.detailTableView];
-	NSIndexPath *indexPath = [self.detailTableView indexPathForRowAtPoint:currentTouchPosition];
-	NSInteger row = [indexPath row];
-	Schedule *schedule = nil;
-	
-	if(indexPath != nil)
-	{
-		NSMutableArray *schedules = [event schedules];
-		schedule = [schedules objectAtIndex:row];
-    }
-    
-    return schedule;
 }
 
 #pragma mark - UIWebView delegate
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView
 {
-	// Updates the WebView and force it to redisplay correctly
 	[self.detailTableView.tableHeaderView sizeToFit];
 	[self.detailTableView setTableHeaderView:self.detailTableView.tableHeaderView];
 	
@@ -203,10 +164,6 @@ static NSString *kActionsCellID	= @"ActionsCell";
 {
 	switch (section)
 	{
-		case SCHEDULE_SECTION:
-			return 1;
-			break;
-			
 		case SOCIAL_MEDIA_SECTION:
 			return 1;
 			break;
@@ -235,12 +192,8 @@ static NSString *kActionsCellID	= @"ActionsCell";
 	
 	switch(section)
 	{
-		case SCHEDULE_SECTION:
-			label.text = [NSString stringWithFormat:@"  %@", @"Schedule"];
-			break;
-			
 		case SOCIAL_MEDIA_SECTION:
-			label.text =  [NSString stringWithFormat:@"  %@", @"Share Event Detail"];
+			label.text = [NSString stringWithFormat:@"  %@", @"Share Trending Detail"];
 			break;
 			
 		case ACTION_SECTION:
@@ -258,79 +211,6 @@ static NSString *kActionsCellID	= @"ActionsCell";
 	
 	switch(section)
 	{
-		case SCHEDULE_SECTION:
-		{
-			NSInteger row = [indexPath row];
-			
-			// get all schedules
-			NSMutableArray *schedules = [event schedules];
-			Schedule *schedule = [schedules objectAtIndex:row];
-			
-			NSUInteger count = [mySchedule count];
-            
-            if (count) {
-                for (int idx = 0; idx < count; idx++)
-                {
-                    Schedule *obj = [mySchedule objectAtIndex:idx];
-                    if ([obj.ID isEqualToString:schedule.ID])
-                    {
-                        schedule.isSelected = YES;
-                    }
-                }
-                
-            } else {
-                schedule.isSelected = NO;
-            }
-			
-			UIImage *buttonImage = (schedule.isSelected) ? [UIImage imageNamed:@"cal_selected.png"] : [UIImage imageNamed:@"cal_unselected.png"];
-			UILabel *timeLabel = nil;
-			UILabel *venueLabel = nil;
-			UIButton *calButton = nil;
-			UIButton *mapsButton = nil;
-
-			cell = [tableView dequeueReusableCellWithIdentifier:kScheduleCellID];
-			if (cell == nil)
-			{
-				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kScheduleCellID];
-				cell.accessoryType = UITableViewCellAccessoryNone;
-							
-				timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(52.0, 4.0, 250.0, 20.0)];
-				timeLabel.tag = CELL_TIME_LABEL_TAG;
-				timeLabel.font = timeFont;
-				[cell.contentView addSubview:timeLabel];
-				
-				venueLabel = [[UILabel alloc] initWithFrame:CGRectMake(52.0, 23.0, 250.0, 20.0)];
-				venueLabel.tag = CELL_VENUE_LABEL_TAG;
-				venueLabel.font = venueFont;
-				[cell.contentView addSubview:venueLabel];
-				
-				calButton = [UIButton buttonWithType:UIButtonTypeCustom];
-				calButton.frame = CGRectMake(11.0, 5.0, 40.0, 40.0);
-				calButton.tag = CELL_LEFTBUTTON_TAG;
-				[calButton addTarget:self action:@selector(calendarButtonTapped:event:) forControlEvents:UIControlEventTouchUpInside];
-				[cell.contentView addSubview:calButton];
-
-				mapsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-				mapsButton.frame = CGRectMake(274.0, 5.0, 40.0, 40.0);
-				mapsButton.tag = CELL_RIGHTBUTTON_TAG;
-				mapsButton.enabled = appDelegate.locationServicesON;
-				[mapsButton setImage:[UIImage imageNamed:@"maps.png"] forState:UIControlStateNormal];
-				[mapsButton addTarget:self action:@selector(mapsButtonTapped:event:) forControlEvents:UIControlEventTouchUpInside];
-				[cell.contentView addSubview:mapsButton];
-			}
-			
-			timeLabel = (UILabel*)[cell viewWithTag:CELL_TIME_LABEL_TAG];
-			timeLabel.text = [NSString stringWithFormat:@"%@ %@ - %@", schedule.dateString, schedule.startTime, schedule.endTime];
-			
-			venueLabel = (UILabel*)[cell viewWithTag:CELL_VENUE_LABEL_TAG];
-			venueLabel.text = [NSString stringWithFormat:@"Venue: %@", schedule.venue];
-			
-			calButton = (UIButton*)[cell viewWithTag:CELL_LEFTBUTTON_TAG];
-			[calButton setImage:buttonImage forState:UIControlStateNormal];
-
-			break;
-		}
-	
 		case SOCIAL_MEDIA_SECTION:
 		{
 			cell = [tableView dequeueReusableCellWithIdentifier:kSocialMediaCellID];
@@ -402,7 +282,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 			
 			break;
 		}
-			
+
 		case ACTION_SECTION:
 		{
 			cell = [tableView dequeueReusableCellWithIdentifier:kActionsCellID];
@@ -445,37 +325,9 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 #pragma mark - UITableView delegate
 
-- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-	return 0.01;		// This creates a "invisible" footer
-}
-
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	NSInteger section = [indexPath section];
-	switch (section)
-	{
-		case SCHEDULE_SECTION:
-			return 50.0;
-			break;
-			
-		case SOCIAL_MEDIA_SECTION:
-			return 70.0;
-			break;
-			
-		case ACTION_SECTION:
-			return 70.0;
-			break;
-			
-		default:
-			return 50.0;
-			break;
-	}
-}
-
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	if(section == SHORT_PROGRAM_SECTION)
+	if(section == SHORT_PROGRAM_SECTION || section == SCHEDULE_SECTION)
 	{
 		return 0.0;
 	}
@@ -489,6 +341,30 @@ static NSString *kActionsCellID	= @"ActionsCell";
 {
 	// NSInteger section = [indexPath section];
 	// NSInteger row = [indexPath row];
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+	return 0.01;		// This creates a "invisible" footer
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	NSInteger section = [indexPath section];
+	switch (section)
+	{
+		case SOCIAL_MEDIA_SECTION:
+			return 70.0;
+			break;
+			
+		case ACTION_SECTION:
+			return 70.0;
+			break;
+			
+		default:
+			return 50.0;
+			break;
+	}
 }
 
 #pragma mark - UIAlertView Delegate
@@ -509,46 +385,6 @@ static NSString *kActionsCellID	= @"ActionsCell";
     [self.detailTableView deselectRowAtIndexPath:tableSelection animated:YES];
 }
 
-#pragma mark - Calendar Integration
-
-- (void) calendarButtonTapped:(id)sender event:(id)touchEvent
-{
-	Schedule *schedule = [self getItemForSender:sender event:touchEvent];
-    schedule.isSelected ^= YES;
-    
-    // Call to Delegate to Add/Remove from Calendar
-    [delegate addOrRemoveScheduleToCalendar:schedule];
-    [delegate addOrRemoveSchedule:schedule];
-    
-    NSLog(@"Schedule:ID+ItemID:%@-%@", schedule.ID, schedule.itemID);
-	
-    UIButton *calendarButton = (UIButton*)sender;
-    UIImage *buttonImage = (schedule.isSelected) ? [UIImage imageNamed:@"cal_selected.png"] : [UIImage imageNamed:@"cal_unselected.png"];
-    [calendarButton setImage:buttonImage forState:UIControlStateNormal];
-}
-
-#pragma mark - Maps Integration
-
-- (void) mapsButtonTapped:(id)sender event:(id)touchEvent
-{
-	Schedule *schedule = [self getItemForSender:sender event:touchEvent];
-	if(schedule != nil)
-	{
-		[self showMapWithVenue:schedule.venueItem];
-	}
-	else
-	{
-		NSLog(@"Schedule is nil!!");
-	}
-}
-
-- (void) showMapWithVenue:(Venue*)venue
-{
-	MapViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" andVenue:venue];
-	mapViewController.hidesBottomBarWhenPushed = YES;
-	[[self navigationController] pushViewController:mapViewController animated:YES];
-}
-
 #pragma mark - Mail Sharing Delegate
 
 - (IBAction) shareToMail:(id)sender
@@ -558,10 +394,10 @@ static NSString *kActionsCellID	= @"ActionsCell";
         MFMailComposeViewController *controller = [MFMailComposeViewController new];
         controller.mailComposeDelegate = self;
 		
-        NSString *friendlyMessage = @"Hey,\nI found an interesting event from Cinequest festival.\nCheck it out!";
-        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, event.name, event.infoLink];
+        NSString *friendlyMessage = @"Hey,\nI found an interesting news from Cinequest festival.\nCheck it out!";
+        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, hotPicksName, infoLink];
         
-		[controller setSubject:event.name];
+		[controller setSubject:hotPicksName];
         [controller setMessageBody:messageBody isHTML:NO];
         
         delegate.isPresentingModalView = YES;
@@ -595,12 +431,12 @@ static NSString *kActionsCellID	= @"ActionsCell";
         MFMessageComposeViewController *controller = [MFMessageComposeViewController new];
         controller.messageComposeDelegate = self;
 		
-        NSString *friendlyMessage = @"Hey,\nI found an interesting event from Cinequest festival.\nCheck it out!";
-        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, event.name, event.infoLink];
+        NSString *friendlyMessage = @"Hey,\nI found an interesting news from Cinequest festival.\nCheck it out!";
+        NSString *messageBody = [NSString stringWithFormat:@"%@\n%@\n%@", friendlyMessage, hotPicksName, infoLink];
         
 		if([controller respondsToSelector:@selector(setSubject:)])
 		{
-			[controller setSubject:event.name];
+			[controller setSubject:hotPicksName];
 		}
 		
         [controller setBody:messageBody];
@@ -650,17 +486,17 @@ static NSString *kActionsCellID	= @"ActionsCell";
 {
 	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
-	{
-	   UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-	   NSLog(@"%@", NSStringFromCGRect(rootViewController.view.frame));
-	   UIView *view = (UIView*)[rootViewController.view.subviews firstObject];
-	   UIView *subview = (UIView*)[view.subviews firstObject];
-	   UIView *subview2 = (UIView*)[subview.subviews firstObject];
-	   UIView *subview3 = (UIView*)[subview2.subviews firstObject];
-	   NSLog(@"%@", subview3.subviews);
-	});
+				   {
+					   UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+					   NSLog(@"%@", NSStringFromCGRect(rootViewController.view.frame));
+					   UIView *view = (UIView*)[rootViewController.view.subviews firstObject];
+					   UIView *subview = (UIView*)[view.subviews firstObject];
+					   UIView *subview2 = (UIView*)[subview.subviews firstObject];
+					   UIView *subview3 = (UIView*)[subview2.subviews firstObject];
+					   NSLog(@"%@", subview3.subviews);
+				   });
     
-	NSString *postString = [NSString stringWithFormat:@"I'm planning to attend the event %@\n%@", event.name, event.infoLink];
+	NSString *postString = [NSString stringWithFormat:@"Interesting trends from Cinequest festival!\n%@\n%@", hotPicksName, infoLink];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
     {
@@ -683,7 +519,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (IBAction) shareToTwitter:(id)sender
 {
-    NSString *postString = [NSString stringWithFormat:@"I'm planning to attend the event %@\n%@", event.name, event.infoLink];
+    NSString *postString = [NSString stringWithFormat:@"Interesting news from Cinequest festival!\n%@\n%@", hotPicksName, infoLink];
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
@@ -705,7 +541,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (IBAction) shareToGooglePlus:(id)sender
 {
-    NSString *postString = [NSString stringWithFormat:@"I'm planning to attend the event %@\n%@", event.name, event.infoLink];
+    NSString *postString = [NSString stringWithFormat:@"Interesting trends from Cinequest festival!\n%@\n%@", hotPicksName, infoLink];
 	
 	googlePlusConnectionDone = 0;
 	if(![[GPPSignIn sharedInstance] trySilentAuthentication])
@@ -798,7 +634,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (IBAction) goTicketLink:(id)sender
 {
-    [app openURL:[NSURL URLWithString:event.infoLink]];
+    [app openURL:[NSURL URLWithString:infoLink]];
 }
 
 #pragma mark - Phone call integration

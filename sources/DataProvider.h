@@ -34,7 +34,7 @@ extern NSString *const kUpdatedXMLFeedNotification;
 @property (atomic, strong) NSDate *newsFeedDate;
 
 - (NSData*) mainFeed;
-- (NSData*) newsFeed;
+- (NSData*) trendingFeed;
 - (NSData*) filmsByTime;
 - (NSData*) filmsByTitle;
 - (NSData*) events;

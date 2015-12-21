@@ -1,8 +1,8 @@
 //
-//  EventDetailViewController.h
+//  HotPicksDetailViewController.h
 //  CineQuest
 //
-//  Created by Luca Severini on 10/1/13.
+//  Modified by Chris Pollett from NewsDetailViewController (Luca Severini)
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
 
@@ -11,14 +11,13 @@
 @class Schedule;
 @class CinequestAppDelegate;
 
-@interface EventDetailViewController : UIViewController <UIWebViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate, GPPSignInDelegate, GPPShareDelegate>
+@interface HotPicksDetailViewController : UIViewController <UIWebViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate, GPPSignInDelegate, GPPShareDelegate>
 {
 	CinequestAppDelegate *delegate;
-	NSMutableArray *mySchedule;
-	UIFont *timeFont;
-	UIFont *venueFont;
-	UIFont *sectionFont;
+	NSString *hotPicksName;
+	NSString *infoLink;
 	UIFont *actionFont;
+	UIFont *sectionFont;
 	NSInteger googlePlusConnectionDone;
 	BOOL viewWillDisappear;
 }
@@ -26,10 +25,8 @@
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) IBOutlet UITableView *detailTableView;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) NSDictionary *hotPicks;
 
-@property (nonatomic, strong) Special *event;
-
-- (id) initWithEvent:(Special*)evnt;
-
+- (id) initWithData:(NSDictionary*)hotPicksData;
 
 @end

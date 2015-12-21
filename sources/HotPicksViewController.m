@@ -1,5 +1,5 @@
 //
-//  TrendingViewController.m
+//  HotPicksViewController.m
 //  CineQuest
 //
 //  Converted from NewController by Chris Pollett
@@ -7,22 +7,21 @@
 //
 
 #import "CinequestAppDelegate.h"
-#import "TrendingViewController.h"
-#import "TrendingDetailViewController.h"
+#import "HotPicksViewController.h"
+#import "HotPicksDetailViewController.h"
 #import "DDXML.h"
 #import "DataProvider.h"
 
-static NSString *const kTrendingCellIdentifier = @"TrendingCell";
+static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 
 /*
- * This menu item loads the news from an array of news and displays them as a table.
- * Each cell of the table contains a thumbnail image and a short description of what the image is about (news).
+ * Each cell of the table contains a thumbnail image and a short description of what the image is about.
  */
 
-@implementation TrendingViewController
+@implementation HotPicksViewController
 
 @synthesize switchTitle;
-@synthesize trendingTableView;
+@synthesize hotPicksTableView;
 @synthesize activityIndicator;
 @synthesize refreshControl;
 @synthesize feed;
@@ -32,7 +31,7 @@ static NSString *const kTrendingCellIdentifier = @"TrendingCell";
     [super didReceiveMemoryWarning];
 }
 /*
- *  Function for loading app screen.
+ * Function for loading app screen.
  * The screen is reloaded by a single data which doesn't vary or there is no editing operation
  * performed on data
  * The screen is reloaded by a single data which doesn't vary or there is no editing 
@@ -52,14 +51,13 @@ static NSString *const kTrendingCellIdentifier = @"TrendingCell";
 	[switchTitle setTitleTextAttributes:attribute forState:UIControlStateNormal];
     
 	refreshControl = [UIRefreshControl new];
-	// refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Updating Trending..."];
 	[refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
-	[((UITableViewController*)self.trendingTableView.delegate) setRefreshControl:refreshControl];
-	[self.trendingTableView addSubview:refreshControl];
+	[((UITableViewController*)self.hotPicksTableView.delegate) setRefreshControl:refreshControl];
+	[self.hotPicksTableView addSubview:refreshControl];
     
     // Sets the header and footer descriptions for the screen
-	trendingTableView.tableHeaderView = nil;
-	trendingTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+	hotPicksTableView.tableHeaderView = nil;
+	hotPicksTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 /*
@@ -161,7 +159,7 @@ static NSString *const kTrendingCellIdentifier = @"TrendingCell";
 {
 	feed = [NSMutableArray new];
 	
-	NSData *xmlData = [appDelegate.dataProvider newsFeed];
+	NSData *xmlData = [appDelegate.dataProvider mainFeed];
 	
 	NSString* myString = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
 	myString = [myString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
@@ -176,11 +174,12 @@ static NSString *const kTrendingCellIdentifier = @"TrendingCell";
 	for (NSInteger nodeIdx = 0; nodeIdx < nodeCount; nodeIdx++)
 	{
 		DDXMLElement *child = (DDXMLElement*)[rootElement childAtIndex:nodeIdx];
-		NSString *chilName = [child name];
+		NSString *childName = [child name];
 		
-		if ([chilName isEqualToString:@"ArrayOfNews"])
+		if ([childName isEqualToString:@"ArrayOfShows"])
 		{
 			NSInteger subNodeCount = [child childCount];
+                NSLog(@"num subnode %ld", subNodeCount );
 			for (NSInteger subNodeIdx = 0; subNodeIdx < subNodeCount; subNodeIdx++)
 			{
 				DDXMLElement *newsNode = (DDXMLElement*)[child childAtIndex:subNodeIdx];
@@ -234,7 +233,7 @@ static NSString *const kTrendingCellIdentifier = @"TrendingCell";
 		}
 	}
     
-	[self.trendingTableView reloadData];
+	[self.hotPicksTableView reloadData];
 }
 
 #pragma mark - UITableView Data Source
@@ -260,10 +259,10 @@ static NSString *const kTrendingCellIdentifier = @"TrendingCell";
 	NSUInteger row = [indexPath row];
 	NSMutableDictionary *newsData = [feed objectAtIndex:row];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTrendingCellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHotPicksCellIdentifier];
     if(cell == nil)
 	{
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kTrendingCellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHotPicksCellIdentifier];
 	}
 	else
 	{
@@ -320,8 +319,8 @@ static NSString *const kTrendingCellIdentifier = @"TrendingCell";
 	NSUInteger row = [indexPath row];
 	NSDictionary *newsData = [feed objectAtIndex:row];
     
-	TrendingDetailViewController *eventDetail = [[TrendingDetailViewController alloc] initWithNews:newsData];
-	[self.navigationController pushViewController:eventDetail animated:YES];
+	HotPicksDetailViewController *hotPicksDetail = [[HotPicksDetailViewController alloc] initWithData:newsData];
+	[self.navigationController pushViewController:hotPicksDetail animated:YES];
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

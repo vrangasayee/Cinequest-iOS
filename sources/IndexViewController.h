@@ -1,16 +1,17 @@
 //
-//  FilmsViewController.h
+//  IndexViewController.h
 //  CineQuest
 //
 //  Created by Luca Severini on 10/1/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
+//  Renamed Chris Pollett 2015
 //
 
 @class CinequestAppDelegate;
 @class Schedule;
 @class Festival;
 
-@interface FilmsViewController : UIViewController < UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface IndexViewController : UIViewController < UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 {
 	NSMutableArray *mySchedule;
 	NSInteger switcher;

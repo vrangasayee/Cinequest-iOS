@@ -1,12 +1,13 @@
 //
-//  FilmDetailViewController.m
+//  IndexDetailViewController.m
 //  CineQuest
 //
 //  Created by Luca Severini on 10/1/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
+//  Renamed Chris Pollett 2015
 //
 
-#import "FilmDetailViewController.h"
+#import "IndexDetailViewController.h"
 #import "DDXML.h"
 #import "Schedule.h"
 #import "CinequestAppDelegate.h"
@@ -27,7 +28,7 @@ static NSString *kSocialMediaCellID = @"SocialMediaCell";
 static NSString *kActionsCellID	= @"ActionsCell";
 
 
-@implementation FilmDetailViewController
+@implementation IndexDetailViewController
 
 @synthesize detailTableView;
 @synthesize webView;
@@ -167,7 +168,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (void) showShortFilmDetails:(Film*)shortFilm
 {
-	FilmDetailViewController *filmDetail = [[FilmDetailViewController alloc] initWithShortFilm:shortFilm.ID];
+	IndexDetailViewController *filmDetail = [[IndexDetailViewController alloc] initWithShortFilm:shortFilm.ID];
 	[[self navigationController] pushViewController:filmDetail animated:YES];
 }
 

@@ -27,7 +27,7 @@
 @synthesize isPresentingModalView;
 @synthesize isLoggedInFacebook;
 @synthesize isOffSeason;
-@synthesize trendingView;
+@synthesize hotPicksView;
 @synthesize festival;
 @synthesize venuesDictionary;
 @synthesize reachability;
@@ -121,7 +121,7 @@
 		[item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
 	}
 
-	// Change the font color of Cancel button in the searchbar of FilmViewController to colorRed
+	// Change the font color of Cancel button in the searchbar of IndexViewController to colorRed
 	NSShadow *shadow = [NSShadow new];
 	[shadow setShadowColor: [UIColor redColor]];
 	[shadow setShadowOffset: CGSizeMake(0.0, 1.0)];
@@ -255,7 +255,7 @@
 		networkConnection = NETWORK_CONNECTION_NONE;
 	}
 	
-	NSLog(@"Network Connection: %s", networkConnection == 1 ? "DialUp" : networkConnection == 2 ? "WiFi" : "None");
+	NSLog(@"Network Connection: %s", networkConnection == 1 ? "CarrierData" : networkConnection == 2 ? "WiFi" : "None");
 }
 
 #pragma mark - Utility functions
@@ -339,7 +339,7 @@
 					{
 						[self.arrayCalendarItems addObject:uniqueIDForEvent];
 						
-						NSLog(@"Succesfully saved event %@ %@", newEvent.title, newEvent.eventIdentifier);
+						NSLog(@"Successfully saved event %@ %@", newEvent.title, newEvent.eventIdentifier);
 						
 						eventIdentifier = newEvent.eventIdentifier;
 					}
@@ -685,7 +685,7 @@
 			{
 				[self.arrayCalendarItems addObject:uniqueIDForEvent];
 				
-				NSLog(@"Succesfully saved event %@ %@", newEvent.title, newEvent.eventIdentifier);
+				NSLog(@"Successfully saved event %@ %@", newEvent.title, newEvent.eventIdentifier);
 			}
 		}
 			  

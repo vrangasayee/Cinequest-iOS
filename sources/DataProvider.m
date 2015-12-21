@@ -22,7 +22,7 @@
 #define MAINFEED_FILE					@"MainFeed.xml"
 #define FILMSBYTIME_FILE				@"FilmsByTime.xml"
 #define FILMSBYTITLE_FILE				@"FilmsByTitle.xml"
-#define NEWSFEED_FILE					@"NewsFeed.xml"
+#define TRENDINGFEED_FILE				@"TrendingFeed.xml"
 #define EVENTS_FILE						@"Events.xml"
 #define VENUES_FILE						@"Venues.xml"
 #define MODE_FILE						@"Mode.xml"
@@ -75,7 +75,7 @@
 			}
 		}
 		
-		NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:NEWSFEED_FILE];
+		NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:TRENDINGFEED_FILE];
 		NSFileHandle *file = [NSFileHandle fileHandleForReadingFromURL:fileUrl error:nil];
 		NSData *xmlData = [file readDataOfLength:512];
 		if(xmlData != nil)
@@ -135,16 +135,16 @@
 }
 
 // Get the news feed from server, then return them under XML data structure
-- (NSData*) newsFeed
+- (NSData*) trendingFeed
 {
-    NSLog(@"Getting news feed...");
+    NSLog(@"Getting trending feed...");
 
-	NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:NEWSFEED_FILE];
+	NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:TRENDINGFEED_FILE];
 
 	if(![appDelegate connectedToNetwork])
 	{
 		NSData *xmlData = [NSData dataWithContentsOfURL:fileUrl];
-		NSLog(@"NO CONNECTION. Old news Feed data:%ld bytes", (unsigned long)[xmlData length]);
+		NSLog(@"NO CONNECTION. Old Trending Feed data:%ld bytes", (unsigned long)[xmlData length]);
 		
 		return xmlData;
 	}
@@ -162,6 +162,7 @@
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:NEWSFEED_TIMEOUT];
     if([NSURLConnection canHandleRequest:urlRequest])
     {
+        NSLog(@"Url of trending feed:%@",TRENDING_FEED);
         NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:NO];
 		
 		app.networkActivityIndicatorVisible = YES;
@@ -179,22 +180,22 @@
 		[urlConnection cancel];
 		
 		app.networkActivityIndicatorVisible = NO;
-		
+        NSLog(@"Here I am");
 		if(!newsFeedHasBeenUpdated || connectionError != noErr)
-		{
+        {
 			feedData = nil;
-			
+        NSLog(@"Here I am");			
 			if(newsFeedHasBeenDownloaded)
 			{
 				NSData *xmlData = [NSData dataWithContentsOfURL:fileUrl];
 				
 				if(connectionError != noErr)
 				{
-					NSLog(@"NO CONNECTION. Old news Feed data:%ld bytes", (unsigned long)[xmlData length]);
+					NSLog(@"NO CONNECTION. Old Trending Feed data:%ld bytes", (unsigned long)[xmlData length]);
 				}
 				else
 				{
-					NSLog(@"Old news Feed data:%ld bytes", (unsigned long)[xmlData length]);
+					NSLog(@"Old Trending Feed data:%ld bytes", (unsigned long)[xmlData length]);
 				}
 				
 				gettingNewsFeed = NO;
@@ -207,10 +208,10 @@
 				
 				return nil;
 			}
-		}
+        }
 	}
 	
-	NSLog(@"NEW news Feed data:%ld bytes", (unsigned long)feedDataLen);
+	NSLog(@"NEW Trending Feed data:%ld bytes", (unsigned long)feedDataLen);
 	
 	[feedData writeToURL:fileUrl atomically:YES];
 	
@@ -491,7 +492,7 @@
 			}
 		}
 		
-		NSLog(@"newsFeedUpdated:%@  Date:%@", self.newsFeedUpdated ? @"YES" : @"NO", self.newsFeedDate);
+		NSLog(@"TrendingFeedUpdated:%@  Date:%@", self.newsFeedUpdated ? @"YES" : @"NO", self.newsFeedDate);
 		
 		if(self.newsFeedUpdated)
 		{
@@ -627,7 +628,7 @@
 	{
 		if([fileMgr fileExistsAtPath:[fileUrl path]])
 		{
-			NSLog(@"NO CONNECTION. Getting OLD news...");
+			NSLog(@"NO CONNECTION. Getting OLD main feed data...");
 
 			return [NSData dataWithContentsOfURL:fileUrl];
 		}
@@ -641,7 +642,7 @@
 	{
 		if([fileMgr fileExistsAtPath:[fileUrl path]])
 		{
-			NSLog(@"Getting OLD news...");
+			NSLog(@"Getting OLD nmain feed data...");
 
 			return [NSData dataWithContentsOfURL:fileUrl];
 		}

@@ -1,18 +1,19 @@
 //
-//  FilmsViewController.m
+//  IndexViewController.m
 //  CineQuest
 //
 //  Created by Luca Severini on 10/1/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
 //  Edited by Karan Khare and Ramya Shenoy on 11/24/2014
+//  Renamed Chris Pollett 2015
 
 
-#import "EventsViewController.h"
-#import "EventDetailViewController.h"
-#import "TrendingViewController.h"
-#import "FilmsViewController.h"
-#import "FilmDetailViewController.h"
+#import "ScheduleViewController.h"
+#import "ScheduleDetailViewController.h"
+#import "HotPicksViewController.h"
+#import "IndexViewController.h"
+#import "IndexDetailViewController.h"
 #import "CinequestAppDelegate.h"
 #import "Schedule.h"
 #import "DataProvider.h"
@@ -59,7 +60,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 @end
 
 
-@implementation FilmsViewController
+@implementation IndexViewController
 
 @synthesize refreshControl;
 @synthesize switchTitle;
@@ -180,7 +181,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     self.sortedIndexesInDateToFilmsDictionary = nil;
     self.alphabetToFilmsDictionary = nil;
     self.sortedKeysInAlphabetToFilmsDictionary = nil;
-    // properties necessary for EventsViewController to be ported to this ViewController
+    // properties neccessary for ScheduleViewController to be ported to this ViewController
     self.dateToEventsDictionary = nil;
     self.sortedKeysInDateToEventsDictionary = nil;
     self.sortedIndexesInDateToEventsDictionary = nil;
@@ -356,7 +357,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 //Loading film details for the particular schedule item id
 - (void) showFilmDetails:(Schedule*)schedule
 {
-    FilmDetailViewController *filmDetail = [[FilmDetailViewController alloc] initWithFilm:schedule.itemID];
+    IndexDetailViewController *filmDetail = [[IndexDetailViewController alloc] initWithFilm:schedule.itemID];
     [[self navigationController] pushViewController:filmDetail animated:YES];
 }
 
@@ -735,8 +736,8 @@ static NSString *const kEventCellIdentifier = @"EventCell";
             {
                 if ([self compareStartDate:schedule.startDate withSectionDate:date])
                 {
-                    EventDetailViewController *eventDetail = [[EventDetailViewController alloc] initWithEvent:schedule.itemID];
-                    [self.navigationController pushViewController:eventDetail animated:YES];
+                    ScheduleDetailViewController *scheduleDetail = [[ScheduleDetailViewController alloc] initWithEventID:schedule.itemID];
+                    [self.navigationController pushViewController:scheduleDetail animated:YES];
                     
                     break;
                 }

@@ -1,5 +1,5 @@
 //
-//  EventsViewController.m
+//  ScheduleViewController.m
 //  CineQuest
 //
 //  Created by Luca Severini on 10/1/13.
@@ -7,21 +7,23 @@
 //
 // Edited by Karan Khare and Ramya Shenoy on 11/24/2014
 // Edited by Kenan Ozdamar on Jan 2015.
+// Rename and reworked Chris Pollett 2015
+
 //
 
 
-#import "EventsViewController.h"
-#import "EventDetailViewController.h"
+#import "ScheduleViewController.h"
+#import "ScheduleDetailViewController.h"
 #import "CinequestAppDelegate.h"
 #import "Schedule.h"
-#import "TrendingViewController.h"
+#import "HotPicksViewController.h"
 #import "Special.h"
 #import "DataProvider.h"
 
 
 static NSString *const kEventCellIdentifier = @"EventCell";
 
-@implementation EventsViewController
+@implementation ScheduleViewController
 
 @synthesize refreshControl;
 @synthesize switchTitle;
@@ -102,11 +104,11 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 {
 	[super viewDidAppear: animated];
 	
-	if([[NSUserDefaults standardUserDefaults] boolForKey:@"EventsUpdated"])
+	if([[NSUserDefaults standardUserDefaults] boolForKey:@"ScheduleUpdated"])
 	{
-		[appDelegate showMessage:@"Events have been updated" onView:self.view hideAfter:3.0];
+		[appDelegate showMessage:@"Schedule updated" onView:self.view hideAfter:3.0];
 		
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"EventsUpdated"];
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ScheduleUpdated"];
         [[NSUserDefaults standardUserDefaults] synchronize];
 	}
 }
@@ -131,9 +133,9 @@ static NSString *const kEventCellIdentifier = @"EventCell";
 	{
 		[self performSelectorOnMainThread:@selector(updateDataAndTable) withObject:nil waitUntilDone:NO];
 
-		[appDelegate showMessage:@"Events have been updated" onView:self.view hideAfter:3.0];
+		[appDelegate showMessage:@"Scheduleupdated" onView:self.view hideAfter:3.0];
 
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"EventsUpdated"];
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ScheduleUpdated"];
         [[NSUserDefaults standardUserDefaults] synchronize];
 	}
 }
@@ -454,12 +456,12 @@ static NSString *const kEventCellIdentifier = @"EventCell";
         if ([self compareStartDate:schedule.startDate withSectionDate:date])
 		{
             
-            //Send currently selected event to eventdetailviewcontroller.
+            //Send currently selected event to ScheduleDetailViewController.
             //old behavior used to send an eventid instead of sending
             //object directly.
-            EventDetailViewController *eventDetail = [[EventDetailViewController alloc] initWithEvent:event];
+            ScheduleDetailViewController *scheduleDetail = [[ScheduleDetailViewController alloc] initWithEvent:event];
             
-			[self.navigationController pushViewController:eventDetail animated:YES];
+			[self.navigationController pushViewController:scheduleDetail animated:YES];
 
 			break;
 		}

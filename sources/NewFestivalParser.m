@@ -319,7 +319,7 @@
     
     schedule.venueItem = [showing venue];
     
-    //To keep track of Selected User schedules after refresh of table from FilmsView or EventsView
+    //To keep track of Selected User schedules after refresh of table from IndexView or ScheduleView
     NSUInteger scheduleCount = [delegate.mySchedule count];
     if (scheduleCount) {
         for (int scheduleIdx = 0; scheduleIdx < scheduleCount; scheduleIdx++) {
@@ -358,7 +358,7 @@
     film.ID = show.ID;
     film.name = show.name;
     film.description = show.shortDescription;
-    film.imageURL = show.thumbImageURL;
+    film.imageURL = [show.thumbImageURL stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];
     film.infoLink = show.infoLink;
     film.director = [self get:show.customProperties forkey:@"Director"];
     film.producer = [self get:show.customProperties forkey:@"Producer"];
@@ -396,7 +396,7 @@
     special.ID = show.ID;
     special.name = show.name;
     special.description = show.shortDescription;
-    special.imageURL = show.thumbImageURL;
+    special.imageURL = [show.thumbImageURL stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];
     special.infoLink = show.infoLink;
     special.director = [self get:show.customProperties forkey:@"Director"];
     special.producer = [self get:show.customProperties forkey:@"Producer"];

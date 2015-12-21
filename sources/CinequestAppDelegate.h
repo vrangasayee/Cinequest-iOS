@@ -64,7 +64,7 @@
 #define appDelegate ((CinequestAppDelegate*)[[UIApplication sharedApplication] delegate])
 #define app [UIApplication sharedApplication]
 
-@class TrendingViewController;
+@class HotPicksViewController;
 @class Reachability;
 @class DataProvider;
 
@@ -78,7 +78,7 @@
 	NSInteger curTabIndex;
 }
 
-@property (nonatomic, strong) TrendingViewController *trendingView;
+@property (nonatomic, strong) HotPicksViewController *hotPicksView;
 @property (nonatomic, strong) NSMutableArray *mySchedule;
 @property (readwrite) BOOL isPresentingModalView;
 @property (readwrite) BOOL isLoggedInFacebook;

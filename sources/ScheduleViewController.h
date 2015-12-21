@@ -1,14 +1,15 @@
 //
-//  EventsViewController.h
+//  ScheduleViewController.h
 //  CineQuest
 //
 //  Created by Luca Severini on 10/1/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
+//  Renamed 2015 Chris Polletts
 //
 
 @class CinequestAppDelegate;
 
-@interface EventsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>	
+@interface ScheduleViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
 	CinequestAppDelegate *delegate;
 	NSMutableArray *mySchedule;

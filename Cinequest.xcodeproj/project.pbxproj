@@ -46,11 +46,11 @@
 		81745A7717EBAEED008D2C2C /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A5517EBAEED008D2C2C /* DDXMLElement.m */; };
 		81745A7817EBAEED008D2C2C /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A5717EBAEED008D2C2C /* DDXMLElementAdditions.m */; };
 		81745A7917EBAEED008D2C2C /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A5917EBAEED008D2C2C /* DDXMLNode.m */; };
-		81745A7C17EBAEED008D2C2C /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6017EBAEED008D2C2C /* EventDetailViewController.m */; };
-		81745A7D17EBAEED008D2C2C /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6217EBAEED008D2C2C /* EventsViewController.m */; };
-		81745A7F17EBAEED008D2C2C /* FilmsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6617EBAEED008D2C2C /* FilmsViewController.m */; };
+		81745A7C17EBAEED008D2C2C /* ScheduleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6017EBAEED008D2C2C /* ScheduleDetailViewController.m */; };
+		81745A7D17EBAEED008D2C2C /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6217EBAEED008D2C2C /* ScheduleViewController.m */; };
+		81745A7F17EBAEED008D2C2C /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6617EBAEED008D2C2C /* IndexViewController.m */; };
 		81745A8317EBAEED008D2C2C /* MyCinequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6E17EBAEED008D2C2C /* MyCinequestViewController.m */; };
-		81745A8417EBAEED008D2C2C /* TrendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A7017EBAEED008D2C2C /* TrendingViewController.m */; };
+		81745A8417EBAEED008D2C2C /* HotPicksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A7017EBAEED008D2C2C /* HotPicksViewController.m */; };
 		8180BE6E183AE0FE00DC8997 /* iphone_launch_640_1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 8180BE6D183AE0FE00DC8997 /* iphone_launch_640_1136.png */; };
 		8192CC6217EBC91D00DBE036 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8192CC6117EBC91D00DBE036 /* libxml2.dylib */; };
 		8192CC6417EBC92D00DBE036 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8192CC6317EBC92D00DBE036 /* libsqlite3.0.dylib */; };
@@ -64,15 +64,15 @@
 		81A4964E1845A50C0025CCBB /* mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A496401845A50C0025CCBB /* mail@2x.png */; };
 		81A4964F1845A50C0025CCBB /* maps.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A496411845A50C0025CCBB /* maps.png */; };
 		81A496501845A50C0025CCBB /* maps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A496421845A50C0025CCBB /* maps@2x.png */; };
-		81B12C65182B759E000D5200 /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A217EBABEE00033D4F /* EventDetailViewController.xib */; };
-		81B12C66182B759E000D5200 /* EventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A317EBABEE00033D4F /* EventsViewController.xib */; };
-		81B12C67182B759E000D5200 /* FilmDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A417EBABEE00033D4F /* FilmDetailViewController.xib */; };
-		81B12C68182B759E000D5200 /* FilmsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A517EBABEE00033D4F /* FilmsViewController.xib */; };
+		81B12C65182B759E000D5200 /* ScheduleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A217EBABEE00033D4F /* ScheduleDetailViewController.xib */; };
+		81B12C66182B759E000D5200 /* ScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A317EBABEE00033D4F /* ScheduleViewController.xib */; };
+		81B12C67182B759E000D5200 /* IndexDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A417EBABEE00033D4F /* IndexDetailViewController.xib */; };
+		81B12C68182B759E000D5200 /* IndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A517EBABEE00033D4F /* IndexViewController.xib */; };
 		81B12C6C182B759E000D5200 /* MyCinequestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3AA17EBABEE00033D4F /* MyCinequestViewController.xib */; };
 		81B32C91183C2AF9006D2D78 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81B32C90183C2AF9006D2D78 /* Default-568h@2x.png */; };
 		81B32C99183C2DF8006D2D78 /* logoSJSU.png in Resources */ = {isa = PBXBuildFile; fileRef = 81B32C98183C2DF8006D2D78 /* logoSJSU.png */; };
-		81B38F25189323590047AEFE /* TrendingDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B38F24189323590047AEFE /* TrendingDetailViewController.xib */; };
-		81B38F281893239A0047AEFE /* TrendingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B38F271893239A0047AEFE /* TrendingDetailViewController.m */; };
+		81B38F25189323590047AEFE /* HotPicksDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B38F24189323590047AEFE /* HotPicksDetailViewController.xib */; };
+		81B38F281893239A0047AEFE /* HotPicksDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B38F271893239A0047AEFE /* HotPicksDetailViewController.m */; };
 		81B7C4A8184D1358001F4B16 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7C4A6184D1358001F4B16 /* MapViewController.m */; };
 		81B7C4A9184D1358001F4B16 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B7C4A7184D1358001F4B16 /* MapViewController.xib */; };
 		81C02F24188F040B0019227F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C02F23188F040B0019227F /* AddressBook.framework */; };
@@ -87,7 +87,7 @@
 		81C8B38417EBAB3200033D4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C8B38317EBAB3200033D4F /* Foundation.framework */; };
 		81C8B38617EBAB3200033D4F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C8B38517EBAB3200033D4F /* CoreGraphics.framework */; };
 		81C8B3B417EBABEE00033D4F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3A917EBABEE00033D4F /* MainWindow.xib */; };
-		81C8B3B617EBABEE00033D4F /* TrendingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3AB17EBABEE00033D4F /* TrendingViewController.xib */; };
+		81C8B3B617EBABEE00033D4F /* HotPicksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3AB17EBABEE00033D4F /* HotPicksViewController.xib */; };
 		81C8B3D717EBAC2C00033D4F /* News.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3C317EBAC2C00033D4F /* News.png */; };
 		81C8B3D817EBAC2C00033D4F /* events_icon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3C417EBAC2C00033D4F /* events_icon_small.png */; };
 		81C8B3D917EBAC2C00033D4F /* film_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3C517EBAC2C00033D4F /* film_icon2.png */; };
@@ -100,7 +100,7 @@
 		81D62087185ED7C800FEDD03 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 81D62086185ED7C800FEDD03 /* GooglePlus.bundle */; };
 		81D6208D185ED96C00FEDD03 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D6208B185ED96C00FEDD03 /* GoogleOpenSource.framework */; };
 		81D6208E185ED96C00FEDD03 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D6208C185ED96C00FEDD03 /* GooglePlus.framework */; };
-		81D62090185ED9FC00FEDD03 /* FilmDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6417EBAEED008D2C2C /* FilmDetailViewController.m */; };
+		81D62090185ED9FC00FEDD03 /* IndexDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81745A6417EBAEED008D2C2C /* IndexDetailViewController.m */; };
 		81D6705C183E19D8007E9B99 /* iphone_icon_29.png in Resources */ = {isa = PBXBuildFile; fileRef = 81D67055183E19D8007E9B99 /* iphone_icon_29.png */; };
 		81D6705D183E19D8007E9B99 /* iphone_icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 81D67056183E19D8007E9B99 /* iphone_icon_57.png */; };
 		81D6705E183E19D8007E9B99 /* iphone_icon_58.png in Resources */ = {isa = PBXBuildFile; fileRef = 81D67057183E19D8007E9B99 /* iphone_icon_58.png */; };
@@ -185,18 +185,18 @@
 		81745A5817EBAEED008D2C2C /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXMLNode.h; path = sources/DDXMLNode.h; sourceTree = SOURCE_ROOT; };
 		81745A5917EBAEED008D2C2C /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDXMLNode.m; path = sources/DDXMLNode.m; sourceTree = SOURCE_ROOT; };
 		81745A5A17EBAEED008D2C2C /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXMLPrivate.h; path = sources/DDXMLPrivate.h; sourceTree = SOURCE_ROOT; };
-		81745A5F17EBAEED008D2C2C /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventDetailViewController.h; path = sources/EventDetailViewController.h; sourceTree = SOURCE_ROOT; };
-		81745A6017EBAEED008D2C2C /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventDetailViewController.m; path = sources/EventDetailViewController.m; sourceTree = SOURCE_ROOT; };
-		81745A6117EBAEED008D2C2C /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventsViewController.h; path = sources/EventsViewController.h; sourceTree = SOURCE_ROOT; };
-		81745A6217EBAEED008D2C2C /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventsViewController.m; path = sources/EventsViewController.m; sourceTree = SOURCE_ROOT; };
-		81745A6317EBAEED008D2C2C /* FilmDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilmDetailViewController.h; path = sources/FilmDetailViewController.h; sourceTree = SOURCE_ROOT; };
-		81745A6417EBAEED008D2C2C /* FilmDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilmDetailViewController.m; path = sources/FilmDetailViewController.m; sourceTree = SOURCE_ROOT; };
-		81745A6517EBAEED008D2C2C /* FilmsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilmsViewController.h; path = sources/FilmsViewController.h; sourceTree = SOURCE_ROOT; };
-		81745A6617EBAEED008D2C2C /* FilmsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilmsViewController.m; path = sources/FilmsViewController.m; sourceTree = SOURCE_ROOT; };
+		81745A5F17EBAEED008D2C2C /* ScheduleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScheduleDetailViewController.h; path = sources/ScheduleDetailViewController.h; sourceTree = SOURCE_ROOT; };
+		81745A6017EBAEED008D2C2C /* ScheduleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScheduleDetailViewController.m; path = sources/ScheduleDetailViewController.m; sourceTree = SOURCE_ROOT; };
+		81745A6117EBAEED008D2C2C /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScheduleViewController.h; path = sources/ScheduleViewController.h; sourceTree = SOURCE_ROOT; };
+		81745A6217EBAEED008D2C2C /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScheduleViewController.m; path = sources/ScheduleViewController.m; sourceTree = SOURCE_ROOT; };
+		81745A6317EBAEED008D2C2C /* IndexDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexDetailViewController.h; path = sources/IndexDetailViewController.h; sourceTree = SOURCE_ROOT; };
+		81745A6417EBAEED008D2C2C /* IndexDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndexDetailViewController.m; path = sources/IndexDetailViewController.m; sourceTree = SOURCE_ROOT; };
+		81745A6517EBAEED008D2C2C /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexViewController.h; path = sources/IndexViewController.h; sourceTree = SOURCE_ROOT; };
+		81745A6617EBAEED008D2C2C /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndexViewController.m; path = sources/IndexViewController.m; sourceTree = SOURCE_ROOT; };
 		81745A6D17EBAEED008D2C2C /* MyCinequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCinequestViewController.h; path = sources/MyCinequestViewController.h; sourceTree = SOURCE_ROOT; };
 		81745A6E17EBAEED008D2C2C /* MyCinequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCinequestViewController.m; path = sources/MyCinequestViewController.m; sourceTree = SOURCE_ROOT; };
-		81745A6F17EBAEED008D2C2C /* TrendingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrendingViewController.h; path = sources/TrendingViewController.h; sourceTree = SOURCE_ROOT; };
-		81745A7017EBAEED008D2C2C /* TrendingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrendingViewController.m; path = sources/TrendingViewController.m; sourceTree = SOURCE_ROOT; };
+		81745A6F17EBAEED008D2C2C /* HotPicksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HotPicksViewController.h; path = sources/HotPicksViewController.h; sourceTree = SOURCE_ROOT; };
+		81745A7017EBAEED008D2C2C /* HotPicksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HotPicksViewController.m; path = sources/HotPicksViewController.m; sourceTree = SOURCE_ROOT; };
 		81745A7117EBAEED008D2C2C /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSStringAdditions.h; path = sources/NSStringAdditions.h; sourceTree = SOURCE_ROOT; };
 		81745A7217EBAEED008D2C2C /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSStringAdditions.m; path = sources/NSStringAdditions.m; sourceTree = SOURCE_ROOT; };
 		8180BE6D183AE0FE00DC8997 /* iphone_launch_640_1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iphone_launch_640_1136.png; path = images/iphone_launch_640_1136.png; sourceTree = SOURCE_ROOT; };
@@ -214,9 +214,9 @@
 		81A496421845A50C0025CCBB /* maps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "maps@2x.png"; path = "images/maps@2x.png"; sourceTree = SOURCE_ROOT; };
 		81B32C90183C2AF9006D2D78 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "images/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		81B32C98183C2DF8006D2D78 /* logoSJSU.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logoSJSU.png; path = images/logoSJSU.png; sourceTree = SOURCE_ROOT; };
-		81B38F24189323590047AEFE /* TrendingDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrendingDetailViewController.xib; path = resources/TrendingDetailViewController.xib; sourceTree = SOURCE_ROOT; };
-		81B38F261893239A0047AEFE /* TrendingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrendingDetailViewController.h; path = sources/TrendingDetailViewController.h; sourceTree = SOURCE_ROOT; };
-		81B38F271893239A0047AEFE /* TrendingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrendingDetailViewController.m; path = sources/TrendingDetailViewController.m; sourceTree = SOURCE_ROOT; };
+		81B38F24189323590047AEFE /* HotPicksDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HotPicksDetailViewController.xib; path = resources/HotPicksDetailViewController.xib; sourceTree = SOURCE_ROOT; };
+		81B38F261893239A0047AEFE /* HotPicksDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HotPicksDetailViewController.h; path = sources/HotPicksDetailViewController.h; sourceTree = SOURCE_ROOT; };
+		81B38F271893239A0047AEFE /* HotPicksDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HotPicksDetailViewController.m; path = sources/HotPicksDetailViewController.m; sourceTree = SOURCE_ROOT; };
 		81B7C4A5184D1358001F4B16 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController.h; path = sources/MapViewController.h; sourceTree = SOURCE_ROOT; };
 		81B7C4A6184D1358001F4B16 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = sources/MapViewController.m; sourceTree = SOURCE_ROOT; };
 		81B7C4A7184D1358001F4B16 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MapViewController.xib; path = sources/MapViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -235,13 +235,13 @@
 		81C8B38117EBAB3200033D4F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		81C8B38317EBAB3200033D4F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		81C8B38517EBAB3200033D4F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		81C8B3A217EBABEE00033D4F /* EventDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventDetailViewController.xib; path = resources/EventDetailViewController.xib; sourceTree = SOURCE_ROOT; };
-		81C8B3A317EBABEE00033D4F /* EventsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventsViewController.xib; path = resources/EventsViewController.xib; sourceTree = SOURCE_ROOT; };
-		81C8B3A417EBABEE00033D4F /* FilmDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilmDetailViewController.xib; path = resources/FilmDetailViewController.xib; sourceTree = SOURCE_ROOT; };
-		81C8B3A517EBABEE00033D4F /* FilmsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilmsViewController.xib; path = resources/FilmsViewController.xib; sourceTree = SOURCE_ROOT; };
+		81C8B3A217EBABEE00033D4F /* ScheduleDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScheduleDetailViewController.xib; path = resources/ScheduleDetailViewController.xib; sourceTree = SOURCE_ROOT; };
+		81C8B3A317EBABEE00033D4F /* ScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScheduleViewController.xib; path = resources/ScheduleViewController.xib; sourceTree = SOURCE_ROOT; };
+		81C8B3A417EBABEE00033D4F /* IndexDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IndexDetailViewController.xib; path = resources/IndexDetailViewController.xib; sourceTree = SOURCE_ROOT; };
+		81C8B3A517EBABEE00033D4F /* IndexViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IndexViewController.xib; path = resources/IndexViewController.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3A917EBABEE00033D4F /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = resources/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3AA17EBABEE00033D4F /* MyCinequestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyCinequestViewController.xib; path = resources/MyCinequestViewController.xib; sourceTree = SOURCE_ROOT; };
-		81C8B3AB17EBABEE00033D4F /* TrendingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrendingViewController.xib; path = resources/TrendingViewController.xib; sourceTree = SOURCE_ROOT; };
+		81C8B3AB17EBABEE00033D4F /* HotPicksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HotPicksViewController.xib; path = resources/HotPicksViewController.xib; sourceTree = SOURCE_ROOT; };
 		81C8B3C317EBAC2C00033D4F /* News.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = News.png; path = images/News.png; sourceTree = SOURCE_ROOT; };
 		81C8B3C417EBAC2C00033D4F /* events_icon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = events_icon_small.png; path = images/events_icon_small.png; sourceTree = SOURCE_ROOT; };
 		81C8B3C517EBAC2C00033D4F /* film_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = film_icon2.png; path = images/film_icon2.png; sourceTree = SOURCE_ROOT; };
@@ -455,12 +455,12 @@
 				81309043189CAD8900E9266B /* Settings */,
 				81D1EC3D182B8990003DD8BB /* StartupViewController.xib */,
 				81C8B3A917EBABEE00033D4F /* MainWindow.xib */,
-				81C8B3AB17EBABEE00033D4F /* TrendingViewController.xib */,
-				81B38F24189323590047AEFE /* TrendingDetailViewController.xib */,
-				81C8B3A517EBABEE00033D4F /* FilmsViewController.xib */,
-				81C8B3A417EBABEE00033D4F /* FilmDetailViewController.xib */,
-				81C8B3A317EBABEE00033D4F /* EventsViewController.xib */,
-				81C8B3A217EBABEE00033D4F /* EventDetailViewController.xib */,
+				81C8B3AB17EBABEE00033D4F /* HotPicksViewController.xib */,
+				81B38F24189323590047AEFE /* HotPicksDetailViewController.xib */,
+				81C8B3A517EBABEE00033D4F /* IndexViewController.xib */,
+				81C8B3A417EBABEE00033D4F /* IndexDetailViewController.xib */,
+				81C8B3A317EBABEE00033D4F /* ScheduleViewController.xib */,
+				81C8B3A217EBABEE00033D4F /* ScheduleDetailViewController.xib */,
 				81C8B3AA17EBABEE00033D4F /* MyCinequestViewController.xib */,
 				81B7C4A7184D1358001F4B16 /* MapViewController.xib */,
 				81C6BA4A188F641200BCEA26 /* GPlusDialogViewController.xib */,
@@ -551,18 +551,18 @@
 				8127A62018AF1FAA00CC1BDF /* MBProgressHUD */,
 				81D1EC38182B892B003DD8BB /* StartupViewController.h */,
 				81D1EC39182B892B003DD8BB /* StartupViewController.m */,
-				81745A6F17EBAEED008D2C2C /* TrendingViewController.h */,
-				81745A7017EBAEED008D2C2C /* TrendingViewController.m */,
-				81B38F261893239A0047AEFE /* TrendingDetailViewController.h */,
-				81B38F271893239A0047AEFE /* TrendingDetailViewController.m */,
-				81745A6517EBAEED008D2C2C /* FilmsViewController.h */,
-				81745A6617EBAEED008D2C2C /* FilmsViewController.m */,
-				81745A6317EBAEED008D2C2C /* FilmDetailViewController.h */,
-				81745A6417EBAEED008D2C2C /* FilmDetailViewController.m */,
-				81745A6117EBAEED008D2C2C /* EventsViewController.h */,
-				81745A6217EBAEED008D2C2C /* EventsViewController.m */,
-				81745A5F17EBAEED008D2C2C /* EventDetailViewController.h */,
-				81745A6017EBAEED008D2C2C /* EventDetailViewController.m */,
+				81745A6F17EBAEED008D2C2C /* HotPicksViewController.h */,
+				81745A7017EBAEED008D2C2C /* HotPicksViewController.m */,
+				81B38F261893239A0047AEFE /* HotPicksDetailViewController.h */,
+				81B38F271893239A0047AEFE /* HotPicksDetailViewController.m */,
+				81745A6517EBAEED008D2C2C /* IndexViewController.h */,
+				81745A6617EBAEED008D2C2C /* IndexViewController.m */,
+				81745A6317EBAEED008D2C2C /* IndexDetailViewController.h */,
+				81745A6417EBAEED008D2C2C /* IndexDetailViewController.m */,
+				81745A6117EBAEED008D2C2C /* ScheduleViewController.h */,
+				81745A6217EBAEED008D2C2C /* ScheduleViewController.m */,
+				81745A5F17EBAEED008D2C2C /* ScheduleDetailViewController.h */,
+				81745A6017EBAEED008D2C2C /* ScheduleDetailViewController.m */,
 				81745A6D17EBAEED008D2C2C /* MyCinequestViewController.h */,
 				81745A6E17EBAEED008D2C2C /* MyCinequestViewController.m */,
 				81B7C4A5184D1358001F4B16 /* MapViewController.h */,
@@ -706,9 +706,9 @@
 				813CB476183E1FAF00974776 /* Images.xcassets in Resources */,
 				816C4AB1183C0AEC00BE896C /* iphone_launch_320_480.png in Resources */,
 				81C8B3B417EBABEE00033D4F /* MainWindow.xib in Resources */,
-				81C8B3B617EBABEE00033D4F /* TrendingViewController.xib in Resources */,
+				81C8B3B617EBABEE00033D4F /* HotPicksViewController.xib in Resources */,
 				81A4964B1845A50C0025CCBB /* mail.png in Resources */,
-				81B38F25189323590047AEFE /* TrendingDetailViewController.xib in Resources */,
+				81B38F25189323590047AEFE /* HotPicksDetailViewController.xib in Resources */,
 				81E1963B18530E9800C1A89D /* phone.png in Resources */,
 				811791B91897783600B6D21F /* calendar_icon.png in Resources */,
 				816C4AB3183C0B4C00BE896C /* iphone_launch_640_960.png in Resources */,
@@ -752,17 +752,17 @@
 				8163D49C185C49BA0035F67F /* Events_black.png in Resources */,
 				81E1964018530F9C00C1A89D /* browser@2x.png in Resources */,
 				8163D493185C499A0035F67F /* News_black@2x.png in Resources */,
-				81B12C65182B759E000D5200 /* EventDetailViewController.xib in Resources */,
+				81B12C65182B759E000D5200 /* ScheduleDetailViewController.xib in Resources */,
 				81A4964C1845A50C0025CCBB /* googleplus.png in Resources */,
 				811791BE1897840600B6D21F /* messages_icon@2x.png in Resources */,
 				81D67060183E19D8007E9B99 /* iphone_icon_114.png in Resources */,
-				81B12C66182B759E000D5200 /* EventsViewController.xib in Resources */,
-				81B12C67182B759E000D5200 /* FilmDetailViewController.xib in Resources */,
+				81B12C66182B759E000D5200 /* ScheduleViewController.xib in Resources */,
+				81B12C67182B759E000D5200 /* IndexDetailViewController.xib in Resources */,
 				81E1963C18530E9800C1A89D /* phone@2x.png in Resources */,
 				8163D492185C499A0035F67F /* News_black.png in Resources */,
 				813D3AE118505911004667D5 /* message.png in Resources */,
 				81A4964F1845A50C0025CCBB /* maps.png in Resources */,
-				81B12C68182B759E000D5200 /* FilmsViewController.xib in Resources */,
+				81B12C68182B759E000D5200 /* IndexViewController.xib in Resources */,
 				81D67062183E19D8007E9B99 /* iphone_icon_512.jpg in Resources */,
 				811791BA1897783600B6D21F /* calendar_icon@2x.png in Resources */,
 				81A496481845A50C0025CCBB /* facebook@2x.png in Resources */,
@@ -785,7 +785,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81C6BA4B188F641200BCEA26 /* GPlusDialogView.m in Sources */,
-				81B38F281893239A0047AEFE /* TrendingDetailViewController.m in Sources */,
+				81B38F281893239A0047AEFE /* HotPicksDetailViewController.m in Sources */,
 				C2D6DC211829771E005A6897 /* Show.m in Sources */,
 				C2D6DC1A182975E5005A6897 /* Festival.m in Sources */,
 				C27BC6DB182A3734006F7D25 /* Schedule.m in Sources */,
@@ -800,17 +800,17 @@
 				C2D6DC2C1829E0F7005A6897 /* CinequestItem.m in Sources */,
 				C2B86DF71844C0350088A958 /* Special.m in Sources */,
 				C2D6DC291829B8BF005A6897 /* Film.m in Sources */,
-				81745A7C17EBAEED008D2C2C /* EventDetailViewController.m in Sources */,
+				81745A7C17EBAEED008D2C2C /* ScheduleDetailViewController.m in Sources */,
 				81C6BA4C188F641200BCEA26 /* GPlusDialogViewController.m in Sources */,
 				81D1EC3B182B892B003DD8BB /* StartupViewController.m in Sources */,
-				81745A7D17EBAEED008D2C2C /* EventsViewController.m in Sources */,
-				81D62090185ED9FC00FEDD03 /* FilmDetailViewController.m in Sources */,
-				81745A7F17EBAEED008D2C2C /* FilmsViewController.m in Sources */,
+				81745A7D17EBAEED008D2C2C /* ScheduleViewController.m in Sources */,
+				81D62090185ED9FC00FEDD03 /* IndexDetailViewController.m in Sources */,
+				81745A7F17EBAEED008D2C2C /* IndexViewController.m in Sources */,
 				935D58D4183CE0E300BE904F /* VenueParser.m in Sources */,
 				C2D6DC231829771E005A6897 /* Venue.m in Sources */,
 				81745A8317EBAEED008D2C2C /* MyCinequestViewController.m in Sources */,
 				8127A62318AF1FCF00CC1BDF /* MBProgressHUD.m in Sources */,
-				81745A8417EBAEED008D2C2C /* TrendingViewController.m in Sources */,
+				81745A8417EBAEED008D2C2C /* HotPicksViewController.m in Sources */,
 				81C52B85182B62F000D2F55D /* Reachability.m in Sources */,
 				81B7C4A8184D1358001F4B16 /* MapViewController.m in Sources */,
 				81FBC133182DA37900C01783 /* DataProvider.m in Sources */,

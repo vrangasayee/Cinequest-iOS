@@ -201,11 +201,6 @@ static NSString *const kPlaceholderAvatarImageName = @"PlaceholderAvatar.png";
 - (IBAction) signIn:(id)sender
 {
 	NSLog(@"signIn");
-
-	// [GPPSignIn sharedInstance].actions = [NSArray arrayWithObjects:@"http://schemas.google.com/ListenActivity", nil];
-
-	// NSLog(@"%@", [GPPSignIn sharedInstance].scopes);
-	// NSLog(@"%@", [GPPSignIn sharedInstance].actions);
 	
 	signInCompleted = NO;
 	
