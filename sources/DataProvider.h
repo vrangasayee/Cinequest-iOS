@@ -46,7 +46,6 @@ extern NSString *const kUpdatedXMLFeedNotification;
 - (NSData*) eventDetail:(NSString*)eventId;
 - (NSString*) cacheImage:(NSString*)imageUrl;
 - (void) reset;
-
 - (NSString*) cacheImageTest:(NSString*)imageUrl;
 
 @end

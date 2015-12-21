@@ -159,79 +159,93 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 {
 	feed = [NSMutableArray new];
 	
-	NSData *xmlData = [appDelegate.dataProvider mainFeed];
+	NSData *xmlData = [appDelegate.dataProvider trendingFeed];
 	
-	NSString* myString = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
+	NSString *myString = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
 	myString = [myString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 	myString = [myString stringByReplacingOccurrencesOfString:@"\t" withString:@""];
 	xmlData = [myString dataUsingEncoding:NSUTF8StringEncoding];
 	// News is represented as an XML Document
 	DDXMLDocument *newsXMLDoc = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
 	DDXMLElement *rootElement = [newsXMLDoc rootElement];
-    
-	NSInteger nodeCount = [rootElement childCount];
-    // Loop through the news array
-	for (NSInteger nodeIdx = 0; nodeIdx < nodeCount; nodeIdx++)
-	{
-		DDXMLElement *child = (DDXMLElement*)[rootElement childAtIndex:nodeIdx];
-		NSString *childName = [child name];
-		
-		if ([childName isEqualToString:@"ArrayOfShows"])
-		{
-			NSInteger subNodeCount = [child childCount];
-			for (NSInteger subNodeIdx = 0; subNodeIdx < subNodeCount; subNodeIdx++)
-			{
-				DDXMLElement *newsNode = (DDXMLElement*)[child childAtIndex:subNodeIdx];
-				// Get the name, desciption, event image, info and image
-				NSString *name = @"";
-				NSString *description = @"";
-				NSString *eventImageUrl = @"";
-				NSString *info = @"";
-				NSString *thumbImageUrl = @"";
+    NSInteger numNodes = [rootElement childCount];
+    BOOL gotShows = NO;
+NSLog(@"yeah1!!------------------%@", [rootElement name]);
+    if ([[rootElement name] isEqualToString:@"ArrayOfShows"])
+    {
+        NSLog(@"yeah!!------------------");
+        gotShows = YES;
+    }
+    else
+    {
+        DDXMLElement *child;
+        for (NSInteger i = 0; i < numNodes; i++)
+        {
+            child = (DDXMLElement*)[rootElement childAtIndex:i];
+            if ([[child name] isEqualToString:@"ArrayOfShows"]) {
+                rootElement = child;
+                gotShows = YES;
+                break;
+            }
+        }
+    }
+    if (gotShows)
+    {
+        numNodes = [rootElement childCount];
+        for (NSInteger i = 0; i < numNodes; i++)
+        {
+            DDXMLElement *item = (DDXMLElement*)[rootElement childAtIndex:i];
+            // Get the name, desciption, event image, info and image
+            NSString *name = @"";
+            NSString *description = @"";
+            NSString *eventImageUrl = @"";
+            NSString *info = @"";
+            NSString *thumbImageUrl = @"";
+            NSInteger numAttributes = [item childCount];
+            if([[item name] isEqualToString:@"Show"] && numAttributes > 0)
+            {
+                for (NSInteger j = 0; j < numAttributes; j++)
+                {
+                    DDXMLElement *attribute =
+                        (DDXMLElement*)[item childAtIndex:j];
+                    NSString *attributeName = [attribute name];
+                    //Set each heading as follows
+                    if ([attributeName isEqualToString:@"Name"])
+                    {
+                        name = [attribute stringValue];
+                        NSLog(@"Item %ld named %@", (long)j, name);
+                    }
+                    else if ([attributeName isEqualToString:@"ShortDescription"])
+                    {
+                        description = [attribute stringValue];
+                    }
+                    else if ([attributeName isEqualToString:@"EventImage"])
+                    {
+                        eventImageUrl = [[attribute stringValue]
+                            stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];
+                    }
+                    else if ([attributeName isEqualToString:@"InfoLink"])
+                    {
+                        info = [attribute stringValue];
+                    }
+                    else if ([attributeName isEqualToString:@"ThumbImage"])
+                    {
+                        thumbImageUrl = [[attribute stringValue]
+                            stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];;
+                    }
+                }
+                // Add these to a NSMutableDictionary of items
+                NSMutableDictionary *newsItem = [NSMutableDictionary new];
+                [newsItem setObject:name forKey:@"name"];
+                [newsItem setObject:description forKey:@"description"];
+                [newsItem setObject:eventImageUrl forKey:@"eventImage"];
+                [newsItem setObject:info forKey:@"info"];
+                [newsItem setObject:thumbImageUrl forKey:@"thumbImage"];
                 
-				NSInteger subNode2Count = [newsNode childCount];
-				if(subNode2Count != 0)
-				{
-					for (NSInteger subNode2Idx = 0; subNode2Idx < subNode2Count; subNode2Idx++)
-					{
-						DDXMLElement *newsSubNode = (DDXMLElement*)[newsNode childAtIndex:subNode2Idx];
-						NSString *subNodename = [newsSubNode name];
-						//Set each heading as follows
-						if ([subNodename isEqualToString:@"Name"])
-						{
-							name = [newsSubNode stringValue];
-                            NSLog(@"Item %ld named %@", (long)subNodeIdx, name);
-						}
-						else if ([subNodename isEqualToString:@"ShortDescription"])
-						{
-							description = [newsSubNode stringValue];
-						}
-						else if ([subNodename isEqualToString:@"EventImage"])
-						{
-							eventImageUrl = [newsSubNode stringValue];
-						}
-						else if ([subNodename isEqualToString:@"InfoLink"])
-						{
-							info = [newsSubNode stringValue];
-						}
-						else if ([subNodename isEqualToString:@"ThumbImage"])
-						{
-							thumbImageUrl = [newsSubNode stringValue];
-						}
-					}
-                    // Add these to a NSMutableDictionary of items
-					NSMutableDictionary *newsItem = [NSMutableDictionary new];
-					[newsItem setObject:name forKey:@"name"];
-					[newsItem setObject:description forKey:@"description"];
-					[newsItem setObject:eventImageUrl forKey:@"eventImage"];
-					[newsItem setObject:info forKey:@"info"];
-					[newsItem setObject:thumbImageUrl forKey:@"thumbImage"];
-					
-					[feed addObject:newsItem];
-				}
-			}
-		}
-	}
+                [feed addObject:newsItem];
+            }
+        }
+    }
     
 	[self.hotPicksTableView reloadData];
 }

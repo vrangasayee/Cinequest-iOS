@@ -140,92 +140,50 @@
 {
     NSLog(@"Getting trending feed...");
 
-	NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:TRENDINGFEED_FILE];
+    NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:TRENDINGFEED_FILE];
+    NSString *key = @"MainFeedDate";
+    NSDate *queryDate = [queryDates objectForKey:key];
 
-	if(![appDelegate connectedToNetwork])
-	{
-		NSData *xmlData = [NSData dataWithContentsOfURL:fileUrl];
-		NSLog(@"NO CONNECTION. Old Trending Feed data:%ld bytes", (unsigned long)[xmlData length]);
-		
-		return xmlData;
-	}
-	
-	gettingNewsFeed = YES;
-
-	feedData = [[NSMutableData alloc] init];
-	feedDataLen = 0;
-	newsFeedTimeStampChecked = NO;
-	newsFeedHasBeenUpdated = NO;
-	justChecking = NO;
-	connectionError = noErr;
-		
-	NSURL *url = [NSURL URLWithString:TRENDING_FEED];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:NEWSFEED_TIMEOUT];
-    if([NSURLConnection canHandleRequest:urlRequest])
+    if(![appDelegate connectedToNetwork])
     {
-        NSLog(@"Url of trending feed:%@",TRENDING_FEED);
-        NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:NO];
-		
-		app.networkActivityIndicatorVisible = YES;
-
-		[urlConnection start];
-		
-		NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-		
-        keepRunning = YES;
-        while(keepRunning)
+        if([fileMgr fileExistsAtPath:[fileUrl path]])
         {
-            [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
-        }
-		
-		[urlConnection cancel];
-		
-		app.networkActivityIndicatorVisible = NO;
-        NSLog(@"Here I am");
-		if(!newsFeedHasBeenUpdated || connectionError != noErr)
-        {
-			feedData = nil;
-        NSLog(@"Here I am");			
-			if(newsFeedHasBeenDownloaded)
-			{
-				NSData *xmlData = [NSData dataWithContentsOfURL:fileUrl];
-				
-				if(connectionError != noErr)
-				{
-					NSLog(@"NO CONNECTION. Old Trending Feed data:%ld bytes", (unsigned long)[xmlData length]);
-				}
-				else
-				{
-					NSLog(@"Old Trending Feed data:%ld bytes", (unsigned long)[xmlData length]);
-				}
-				
-				gettingNewsFeed = NO;
-				
-				return xmlData;
-			}
-			else
-			{
-				gettingNewsFeed = NO;
-				
-				return nil;
-			}
-        }
-	}
-	
-	NSLog(@"NEW Trending Feed data:%ld bytes", (unsigned long)feedDataLen);
-	
-	[feedData writeToURL:fileUrl atomically:YES];
-	
-	NSData *xmlData = [NSData dataWithData:feedData];
-	feedData = nil;
-	
-	newsFeedHasBeenDownloaded = YES;
-	
-	self.newsFeedUpdated = NO;
-		
-	gettingNewsFeed = NO;
+            NSLog(@"NO CONNECTION. Getting OLD trending feed data...");
 
-	return xmlData;
+            return [NSData dataWithContentsOfURL:fileUrl];
+        }
+        else
+        {
+            return nil;
+        }
+    }
+
+    if(queryDate != nil && [queryDate compare:self.newsFeedDate] == NSOrderedSame)
+    {
+        if([fileMgr fileExistsAtPath:[fileUrl path]])
+        {
+            NSLog(@"Getting OLD trending feed data...");
+
+            return [NSData dataWithContentsOfURL:fileUrl];
+        }
+    }
+    else
+    {
+        queryDate = self.newsFeedDate;
+        [self saveQueryDate:queryDate forKey:key];
+    }
+
+    NSData *queryData = [NSData dataWithNetURLShowingActivity:[NSURL URLWithString:TRENDING_FEED]];
+    if(queryData != nil)
+    {
+        [queryData writeToURL:fileUrl atomically:YES];
+
+        return queryData;
+    }
+    else
+    {
+        return [NSData dataWithContentsOfURL:fileUrl];
+    }
 }
 
 
@@ -477,8 +435,9 @@
 
 			feedData = nil;
 			
-			if(gettingNewsFeed) // If the feed is being get the check can be aborted
+			if(gettingNewsFeed) // If the feed is being got the check can be aborted
 			{
+                NSLog(@"..Getting Feed Data, so aborting feed check");
 				return;
 			}
 			

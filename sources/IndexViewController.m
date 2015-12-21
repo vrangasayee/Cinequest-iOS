@@ -154,7 +154,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     [self syncTableDataWithScheduler];
     
     
-    //Perform Search and than based on search roload the data
+    //Perform Search and than based on search reload the data
     if(searchActive)
     {
         [self.searchDisplayController.searchResultsTableView reloadData];
