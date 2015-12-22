@@ -132,7 +132,6 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView
 {
-            NSLog(@"yo");
 	[self.detailTableView.tableHeaderView sizeToFit];
 	[self.detailTableView setTableHeaderView:self.detailTableView.tableHeaderView];
 	
