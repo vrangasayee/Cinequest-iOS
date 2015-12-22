@@ -35,7 +35,6 @@ extern NSString *const kUpdatedXMLFeedNotification;
 
 - (NSData*) mainFeed;
 - (NSData*) trendingFeed;
-- (NSData*) videoFeed;
 - (NSData*) filmsByTime;
 - (NSData*) filmsByTitle;
 - (NSData*) events;

@@ -141,7 +141,7 @@
     NSLog(@"Getting trending feed...");
 
     NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:TRENDINGFEED_FILE];
-    NSString *key = @"MainFeedDate";
+    NSString *key = @"TrendingFeedDate";
     NSDate *queryDate = [queryDates objectForKey:key];
 
     if(![appDelegate connectedToNetwork])

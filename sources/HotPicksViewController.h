@@ -17,4 +17,6 @@
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSMutableArray *feed;
+
+- (IBAction) switchTitle:(id)sender;
 @end

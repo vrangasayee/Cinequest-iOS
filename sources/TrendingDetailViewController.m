@@ -17,7 +17,8 @@
 #import "GPlusDialogViewController.h"
 
 
-#define web @"<style type=\"text/css\">h1{font-size:23px;text-align:center;}p.image{text-align:center;}</style><h1>%@</h1><p class=\"image\"><img style=\"max-height:200px;max-width:250px;\"src=\"%@\"/></p><p>%@</p>"
+#define web @"<style type=\"text/css\">h1{font-size:23px;text-align:center;}p.image{text-align:center;}</style><h1>%@</h1><p class=\"image\"><img style=\"max-height:200px;max-width:250px;\" src=\"%@\"/></p><p>%@</p>"
+
 #define web_paragraph @"<p>%@</p>"
 
 static NSString *kScheduleCellID = @"ScheduleCell";
@@ -117,7 +118,6 @@ static NSString *kActionsCellID	= @"ActionsCell";
 	{
 		NSString *description = [trending objectForKey:@"description"];
 		NSString *weba = [NSString stringWithFormat:web, trendingName, image, description];
-		
 		if(infoLink.length != 0 && [infoLink hasPrefix:@"http"])
 		{
 			weba = [weba stringByAppendingString:[NSString stringWithFormat:web_paragraph, infoLink]];
@@ -132,6 +132,7 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView
 {
+            NSLog(@"yo");
 	[self.detailTableView.tableHeaderView sizeToFit];
 	[self.detailTableView setTableHeaderView:self.detailTableView.tableHeaderView];
 	

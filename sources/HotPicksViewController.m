@@ -170,10 +170,8 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 	DDXMLElement *rootElement = [newsXMLDoc rootElement];
     NSInteger numNodes = [rootElement childCount];
     BOOL gotShows = NO;
-NSLog(@"yeah1!!------------------%@", [rootElement name]);
     if ([[rootElement name] isEqualToString:@"ArrayOfShows"])
     {
-        NSLog(@"yeah!!------------------");
         gotShows = YES;
     }
     else
@@ -213,7 +211,6 @@ NSLog(@"yeah1!!------------------%@", [rootElement name]);
                     if ([attributeName isEqualToString:@"Name"])
                     {
                         name = [attribute stringValue];
-                        NSLog(@"Item %ld named %@", (long)j, name);
                     }
                     else if ([attributeName isEqualToString:@"ShortDescription"])
                     {
@@ -226,7 +223,8 @@ NSLog(@"yeah1!!------------------%@", [rootElement name]);
                     }
                     else if ([attributeName isEqualToString:@"InfoLink"])
                     {
-                        info = [attribute stringValue];
+                        info = [[attribute stringValue]
+                            stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];
                     }
                     else if ([attributeName isEqualToString:@"ThumbImage"])
                     {
@@ -248,6 +246,30 @@ NSLog(@"yeah1!!------------------%@", [rootElement name]);
     }
     
 	[self.hotPicksTableView reloadData];
+}
+
+//Generating action for switch i.e. switch between Films and Events in the same view controller
+- (IBAction) switchTitle:(id)sender
+{
+    NSInteger switcher = [sender selectedSegmentIndex];
+
+    switch (switcher)
+    {
+
+
+        case VIEW_TRENDING:
+            NSLog(@"View Trending");
+            break;
+
+        case VIEW_VIDEOS:
+            NSLog(@"View Videos");
+            break;
+
+        default:
+            break;
+    }
+
+    [self.hotPicksTableView reloadData];
 }
 
 #pragma mark - UITableView Data Source
@@ -317,7 +339,6 @@ NSLog(@"yeah1!!------------------%@", [rootElement name]);
 	
 	[cell.contentView addSubview:titleLabel];
     
-	// cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	
     return cell;

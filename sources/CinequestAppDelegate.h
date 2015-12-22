@@ -45,6 +45,10 @@
 #define ONE_YEAR (60.0 * 60.0 * 24.0 * 365.0)
 
 
+//For the hot picks segmented control
+#define VIEW_TRENDING	0
+#define VIEW_VIDEOS     1
+
 // Switched from VIEW_BY_DATE and VIEW_BY_TITLE
 // use these to switch into appropriate code blocks
 #define VIEW_BY_FILMS	0

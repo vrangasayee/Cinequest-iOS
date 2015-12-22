@@ -124,7 +124,6 @@
 		93E4E0A7182BB1A200515A84 /* cal_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93E4E0A3182BB1A200515A84 /* cal_unselected@2x.png */; };
 		93E6F1BE18A3E67E00EBC384 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E6F1BD18A3E67E00EBC384 /* Crashlytics.framework */; };
 		93F451D417FDEE6C0091CEE7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F451D317FDEE6C0091CEE7 /* Social.framework */; };
-		BA3386B51C27A2670046D21D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BA3386B41C27A2670046D21D /* README.md */; };
 		C27BC6D8182A1E26006F7D25 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C27BC6D7182A1E26006F7D25 /* VenueLocation.m */; };
 		C27BC6DB182A3734006F7D25 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = C27BC6DA182A3734006F7D25 /* Schedule.m */; };
 		C2B86DF71844C0350088A958 /* Special.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B86DF61844C0350088A958 /* Special.m */; };
@@ -283,7 +282,6 @@
 		93E4E0A3182BB1A200515A84 /* cal_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cal_unselected@2x.png"; path = "images/cal_unselected@2x.png"; sourceTree = SOURCE_ROOT; };
 		93E6F1BD18A3E67E00EBC384 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		93F451D317FDEE6C0091CEE7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		BA3386B41C27A2670046D21D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C271393D1828E8C900BF8DCB /* List of Shows Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "List of Shows Tests-Info.plist"; sourceTree = "<group>"; };
 		C271393F1828E8C900BF8DCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C27139411828E8C900BF8DCB /* List_of_Shows_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = List_of_Shows_Tests.m; sourceTree = "<group>"; };
@@ -403,7 +401,6 @@
 		81C8B37517EBAB3200033D4F = {
 			isa = PBXGroup;
 			children = (
-				BA3386B41C27A2670046D21D /* README.md */,
 				815A275118161BDE00D9CDCE /* Bugs/Features/ToDo */,
 				81C8B43C17EBAC9100033D4F /* Sources */,
 				81C8B3A017EBABAA00033D4F /* Resources */,
@@ -847,7 +844,6 @@
 				8127A62318AF1FCF00CC1BDF /* MBProgressHUD.m in Sources */,
 				81745A8417EBAEED008D2C2C /* HotPicksViewController.m in Sources */,
 				81C52B85182B62F000D2F55D /* Reachability.m in Sources */,
-				BA3386B51C27A2670046D21D /* README.md in Sources */,
 				81B7C4A8184D1358001F4B16 /* MapViewController.m in Sources */,
 				81FBC133182DA37900C01783 /* DataProvider.m in Sources */,
 				C2D6DC2F1829E1CE005A6897 /* ProgramItem.m in Sources */,
