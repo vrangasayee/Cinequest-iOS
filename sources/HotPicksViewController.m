@@ -46,6 +46,7 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 	tabBarAnimation = YES;
 	
 	titleFont = [UIFont systemFontOfSize:[UIFont labelFontSize]];
+    switcher = 0;
     
 	NSDictionary *attribute = [NSDictionary dictionaryWithObject:[UIFont boldSystemFontOfSize:16.0f] forKey:NSFontAttributeName];
 	[switchTitle setTitleTextAttributes:attribute forState:UIControlStateNormal];
@@ -158,16 +159,24 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 - (void) loadData
 {
 	feed = [NSMutableArray new];
-	
-	NSData *xmlData = [appDelegate.dataProvider trendingFeed];
+    NSData *xmlData;
+
+    if( switcher == 0)
+    {
+        xmlData = [appDelegate.dataProvider trendingFeed];
+    }
+    else
+    {
+        xmlData = [appDelegate.dataProvider videoFeed];
+    }
 	
 	NSString *myString = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
 	myString = [myString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 	myString = [myString stringByReplacingOccurrencesOfString:@"\t" withString:@""];
 	xmlData = [myString dataUsingEncoding:NSUTF8StringEncoding];
-	// News is represented as an XML Document
-	DDXMLDocument *newsXMLDoc = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
-	DDXMLElement *rootElement = [newsXMLDoc rootElement];
+	// Trending and video feed are represented as XML Documents
+	DDXMLDocument *feedXMLDoc = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
+	DDXMLElement *rootElement = [feedXMLDoc rootElement];
     NSInteger numNodes = [rootElement childCount];
     BOOL gotShows = NO;
     if ([[rootElement name] isEqualToString:@"ArrayOfShows"])
@@ -221,7 +230,7 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
                         eventImageUrl = [[attribute stringValue]
                             stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];
                     }
-                    else if ([attributeName isEqualToString:@"InfoLink"])
+                    else if ([attributeName isEqualToString:@"InfoLink"] && switcher != VIEW_VIDEOS)
                     {
                         info = [[attribute stringValue]
                             stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];
@@ -229,18 +238,51 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
                     else if ([attributeName isEqualToString:@"ThumbImage"])
                     {
                         thumbImageUrl = [[attribute stringValue]
-                            stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];;
+                            stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];
+                    }
+                    else if ([attributeName isEqualToString:@"CustomProperties"])
+                    {
+                        NSInteger numProperties = [attribute childCount];
+                        for (NSInteger k = 0; k < numProperties; k++)
+                        {
+                            DDXMLElement *property =
+                                (DDXMLElement*)[attribute childAtIndex:k];
+                            NSInteger numPropAttr = [property childCount];
+                            BOOL videoFound = NO;
+                            for (NSInteger l = 0; l < numPropAttr; l++)
+                            {
+                                DDXMLElement *propertyAttr =
+                                    (DDXMLElement*)[property childAtIndex:l];
+                                NSString *propAttrName = [propertyAttr name];
+                                if ([propAttrName isEqualToString:@"Value"])
+                                {
+                                    info = [[propertyAttr stringValue]
+                                            stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];
+                                } else if ([propAttrName isEqualToString:@"Name"] &&
+                                    [[propertyAttr stringValue] isEqualToString:@"Videofeed"])
+                                {
+                                    videoFound = YES;
+                                }
+                            }
+                            if (videoFound == NO) {
+                                info = @"";
+                            } else {
+                                break;
+                            }
+                        }
                     }
                 }
                 // Add these to a NSMutableDictionary of items
-                NSMutableDictionary *newsItem = [NSMutableDictionary new];
-                [newsItem setObject:name forKey:@"name"];
-                [newsItem setObject:description forKey:@"description"];
-                [newsItem setObject:eventImageUrl forKey:@"eventImage"];
-                [newsItem setObject:info forKey:@"info"];
-                [newsItem setObject:thumbImageUrl forKey:@"thumbImage"];
-                
-                [feed addObject:newsItem];
+                if (switcher != VIEW_VIDEOS || ![info isEqualToString:@""])
+                {
+                    NSMutableDictionary *feedItem = [NSMutableDictionary new];
+                    [feedItem setObject:name forKey:@"name"];
+                    [feedItem setObject:description forKey:@"description"];
+                    [feedItem setObject:eventImageUrl forKey:@"eventImage"];
+                    [feedItem setObject:info forKey:@"info"];
+                    [feedItem setObject:thumbImageUrl forKey:@"thumbImage"];
+                    [feed addObject:feedItem];
+                }
             }
         }
     }
@@ -251,25 +293,8 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 //Generating action for switch i.e. switch between Films and Events in the same view controller
 - (IBAction) switchTitle:(id)sender
 {
-    NSInteger switcher = [sender selectedSegmentIndex];
-
-    switch (switcher)
-    {
-
-
-        case VIEW_TRENDING:
-            NSLog(@"View Trending");
-            break;
-
-        case VIEW_VIDEOS:
-            NSLog(@"View Videos");
-            break;
-
-        default:
-            break;
-    }
-
-    [self.hotPicksTableView reloadData];
+    switcher = [sender selectedSegmentIndex];
+    [self loadData];
 }
 
 #pragma mark - UITableView Data Source

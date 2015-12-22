@@ -26,11 +26,9 @@
 - (void)addAttribute:(DDXMLNode *)attribute;
 - (void)removeAttributeForName:(NSString *)name;
 - (void)setAttributes:(NSArray *)attributes;
-//- (void)setAttributesAsDictionary:(NSDictionary *)attributes;
 - (NSArray *)attributes;
 - (NSDictionary*) attributesAsDictionary;
 - (DDXMLNode *)attributeForName:(NSString *)name;
-//- (DDXMLNode *)attributeForLocalName:(NSString *)localName URI:(NSString *)URI;
 
 #pragma mark - Namespaces ---
 
@@ -45,11 +43,8 @@
 #pragma mark - Children ---
 
 - (void)insertChild:(DDXMLNode *)child atIndex:(NSUInteger)index;
-//- (void)insertChildren:(NSArray *)children atIndex:(NSUInteger)index;
 - (void)removeChildAtIndex:(NSUInteger)index;
 - (void)setChildren:(NSArray *)children;
 - (void)addChild:(DDXMLNode *)child;
-//- (void)replaceChildAtIndex:(NSUInteger)index withNode:(DDXMLNode *)node;
-//- (void)normalizeAdjacentTextNodesPreservingCDATA:(BOOL)preserve;
 
 @end

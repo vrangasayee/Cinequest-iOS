@@ -135,7 +135,7 @@
 	[checkFeedTimer fire];
 }
 
-// Get the news feed from server, then return them under XML data structure
+// Get the trending feed from server, then return them under XML data structure
 - (NSData*) trendingFeed
 {
     NSLog(@"Getting trending feed...");
@@ -174,6 +174,57 @@
     }
 
     NSData *queryData = [NSData dataWithNetURLShowingActivity:[NSURL URLWithString:TRENDING_FEED]];
+    if(queryData != nil)
+    {
+        [queryData writeToURL:fileUrl atomically:YES];
+
+        return queryData;
+    }
+    else
+    {
+        return [NSData dataWithContentsOfURL:fileUrl];
+    }
+}
+
+// Get the trending feed from server, then return them under XML data structure
+- (NSData*) videoFeed
+{
+    NSLog(@"Getting trending feed...");
+
+    NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:VIDEOFEED_FILE];
+    NSString *key = @"VideoFeedDate";
+    NSDate *queryDate = [queryDates objectForKey:key];
+
+    if(![appDelegate connectedToNetwork])
+    {
+        if([fileMgr fileExistsAtPath:[fileUrl path]])
+        {
+            NSLog(@"NO CONNECTION. Getting OLD video feed data...");
+
+            return [NSData dataWithContentsOfURL:fileUrl];
+        }
+        else
+        {
+            return nil;
+        }
+    }
+
+    if(queryDate != nil && [queryDate compare:self.newsFeedDate] == NSOrderedSame)
+    {
+        if([fileMgr fileExistsAtPath:[fileUrl path]])
+        {
+            NSLog(@"Getting OLD video feed data...");
+
+            return [NSData dataWithContentsOfURL:fileUrl];
+        }
+    }
+    else
+    {
+        queryDate = self.newsFeedDate;
+        [self saveQueryDate:queryDate forKey:key];
+    }
+
+    NSData *queryData = [NSData dataWithNetURLShowingActivity:[NSURL URLWithString:VIDEO_FEED]];
     if(queryData != nil)
     {
         [queryData writeToURL:fileUrl atomically:YES];

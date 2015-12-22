@@ -9,6 +9,7 @@
 @interface HotPicksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate>
 {
 	UIFont *titleFont;
+    NSInteger switcher;
 	BOOL tabBarAnimation;
 }
 @property (nonatomic, strong) IBOutlet UITableView *hotPicksTableView;
