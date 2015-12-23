@@ -33,6 +33,7 @@ extern NSString *const kUpdatedXMLFeedNotification;
 @property (atomic, assign) BOOL newsFeedUpdated;
 @property (atomic, strong) NSDate *newsFeedDate;
 
+- (NSData*) fakeMainFeed;
 - (NSData*) mainFeed;
 - (NSData*) trendingFeed;
 - (NSData*) videoFeed;

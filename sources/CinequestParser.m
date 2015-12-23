@@ -496,9 +496,8 @@
     return sortedIndexes;
 }
 
-- (void) parseShows
+- (void) parseShows: (NSData *)htmldata
 {
-    NSData *htmldata = [[appDelegate dataProvider] mainFeed];
     
     NSString* myString = [[NSString alloc] initWithData:htmldata encoding:NSUTF8StringEncoding];
     myString = [myString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
@@ -643,5 +642,14 @@
 		}
     }
 }
-
+-(void) parseShows
+{
+    NSData *htmldata = [[appDelegate dataProvider] mainFeed];
+    [self parseShows:htmldata];
+}
+-(void) fakeParseShows
+{
+    NSData *htmldata = [[appDelegate dataProvider] fakeMainFeed];
+    [self parseShows:htmldata];
+}
 @end

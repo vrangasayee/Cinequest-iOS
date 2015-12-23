@@ -20,6 +20,7 @@
 
 - (NSMutableArray *)getShows;
 - (void) parseShows;
--(Festival*)parseFestival;
+- (void) fakeParseShows;
+- (Festival*)parseFestival;
 
 @end

@@ -50,7 +50,6 @@
 
 - (BOOL) application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
-    [Crashlytics startWithAPIKey:CRASHLYTICS_ID];
 	if([self checkPrefsForDataDeletion])
 	{
 		NSFileManager *fileMgr = [NSFileManager defaultManager];

@@ -685,6 +685,14 @@
 	}
 }
 
+// Return the fake main feeds used for test
+- (NSData*) fakeMainFeed
+{
+    NSLog(@"Getting fake main feed...");
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"Fake_MainFeed" ofType:@"xml"];
+    NSData *queryData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:filePath]];
+    return queryData;
+}
 // Return the new events URL data if there is any
 - (NSData*) events
 {

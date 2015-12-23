@@ -23,7 +23,6 @@
 	#import <MapKit/MapKit.h>
  	#import <GooglePlus/GooglePlus.h>
 	#import <GoogleOpenSource/GoogleOpenSource.h>
-	#import <Crashlytics/Crashlytics.h>
 #endif
 
 #import <sys/utsname.h>
