@@ -4,6 +4,7 @@
 //
 //  Created by Hai Nguyen on 11/6/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
+//  Reworked Chris Pollett 2015
 //
 
 #import "Schedule.h"

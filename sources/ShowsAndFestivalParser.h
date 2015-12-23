@@ -1,5 +1,5 @@
 //
-//  CinequestParser.h
+//  ShowsAndFestivalParser.h
 //  Cinequest
 //
 //  Created by Hai Nguyen on 11/28/13.
@@ -11,7 +11,7 @@
 @class Festival;
 @class CinequestAppDelegate;
 
-@interface CinequestParser : NSObject
+@interface ShowsAndFestivalParser : NSObject
 {
     CinequestAppDelegate *delegate;
 }
@@ -20,7 +20,8 @@
 
 - (NSMutableArray *)getShows;
 - (void) parseShows;
-- (void) fakeParseShows;
+- (void) parseFakeShows;
+- (Festival*)parseFestival: (BOOL)useFake;
 - (Festival*)parseFestival;
-
+- (Festival*)parseFakeFestival;
 @end

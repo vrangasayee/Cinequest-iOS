@@ -1,5 +1,5 @@
 //
-//  CineuqestParser.m
+//  ShowsAndFestivalParser.m
 //  Cinequest
 //
 //  Created by Hai Nguyen on 11/28/13.
@@ -8,7 +8,7 @@
 //  Edited by Kenan Ozdamar on Jan 2015. Chris Pollett, Dec 2015.
 //
 
-#import "CinequestParser.h"
+#import "ShowsAndFestivalParser.h"
 #import "CinequestAppDelegate.h"
 #import "DDXML.h"
 #import "Show.h"
@@ -22,13 +22,13 @@
 #import "DataProvider.h"
 #import "Special.h"
 
-@interface CinequestParser(){
+@interface ShowsAndFestivalParser(){
     NSSet *neglectKeysFromFeed;
 }
 
 @end
 
-@implementation CinequestParser
+@implementation ShowsAndFestivalParser
 
 @synthesize shows;
 
@@ -45,9 +45,17 @@
     return self;
 }
 
--(Festival*)parseFestival
+
+-(Festival*)parseFestival: (BOOL)useFake
 {
-    [self parseShows];
+    if (useFake)
+    {
+        [self parseFakeShows];
+    }
+    else
+    {
+        [self parseShows];
+    }
     
     Festival *festival = [[Festival alloc] init];
     NSMutableDictionary *shorts = [[NSMutableDictionary alloc] init];
@@ -149,13 +157,6 @@
         
     }
     
-    // Add short items to the corresponding date Dictionary
-    /* for (CinequestItem *shortItem in [shorts allValues]) {
-        for (Schedule *shortItemSchedule in shortItem.schedules) {
-            [self addItemToDictionary:shortItem with:shortItemSchedule in:festival];
-        }
-    } */
-    
     appDelegate.festivalParsed = YES;
     
     // prepare sorted keys and indexes arrays
@@ -193,6 +194,15 @@
     return festival;
 }
 
+- (Festival*) parseFestival
+{
+    return [self parseFestival: NO];
+}
+
+- (Festival*) parseFakeFestival
+{
+    return [self parseFestival: YES];
+}
 
 - (void) addItem:(CinequestItem *)item to:(NSMutableDictionary *)alphabetDictionary
 {
@@ -254,16 +264,14 @@
     if ([date length] > 0) {
         values = [festival.dateToCombinedDictionary objectForKey:date];
         
-        if (values == nil) {
+        if (values == nil && item != nil) {
             values = [NSMutableArray array];
             [values addObject:item];
             [festival.dateToCombinedDictionary setObject:values forKey:date];
             
             return;
-        } else {
-            if(item != nil){
-               [values addObject:item];
-            }
+        } else if(item != nil){
+            [values addObject:item];
         }
     }
 }
@@ -647,7 +655,7 @@
     NSData *htmldata = [[appDelegate dataProvider] mainFeed];
     [self parseShows:htmldata];
 }
--(void) fakeParseShows
+-(void) parseFakeShows
 {
     NSData *htmldata = [[appDelegate dataProvider] fakeMainFeed];
     [self parseShows:htmldata];

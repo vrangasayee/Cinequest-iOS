@@ -1,23 +1,24 @@
 //
-//  CinequestParserTest.m
+//  ShowsAndFestivalTest.m
 //  Cinequest
 //
 //  Created by Hai Nguyen on 11/5/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
+//  Reworked Chris Pollett 2015
 //
 
 #import <XCTest/XCTest.h>
-#import "CinequestParser.h"
+#import "ShowsAndFestivalParser.h"
 #import "Festival.h"
 #import "Film.h"
 #import "VenueLocation.h"
 #import "Schedule.h"
 
-@interface CinequestParserTest : XCTestCase
+@interface FestivalParseTest : XCTestCase
 
 @end
 
-@implementation CinequestParserTest {
+@implementation FestivalParseTest {
     Festival *festival;
 }
 
@@ -25,8 +26,8 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    CinequestParser *cinequestParser = [[CinequestParser alloc] init];
-    festival = [cinequestParser parseFestival];
+    ShowsAndFestivalParser *showsAndFestivalParser = [[ShowsAndFestivalParser alloc] init];
+    festival = [showsAndFestivalParser parseFakeFestival];
 }
 
 - (void)tearDown
@@ -39,7 +40,6 @@
 - (void) testShow6906
 {
     Film *film = [festival getFilmForId:@"6906"];
-    ProgramItem *item = [festival getProgramItemForId:@"6906"];
     XCTAssertTrue([@"7 Lives Of Chance" isEqualToString:film.name]);
     XCTAssertTrue([@"Jodi Chase, John Pelkey, Richard Regan Paul, Michele Feren, Maria Regan, John-Archer Ludgreen, Victoria Jelstrom Swilley, Samantha O'Hare, Olivia Miller, Banks Helfrich" isEqualToString: film.cast]);
 }
@@ -51,20 +51,15 @@
         Schedule *schedule = (Schedule *) obj;
         if ([schedule.ID isEqualToString:@"7268"]) {
             XCTAssertTrue([@"6906" isEqualToString:schedule.itemID]);
-            XCTAssertTrue([schedule.startTime hasPrefix:@"2013-02-28"]);
-            XCTAssertTrue([schedule.endTime hasSuffix:@"20:41:00"]);
-            XCTAssertTrue([@"C12S10" isEqualToString:[schedule venue]]);
+            XCTAssertTrue([schedule.startTime hasPrefix:@"6:45"]);
+            XCTAssertTrue([schedule.endTime hasPrefix:@"8:41"]);
+            XCTAssertTrue([@"C12-S10" isEqualToString:[schedule venue]]);
         }
         if ([schedule.itemID isEqualToString:@"6906"]) found++;
     }
-    XCTAssertTrue(3 == found);
+    XCTAssertTrue(found == 3);
 }
 
-- (void) testShortsProgram3
-{
-    ProgramItem *item = [festival getProgramItemForId:@"7117"];
-    
-}
 
 - (Schedule *) getScheduleForId:(NSString *)ID
 {
@@ -96,18 +91,13 @@
     XCTAssertTrue([[film schedules] containsObject:[self getScheduleForId:@"8609"]]);
 }
 
-- (void) testScheduleForShortFilm
-{
-    ProgramItem *item = [festival getProgramItemForId:@"7121"];
-}
-
 - (void) testVenues
 {
     XCTAssertTrue(10 == [[festival venueLocations] count]);
-    VenueLocation *venue = [self getVenueLocationForAbbrev:@"C12S7"];
+    VenueLocation *venue = [self getVenueLocationForAbbrev:@"C12-S7"];
     XCTAssertTrue([venue.name isEqualToString:@"Camera 12 - Screen 7"]);
     XCTAssertTrue([venue.location isEqualToString:@"201 S. Second Street"]);
-    XCTAssertTrue([@"C12S7" isEqualToString:[self getScheduleForId:@"7373"].venue]);
+    XCTAssertTrue([@"C12-S7" isEqualToString:[self getScheduleForId:@"7373"].venue]);
 }
 
 @end

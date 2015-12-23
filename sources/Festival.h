@@ -2,6 +2,9 @@
 //  Festival.h
 //  Cinequest
 //
+//  A festival is used to contain collections of cinequest items in different
+//  sort orders.
+//
 //  Created by Hai Nguyen on 11/5/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //

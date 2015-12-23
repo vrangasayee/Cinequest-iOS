@@ -1,16 +1,16 @@
 #define CINEQUEST_TESTS  true
 #import <XCTest/XCTest.h>
 #import "CinequestAppDelegate.h"
-#import "CinequestParser.h"
+#import "ShowsAndFestivalParser.h"
 #import "Show.h"
 #import "Showing.h"
 #import "Venue.h"
 
-@interface List_of_Shows_Tests : XCTestCase
+@interface ShowsParseTest : XCTestCase
 
 @end
 
-@implementation List_of_Shows_Tests {
+@implementation ShowsParseTest {
     NSMutableArray *shows;
 }
 
@@ -18,9 +18,9 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    CinequestParser *cinequestParser = [[CinequestParser alloc] init];
-    [cinequestParser fakeParseShows];
-    shows = [cinequestParser getShows];
+    ShowsAndFestivalParser *showsAndFestivalParser = [[ShowsAndFestivalParser alloc] init];
+    [showsAndFestivalParser parseFakeShows];
+    shows = [showsAndFestivalParser getShows];
 }
 
 - (void)tearDown
