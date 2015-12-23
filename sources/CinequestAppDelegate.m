@@ -15,7 +15,7 @@
 #import "StartupViewController.h"
 #import "DataProvider.h"
 #import "VenueParser.h"
-#import "NewFestivalParser.h"
+#import "CinequestParser.h"
 #import "MBProgressHUD.h"
 
 
@@ -182,7 +182,7 @@
 
 - (void) fetchFestival
 {
-	self.festival = [[NewFestivalParser new] parseFestival];
+	self.festival = [[CinequestParser new] parseFestival];
 }
 
 #pragma mark - Network Reachability

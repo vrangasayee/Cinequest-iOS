@@ -124,10 +124,11 @@
 		93E4E0A7182BB1A200515A84 /* cal_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93E4E0A3182BB1A200515A84 /* cal_unselected@2x.png */; };
 		93E6F1BE18A3E67E00EBC384 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E6F1BD18A3E67E00EBC384 /* Crashlytics.framework */; };
 		93F451D417FDEE6C0091CEE7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F451D317FDEE6C0091CEE7 /* Social.framework */; };
+		BA7FFE641C2A653E00C95EAB /* List_of_Shows_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7FFE631C2A653E00C95EAB /* List_of_Shows_Tests.m */; };
 		C27BC6D8182A1E26006F7D25 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C27BC6D7182A1E26006F7D25 /* VenueLocation.m */; };
 		C27BC6DB182A3734006F7D25 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = C27BC6DA182A3734006F7D25 /* Schedule.m */; };
 		C2B86DF71844C0350088A958 /* Special.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B86DF61844C0350088A958 /* Special.m */; };
-		C2B86DFA1847AC560088A958 /* NewFestivalParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B86DF91847AC560088A958 /* NewFestivalParser.m */; };
+		C2B86DFA1847AC560088A958 /* CinequestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B86DF91847AC560088A958 /* CinequestParser.m */; };
 		C2D6DC1A182975E5005A6897 /* Festival.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6DC19182975E5005A6897 /* Festival.m */; };
 		C2D6DC211829771E005A6897 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6DC1C1829771E005A6897 /* Show.m */; };
 		C2D6DC231829771E005A6897 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6DC201829771E005A6897 /* Venue.m */; };
@@ -135,6 +136,16 @@
 		C2D6DC2C1829E0F7005A6897 /* CinequestItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6DC2B1829E0F7005A6897 /* CinequestItem.m */; };
 		C2D6DC2F1829E1CE005A6897 /* ProgramItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6DC2E1829E1CE005A6897 /* ProgramItem.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BA7FFE661C2A653E00C95EAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81C8B37617EBAB3200033D4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81C8B37D17EBAB3200033D4F;
+			remoteInfo = Cinequest;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		811791B71897783600B6D21F /* calendar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calendar_icon.png; path = images/calendar_icon.png; sourceTree = SOURCE_ROOT; };
@@ -282,6 +293,9 @@
 		93E4E0A3182BB1A200515A84 /* cal_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cal_unselected@2x.png"; path = "images/cal_unselected@2x.png"; sourceTree = SOURCE_ROOT; };
 		93E6F1BD18A3E67E00EBC384 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		93F451D317FDEE6C0091CEE7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		BA7FFE611C2A653E00C95EAB /* List of Shows Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "List of Shows Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA7FFE631C2A653E00C95EAB /* List_of_Shows_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = List_of_Shows_Tests.m; sourceTree = "<group>"; };
+		BA7FFE651C2A653E00C95EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C271393D1828E8C900BF8DCB /* List of Shows Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "List of Shows Tests-Info.plist"; sourceTree = "<group>"; };
 		C271393F1828E8C900BF8DCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C27139411828E8C900BF8DCB /* List_of_Shows_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = List_of_Shows_Tests.m; sourceTree = "<group>"; };
@@ -292,8 +306,8 @@
 		C27BC6DA182A3734006F7D25 /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = sources/Schedule.m; sourceTree = SOURCE_ROOT; };
 		C2B86DF51844C0350088A958 /* Special.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Special.h; path = sources/Special.h; sourceTree = SOURCE_ROOT; };
 		C2B86DF61844C0350088A958 /* Special.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Special.m; path = sources/Special.m; sourceTree = SOURCE_ROOT; };
-		C2B86DF81847AC560088A958 /* NewFestivalParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFestivalParser.h; path = sources/NewFestivalParser.h; sourceTree = SOURCE_ROOT; };
-		C2B86DF91847AC560088A958 /* NewFestivalParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFestivalParser.m; path = sources/NewFestivalParser.m; sourceTree = SOURCE_ROOT; };
+		C2B86DF81847AC560088A958 /* CinequestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CinequestParser.h; path = sources/CinequestParser.h; sourceTree = SOURCE_ROOT; };
+		C2B86DF91847AC560088A958 /* CinequestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CinequestParser.m; path = sources/CinequestParser.m; sourceTree = SOURCE_ROOT; };
 		C2D6DC18182975E5005A6897 /* Festival.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Festival.h; path = sources/Festival.h; sourceTree = SOURCE_ROOT; };
 		C2D6DC19182975E5005A6897 /* Festival.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Festival.m; path = sources/Festival.m; sourceTree = SOURCE_ROOT; };
 		C2D6DC1B1829771E005A6897 /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Show.h; path = sources/Show.h; sourceTree = SOURCE_ROOT; };
@@ -308,7 +322,7 @@
 		C2D6DC2B1829E0F7005A6897 /* CinequestItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CinequestItem.m; path = sources/CinequestItem.m; sourceTree = SOURCE_ROOT; };
 		C2D6DC2D1829E1CE005A6897 /* ProgramItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgramItem.h; path = sources/ProgramItem.h; sourceTree = SOURCE_ROOT; };
 		C2D6DC2E1829E1CE005A6897 /* ProgramItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgramItem.m; path = sources/ProgramItem.m; sourceTree = SOURCE_ROOT; };
-		C2D6DC301829E999005A6897 /* FestivalParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FestivalParserTest.m; sourceTree = "<group>"; };
+		C2D6DC301829E999005A6897 /* CinequestParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinequestParserTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +352,13 @@
 				8192CC6417EBC92D00DBE036 /* libsqlite3.0.dylib in Frameworks */,
 				81D62085185ED65700FEDD03 /* Security.framework in Frameworks */,
 				81D62083185ED5E700FEDD03 /* CoreMotion.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA7FFE5E1C2A653E00C95EAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +429,7 @@
 				81745A8717EBAFAE008D2C2C /* Supporting Files */,
 				C271393B1828E8C900BF8DCB /* List of Shows Tests */,
 				8149DFC117EBB3280092F8F9 /* Libraries */,
+				BA7FFE621C2A653E00C95EAB /* List of Shows Tests */,
 				81C8B38017EBAB3200033D4F /* Frameworks */,
 				81C8B37F17EBAB3200033D4F /* Products */,
 			);
@@ -417,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				81C8B37E17EBAB3200033D4F /* Cinequest.app */,
+				BA7FFE611C2A653E00C95EAB /* List of Shows Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -540,12 +563,12 @@
 				81FBC132182DA37900C01783 /* DataProvider.m */,
 				81695DCD18C85F3C00AC790E /* LoadImageOperation.h */,
 				81695DCE18C85F3C00AC790E /* LoadImageOperation.m */,
-				C271392E1828A36100BF8DCB /* FestivalParser */,
+				C271392E1828A36100BF8DCB /* CinequestItems And Parser */,
 				C271392418279DE300BF8DCB /* DDXMLFiles */,
 				81C52B82182B62D200D2F55D /* Reachability */,
 				8127A62018AF1FAA00CC1BDF /* MBProgressHUD */,
-				BA3386B61C27D86C0046D21D /* TabActivityControllers */,
-				BA3386B71C27D9230046D21D /* TableItemDetailsControllers */,
+				BA3386B61C27D86C0046D21D /* Tab Activity Controllers */,
+				BA3386B71C27D9230046D21D /* Table Item Detail Controllers */,
 				81B7C4A5184D1358001F4B16 /* MapViewController.h */,
 				81B7C4A6184D1358001F4B16 /* MapViewController.m */,
 				81745A7117EBAEED008D2C2C /* NSStringAdditions.h */,
@@ -559,7 +582,7 @@
 			path = Cinequest;
 			sourceTree = "<group>";
 		};
-		BA3386B61C27D86C0046D21D /* TabActivityControllers */ = {
+		BA3386B61C27D86C0046D21D /* Tab Activity Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				81D1EC38182B892B003DD8BB /* StartupViewController.h */,
@@ -573,10 +596,10 @@
 				81745A6D17EBAEED008D2C2C /* MyCinequestViewController.h */,
 				81745A6E17EBAEED008D2C2C /* MyCinequestViewController.m */,
 			);
-			name = TabActivityControllers;
+			name = "Tab Activity Controllers";
 			sourceTree = "<group>";
 		};
-		BA3386B71C27D9230046D21D /* TableItemDetailsControllers */ = {
+		BA3386B71C27D9230046D21D /* Table Item Detail Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				81B38F261893239A0047AEFE /* TrendingDetailViewController.h */,
@@ -586,7 +609,7 @@
 				81745A5F17EBAEED008D2C2C /* EventDetailViewController.h */,
 				81745A6017EBAEED008D2C2C /* EventDetailViewController.m */,
 			);
-			name = TableItemDetailsControllers;
+			name = "Table Item Detail Controllers";
 			sourceTree = "<group>";
 		};
 		BA3386B81C27DC330046D21D /* TabActivityXibs */ = {
@@ -610,6 +633,15 @@
 			name = TableItemDetailXibs;
 			sourceTree = "<group>";
 		};
+		BA7FFE621C2A653E00C95EAB /* List of Shows Tests */ = {
+			isa = PBXGroup;
+			children = (
+				BA7FFE631C2A653E00C95EAB /* List_of_Shows_Tests.m */,
+				BA7FFE651C2A653E00C95EAB /* Info.plist */,
+			);
+			path = "List of Shows Tests";
+			sourceTree = "<group>";
+		};
 		C271392418279DE300BF8DCB /* DDXMLFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,11 +659,11 @@
 			name = DDXMLFiles;
 			sourceTree = "<group>";
 		};
-		C271392E1828A36100BF8DCB /* FestivalParser */ = {
+		C271392E1828A36100BF8DCB /* CinequestItems And Parser */ = {
 			isa = PBXGroup;
 			children = (
-				C2B86DF81847AC560088A958 /* NewFestivalParser.h */,
-				C2B86DF91847AC560088A958 /* NewFestivalParser.m */,
+				C2B86DF81847AC560088A958 /* CinequestParser.h */,
+				C2B86DF91847AC560088A958 /* CinequestParser.m */,
 				935D58D2183CE0E300BE904F /* VenueParser.h */,
 				935D58D3183CE0E300BE904F /* VenueParser.m */,
 				C2D6DC2A1829E0F7005A6897 /* CinequestItem.h */,
@@ -655,13 +687,13 @@
 				C2D6DC1D1829771E005A6897 /* Showing.h */,
 				C2D6DC1E1829771E005A6897 /* Showing.m */,
 			);
-			name = FestivalParser;
+			name = "CinequestItems And Parser";
 			sourceTree = "<group>";
 		};
 		C271393B1828E8C900BF8DCB /* List of Shows Tests */ = {
 			isa = PBXGroup;
 			children = (
-				C2D6DC301829E999005A6897 /* FestivalParserTest.m */,
+				C2D6DC301829E999005A6897 /* CinequestParserTest.m */,
 				C27139411828E8C900BF8DCB /* List_of_Shows_Tests.m */,
 				C271393C1828E8C900BF8DCB /* Supporting Files */,
 			);
@@ -698,6 +730,24 @@
 			productReference = 81C8B37E17EBAB3200033D4F /* Cinequest.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BA7FFE601C2A653E00C95EAB /* List of Shows Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA7FFE681C2A653E00C95EAB /* Build configuration list for PBXNativeTarget "List of Shows Tests" */;
+			buildPhases = (
+				BA7FFE5D1C2A653E00C95EAB /* Sources */,
+				BA7FFE5E1C2A653E00C95EAB /* Frameworks */,
+				BA7FFE5F1C2A653E00C95EAB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA7FFE671C2A653E00C95EAB /* PBXTargetDependency */,
+			);
+			name = "List of Shows Tests";
+			productName = "List of Shows Tests";
+			productReference = BA7FFE611C2A653E00C95EAB /* List of Shows Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -709,6 +759,10 @@
 				TargetAttributes = {
 					81C8B37D17EBAB3200033D4F = {
 						DevelopmentTeam = 5729M5Y5C8;
+					};
+					BA7FFE601C2A653E00C95EAB = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 81C8B37D17EBAB3200033D4F;
 					};
 				};
 			};
@@ -725,6 +779,7 @@
 			projectRoot = "";
 			targets = (
 				81C8B37D17EBAB3200033D4F /* Cinequest */,
+				BA7FFE601C2A653E00C95EAB /* List of Shows Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -809,6 +864,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA7FFE5F1C2A653E00C95EAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -847,12 +909,28 @@
 				81B7C4A8184D1358001F4B16 /* MapViewController.m in Sources */,
 				81FBC133182DA37900C01783 /* DataProvider.m in Sources */,
 				C2D6DC2F1829E1CE005A6897 /* ProgramItem.m in Sources */,
-				C2B86DFA1847AC560088A958 /* NewFestivalParser.m in Sources */,
+				C2B86DFA1847AC560088A958 /* CinequestParser.m in Sources */,
 				8149DFCD17EBB5780092F8F9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA7FFE5D1C2A653E00C95EAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA7FFE641C2A653E00C95EAB /* List_of_Shows_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BA7FFE671C2A653E00C95EAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81C8B37D17EBAB3200033D4F /* Cinequest */;
+			targetProxy = BA7FFE661C2A653E00C95EAB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C271393E1828E8C900BF8DCB /* InfoPlist.strings */ = {
@@ -992,6 +1070,67 @@
 			};
 			name = Release;
 		};
+		BA7FFE691C2A653E00C95EAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "List of Shows Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.sjsu.List-of-Shows-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cinequest.app/Cinequest";
+			};
+			name = Debug;
+		};
+		BA7FFE6A1C2A653E00C95EAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "List of Shows Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.sjsu.List-of-Shows-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cinequest.app/Cinequest";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1012,6 +1151,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		BA7FFE681C2A653E00C95EAB /* Build configuration list for PBXNativeTarget "List of Shows Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA7FFE691C2A653E00C95EAB /* Debug */,
+				BA7FFE6A1C2A653E00C95EAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,15 +1,14 @@
 //
-//  NewFestivalParser.m
+//  CineuqestParser.m
 //  Cinequest
 //
 //  Created by Hai Nguyen on 11/28/13.
 //  Copyright (c) 2013 San Jose State University. All rights reserved.
 //
-//  Edited by Kenan Ozdamar on Jan 2015.
+//  Edited by Kenan Ozdamar on Jan 2015. Chris Pollett, Dec 2015.
 //
 
-#import "NewFestivalParser.h"
-
+#import "CinequestParser.h"
 #import "CinequestAppDelegate.h"
 #import "DDXML.h"
 #import "Show.h"
@@ -23,13 +22,13 @@
 #import "DataProvider.h"
 #import "Special.h"
 
-@interface NewFestivalParser(){
+@interface CinequestParser(){
     NSSet *neglectKeysFromFeed;
 }
 
 @end
 
-@implementation NewFestivalParser
+@implementation CinequestParser
 
 @synthesize shows;
 

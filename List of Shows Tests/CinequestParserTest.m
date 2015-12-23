@@ -1,5 +1,5 @@
 //
-//  FestivalParserTest.m
+//  CinequestParserTest.m
 //  Cinequest
 //
 //  Created by Hai Nguyen on 11/5/13.
@@ -7,17 +7,17 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NewFestivalParser.h"
+#import "CinequestParser.h"
 #import "Festival.h"
 #import "Film.h"
 #import "VenueLocation.h"
 #import "Schedule.h"
 
-@interface FestivalParserTest : XCTestCase
+@interface CinequestParserTest : XCTestCase
 
 @end
 
-@implementation FestivalParserTest {
+@implementation CinequestParserTest {
     Festival *festival;
 }
 
@@ -25,8 +25,8 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    NewFestivalParser *festivalParser = [[NewFestivalParser alloc] init];
-    festival = [festivalParser parseFestival];
+    CinequestParser *cinequestParser = [[CinequestParser alloc] init];
+    festival = [cinequestParser parseFestival];
 }
 
 - (void)tearDown
@@ -41,7 +41,6 @@
     Film *film = [festival getFilmForId:@"6906"];
     ProgramItem *item = [festival getProgramItemForId:@"6906"];
     XCTAssertTrue([@"7 Lives Of Chance" isEqualToString:film.name]);
- //   XCTAssertTrue([film isEqual:[item.films objectAtIndex:0]]);
     XCTAssertTrue([@"Jodi Chase, John Pelkey, Richard Regan Paul, Michele Feren, Maria Regan, John-Archer Ludgreen, Victoria Jelstrom Swilley, Samantha O'Hare, Olivia Miller, Banks Helfrich" isEqualToString: film.cast]);
 }
 
@@ -64,9 +63,6 @@
 - (void) testShortsProgram3
 {
     ProgramItem *item = [festival getProgramItemForId:@"7117"];
-//    XCTAssertTrue([[item name] hasPrefix:@"Shorts Program 3: "]);
-  //  XCTAssertTrue(8 == [[item films] count]);
-    //XCTAssertTrue([[[item.films objectAtIndex:0] name] isEqualToString:@"Abigail"]);
     
 }
 
@@ -103,11 +99,6 @@
 - (void) testScheduleForShortFilm
 {
     ProgramItem *item = [festival getProgramItemForId:@"7121"];
- /*   XCTAssertTrue(8 == [[item films] count]);
-    for (Film *film in [item films]) {
-        XCTAssertTrue(3 == [[film schedules] count]);
-        XCTAssertTrue([[film schedules] containsObject:[self getScheduleForId:@"7375"]]);
-    }*/
 }
 
 - (void) testVenues
