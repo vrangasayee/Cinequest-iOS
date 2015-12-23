@@ -8,10 +8,7 @@
 //  Edited by Karan Khare and Ramya Shenoy on 11/24/2014
 //  Renamed Chris Pollett 2015
 
-
-#import "ScheduleViewController.h"
 #import "EventDetailViewController.h"
-#import "HotPicksViewController.h"
 #import "IndexViewController.h"
 #import "FilmDetailViewController.h"
 #import "CinequestAppDelegate.h"

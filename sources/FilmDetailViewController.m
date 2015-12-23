@@ -54,8 +54,24 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 		film = [delegate.festival getFilmForId:filmId];
 	}
-	
+	videoUrl = @"";
 	return self;
+}
+
+- (id) initWithFilm:(NSString*)filmId andVideo: (NSString*)url
+{
+    self = [super init];
+    if(self != nil)
+    {
+        delegate = appDelegate;
+        mySchedule = delegate.mySchedule;
+
+        self.navigationItem.title = @"Film";
+
+        film = [delegate.festival getFilmForId:filmId];
+    }
+    videoUrl = url;
+    return self;
 }
 
 - (id) initWithShortFilm:(NSString*)shortFilmId;
@@ -136,15 +152,22 @@ static NSString *kActionsCellID	= @"ActionsCell";
 
 - (void) loadData
 {
-	NSString *cachedImage = [appDelegate.dataProvider cacheImage:[film imageURL]];
-
 	// Don't execute unuseful code if the view is going to disappear shortly
 	if(!viewWillDisappear)
 	{
-		NSString *weba = [NSString stringWithFormat:web, film.name, cachedImage, [film description]];
-		weba = [weba stringByAppendingString:film.webString];
-
-		[webView loadHTMLString:weba baseURL:nil];
+        if (![videoUrl isEqualToString:@""])
+        {
+            NSURL *url = [NSURL URLWithString:videoUrl];
+            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+            [webView loadRequest:requestObj];
+        }
+        else
+        {
+            NSString *cachedImage = [appDelegate.dataProvider cacheImage:[film imageURL]];
+            NSString *weba = [NSString stringWithFormat:web, film.name, cachedImage, [film description]];
+            weba = [weba stringByAppendingString:film.webString];
+            [webView loadHTMLString:weba baseURL:nil];
+        }
 	}
 }
 

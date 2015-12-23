@@ -10,7 +10,6 @@
 #import "CinequestAppDelegate.h"
 #import "Reachability.h"
 #import "DataProvider.h"
-#import "HotPicksViewController.h"
 #import "Film.h"
 #import "Special.h"
 

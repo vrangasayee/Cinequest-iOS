@@ -28,22 +28,4 @@
 @property (nonatomic, assign) BOOL isSelected;
 @property (nonatomic, strong) Venue *venueItem;
 
-/* From the old Schedule.h
- 
- @property (readwrite) NSUInteger ID;
- @property (readwrite) NSUInteger prog_id;
- @property (nonatomic, strong) UIColor *fontColor;
- @property (nonatomic, strong) NSString *title;
- @property (nonatomic, strong) NSString *type;
- @property (nonatomic, strong) NSString *venue;
- @property (nonatomic, strong) NSDate *date;
- @property (nonatomic, strong) NSDate *endDate;
- @property (nonatomic, strong) NSString *dateString;
- @property (nonatomic, strong) NSString *longDateString;
- @property (nonatomic, strong) NSString *timeString;
- @property (nonatomic, strong) NSString *endTimeString;
- @property (readwrite) BOOL isSelected;
- 
- */
-
 @end

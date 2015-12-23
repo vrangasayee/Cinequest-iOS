@@ -8,9 +8,12 @@
 
 #import "CinequestAppDelegate.h"
 #import "HotPicksViewController.h"
-#import "TrendingDetailViewController.h"
+#import "FilmDetailViewController.h"
+#import "EventDetailViewController.h"
 #import "DDXML.h"
 #import "DataProvider.h"
+#import "Film.h"
+#import "Special.h"
 
 static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 
@@ -161,7 +164,7 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 	feed = [NSMutableArray new];
     NSData *xmlData;
 
-    if( switcher == 0)
+    if( switcher == VIEW_TRENDING)
     {
         xmlData = [appDelegate.dataProvider trendingFeed];
     }
@@ -204,6 +207,7 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
             DDXMLElement *item = (DDXMLElement*)[rootElement childAtIndex:i];
             // Get the name, desciption, event image, info and image
             NSString *name = @"";
+            NSString *itemID = @"";
             NSString *description = @"";
             NSString *eventImageUrl = @"";
             NSString *info = @"";
@@ -220,6 +224,11 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
                     if ([attributeName isEqualToString:@"Name"])
                     {
                         name = [attribute stringValue];
+                    }
+                    else if ([attributeName isEqualToString:@"ID"] ||
+                             [attributeName isEqualToString:@"EventID"])
+                    {
+                        itemID = [attribute stringValue];
                     }
                     else if ([attributeName isEqualToString:@"ShortDescription"])
                     {
@@ -277,6 +286,7 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
                 {
                     NSMutableDictionary *feedItem = [NSMutableDictionary new];
                     [feedItem setObject:name forKey:@"name"];
+                    [feedItem setObject:itemID forKey:@"itemID"];
                     [feedItem setObject:description forKey:@"description"];
                     [feedItem setObject:eventImageUrl forKey:@"eventImage"];
                     [feedItem setObject:info forKey:@"info"];
@@ -376,13 +386,30 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
  */
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSUInteger row = [indexPath row];
-	NSDictionary *newsData = [feed objectAtIndex:row];
-    
-	TrendingDetailViewController *trendingDetail = [[TrendingDetailViewController alloc] initWithData:newsData];
-	[self.navigationController pushViewController:trendingDetail animated:YES];
-	
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSMutableDictionary *feedItem = [feed objectAtIndex:indexPath.row];
+    CinequestItem *item = [appDelegate.festival getScheduleItem:[feedItem objectForKey:@"itemID"]];
+    assert(item != nil);
+
+    if([item isKindOfClass:[Film class]])
+    {
+        FilmDetailViewController *filmDetail;
+        if( switcher == VIEW_TRENDING)
+        {
+            filmDetail = [[FilmDetailViewController alloc] initWithFilm:[feedItem objectForKey:@"itemID"]];
+        }
+        else
+        {
+            NSLog([feedItem objectForKey:@"info"]);
+            filmDetail = [[FilmDetailViewController alloc] initWithFilm:[feedItem objectForKey:@"itemID"]
+                                                               andVideo:[feedItem objectForKey:@"info"]];
+        }
+        [[self navigationController] pushViewController:filmDetail animated:YES];
+    }
+    else if([item isKindOfClass:[Special class]])
+    {
+        EventDetailViewController *eventDetail = [[EventDetailViewController alloc] initWithEventID:[feedItem objectForKey:@"itemID"]];
+        [[self navigationController] pushViewController:eventDetail animated:YES];
+    }
 }
 /*
  * Function to set the cell's height accordingly

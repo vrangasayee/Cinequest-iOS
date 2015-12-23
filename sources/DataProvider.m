@@ -189,7 +189,7 @@
 // Get the trending feed from server, then return them under XML data structure
 - (NSData*) videoFeed
 {
-    NSLog(@"Getting trending feed...");
+    NSLog(@"Getting video feed...");
 
     NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:VIDEOFEED_FILE];
     NSString *key = @"VideoFeedDate";

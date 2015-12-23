@@ -71,8 +71,6 @@
 		81B12C6C182B759E000D5200 /* MyCinequestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8B3AA17EBABEE00033D4F /* MyCinequestViewController.xib */; };
 		81B32C91183C2AF9006D2D78 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81B32C90183C2AF9006D2D78 /* Default-568h@2x.png */; };
 		81B32C99183C2DF8006D2D78 /* logoSJSU.png in Resources */ = {isa = PBXBuildFile; fileRef = 81B32C98183C2DF8006D2D78 /* logoSJSU.png */; };
-		81B38F25189323590047AEFE /* TrendingDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B38F24189323590047AEFE /* TrendingDetailViewController.xib */; };
-		81B38F281893239A0047AEFE /* TrendingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B38F271893239A0047AEFE /* TrendingDetailViewController.m */; };
 		81B7C4A8184D1358001F4B16 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7C4A6184D1358001F4B16 /* MapViewController.m */; };
 		81B7C4A9184D1358001F4B16 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B7C4A7184D1358001F4B16 /* MapViewController.xib */; };
 		81C02F24188F040B0019227F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C02F23188F040B0019227F /* AddressBook.framework */; };
@@ -226,9 +224,6 @@
 		81A496421845A50C0025CCBB /* maps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "maps@2x.png"; path = "images/maps@2x.png"; sourceTree = SOURCE_ROOT; };
 		81B32C90183C2AF9006D2D78 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "images/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		81B32C98183C2DF8006D2D78 /* logoSJSU.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logoSJSU.png; path = images/logoSJSU.png; sourceTree = SOURCE_ROOT; };
-		81B38F24189323590047AEFE /* TrendingDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrendingDetailViewController.xib; path = resources/TrendingDetailViewController.xib; sourceTree = SOURCE_ROOT; };
-		81B38F261893239A0047AEFE /* TrendingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrendingDetailViewController.h; path = sources/TrendingDetailViewController.h; sourceTree = SOURCE_ROOT; };
-		81B38F271893239A0047AEFE /* TrendingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrendingDetailViewController.m; path = sources/TrendingDetailViewController.m; sourceTree = SOURCE_ROOT; };
 		81B7C4A5184D1358001F4B16 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController.h; path = sources/MapViewController.h; sourceTree = SOURCE_ROOT; };
 		81B7C4A6184D1358001F4B16 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = sources/MapViewController.m; sourceTree = SOURCE_ROOT; };
 		81B7C4A7184D1358001F4B16 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MapViewController.xib; path = sources/MapViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -573,8 +568,6 @@
 		BA3386B71C27D9230046D21D /* Table Item Detail Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				81B38F261893239A0047AEFE /* TrendingDetailViewController.h */,
-				81B38F271893239A0047AEFE /* TrendingDetailViewController.m */,
 				81745A6317EBAEED008D2C2C /* FilmDetailViewController.h */,
 				81745A6417EBAEED008D2C2C /* FilmDetailViewController.m */,
 				81745A5F17EBAEED008D2C2C /* EventDetailViewController.h */,
@@ -597,7 +590,6 @@
 		BA3386B91C27DC840046D21D /* TableItemDetailXibs */ = {
 			isa = PBXGroup;
 			children = (
-				81B38F24189323590047AEFE /* TrendingDetailViewController.xib */,
 				81C8B3A417EBABEE00033D4F /* FilmDetailViewController.xib */,
 				81C8B3A217EBABEE00033D4F /* EventDetailViewController.xib */,
 			);
@@ -769,7 +761,6 @@
 				81C8B3B417EBABEE00033D4F /* MainWindow.xib in Resources */,
 				81C8B3B617EBABEE00033D4F /* HotPicksViewController.xib in Resources */,
 				81A4964B1845A50C0025CCBB /* mail.png in Resources */,
-				81B38F25189323590047AEFE /* TrendingDetailViewController.xib in Resources */,
 				81E1963B18530E9800C1A89D /* phone.png in Resources */,
 				811791B91897783600B6D21F /* calendar_icon.png in Resources */,
 				816C4AB3183C0B4C00BE896C /* iphone_launch_640_960.png in Resources */,
@@ -854,7 +845,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81C6BA4B188F641200BCEA26 /* GPlusDialogView.m in Sources */,
-				81B38F281893239A0047AEFE /* TrendingDetailViewController.m in Sources */,
 				C2D6DC211829771E005A6897 /* Show.m in Sources */,
 				C2D6DC1A182975E5005A6897 /* Festival.m in Sources */,
 				C27BC6DB182A3734006F7D25 /* Schedule.m in Sources */,

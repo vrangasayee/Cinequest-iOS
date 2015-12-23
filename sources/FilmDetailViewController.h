@@ -24,6 +24,7 @@
 	UIFont *sectionFont;
 	UIFont *actionFont;
 	NSInteger googlePlusConnectionDone;
+    NSString *videoUrl;
 	BOOL viewWillDisappear;
 }
 
@@ -34,5 +35,5 @@
 
 - (id) initWithFilm:(NSString*)filmId;
 - (id) initWithShortFilm:(NSString*)shortFilmId;
-
+- (id) initWithFilm:(NSString*)filmId andVideo:(NSString*)url;
 @end

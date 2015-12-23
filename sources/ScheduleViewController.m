@@ -16,7 +16,6 @@
 #import "EventDetailViewController.h"
 #import "CinequestAppDelegate.h"
 #import "Schedule.h"
-#import "HotPicksViewController.h"
 #import "Special.h"
 #import "DataProvider.h"
 
