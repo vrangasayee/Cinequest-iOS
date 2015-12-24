@@ -365,13 +365,19 @@ static NSString *const kHotPicksCellIdentifier = @"HotPicksCell";
 	titleLabel.text = [newsData objectForKey:@"name"];
     
 	CGSize size = [titleLabel.text sizeWithAttributes:@{ NSFontAttributeName : titleFont }];
-	if(size.width < 285.0)
+    CGFloat startX;
+	if(size.width < imgSize.width && size.width < 290.0)
 	{
-        // The dimensions of the cell that holds the news
-		[titleLabel setFrame:CGRectMake(15.0, 4.0 + imgSize.height, 305.0, 26.0)];
-		titleLabel.numberOfLines = 1;
+        startX = (imgSize.width - size.width)/2.0 + 15;
+
+    } else
+    {
+        startX = 15;
 	}
-	
+    CGFloat endX = startX + imgSize.width - 10.0;
+    // The dimensions of the cell that holds the news
+    [titleLabel setFrame:CGRectMake(startX, 4.0 + imgSize.height, endX, 26.0)];
+    titleLabel.numberOfLines = 1;
 	[cell.contentView addSubview:titleLabel];
     
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
