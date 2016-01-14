@@ -85,14 +85,14 @@
 		
 	// Set location to be searched
 	NSString *location = [NSString stringWithFormat:@"%@, %@ %@, %@, %@ %@", venue.name, venue.address1, venue.address2, venue.city, venue.state, venue.zip];
-	
+    NSLog(@"Looking up address %@", location);
 	CLGeocoder *geocoder = [CLGeocoder new];
 	[geocoder geocodeAddressString:location completionHandler:
 	^(NSArray *placemarks, NSError *error)
 	{
 		if(error == nil)
 		{
-			NSLog(@"Shows location of venue %@ in maps", venue.shortName);
+			NSLog(@"Showing location of venue %@ in maps", venue.shortName);
 
 			// Convert the CLPlacemark to an MKPlacemark
 			// Note: There's no error checking for a failed geocode
@@ -123,6 +123,7 @@
 		}
 		else
 		{
+            NSLog(@"%@", error.localizedDescription);
 			self.mapView.hidden = NO;
 
 			NSLog(@"Location of venue %@ not found", venue.shortName);
@@ -179,7 +180,6 @@
         [noConnectionAlert show];
 		return;
 	}
-
     routes = [self calculateRoutesFrom:from.coordinate to:to.coordinate];
     NSInteger numberOfSteps = routes.count;
 	
@@ -380,13 +380,7 @@
 
 - (void) appBecomeActive
 {
-/*
-	appDelegate.locationServicesON = [CLLocationManager locationServicesEnabled];
-	appDelegate.userLocationON = [CLLocationManager authorizationStatus];
 
-	trackingBtn.enabled = appDelegate.userLocationON;
-	directionsBtn.enabled = appDelegate.userLocationON;
-*/
 }
 
 @end
