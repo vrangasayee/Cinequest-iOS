@@ -715,7 +715,7 @@
 				ORGANIZATIONNAME = "San Jose State University";
 				TargetAttributes = {
 					81C8B37D17EBAB3200033D4F = {
-						DevelopmentTeam = 2ZA68DRGAD;
+						DevelopmentTeam = 5729M5Y5C8;
 					};
 					BAB78F4E1C2B291F00FF8029 = {
 						CreatedOnToolsVersion = 7.2;
