@@ -23,6 +23,7 @@
 #define FILMSBYTIME_FILE				@"FilmsByTime.xml"
 #define FILMSBYTITLE_FILE				@"FilmsByTitle.xml"
 #define TRENDINGFEED_FILE				@"TrendingFeed.xml"
+#define NEWSDATE_FILE                   @"NewsForDateFeed.xml"
 #define VIDEOFEED_FILE                  @"VideoFeed.xml"
 #define EVENTS_FILE						@"Events.xml"
 #define VENUES_FILE						@"Venues.xml"
@@ -76,7 +77,7 @@
 			}
 		}
 		
-		NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:TRENDINGFEED_FILE];
+		NSURL *fileUrl = [cacheDir URLByAppendingPathComponent:NEWSDATE_FILE];
 		NSFileHandle *file = [NSFileHandle fileHandleForReadingFromURL:fileUrl error:nil];
 		NSData *xmlData = [file readDataOfLength:512];
 		if(xmlData != nil)
@@ -237,7 +238,6 @@
         return [NSData dataWithContentsOfURL:fileUrl];
     }
 }
-
 
 // Check the news feed is beign downloaed or not base on a time interval
 - (void) connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
@@ -452,9 +452,9 @@
 			return;
 		}
 
-		NSLog(@"Checking trending feed...");
+		NSLog(@"Checking cinequest news date feed to see if need to update everything else...");
 		
-		NSURL *url = [NSURL URLWithString:TRENDING_FEED];
+		NSURL *url = [NSURL URLWithString:NEWS_FOR_DATE_FEED];
 		
 		feedData = [[NSMutableData alloc] init];
 		feedDataLen = 0;
@@ -503,7 +503,7 @@
 			}
 		}
 		
-		NSLog(@"TrendingFeedUpdated:%@  Date:%@", self.newsFeedUpdated ? @"YES" : @"NO", self.newsFeedDate);
+		NSLog(@"Cinequest Build Date Feed (news.php) Checked:%@  Date:%@", self.newsFeedUpdated ? @"YES" : @"NO", self.newsFeedDate);
 		
 		if(self.newsFeedUpdated || self.newsFeedDate == nil)
 		{
