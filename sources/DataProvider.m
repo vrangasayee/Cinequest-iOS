@@ -83,8 +83,9 @@
 		{
 			self.newsFeedDate = [self getFeedTimeStamp:xmlData];
 			NSLog(@"News Feed date:%@", self.newsFeedDate);
-			
-			newsFeedHasBeenDownloaded = YES;
+            if (self.newsFeedDate != nil) {
+                newsFeedHasBeenDownloaded = YES;
+            }
 		}
 		[file closeFile];
 		
@@ -328,7 +329,6 @@
 {
 	NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	NSInteger dataLen = [dataStr length];
-	
 	NSRange timeStampStart = [dataStr rangeOfString:@"<LastUpdated><![CDATA[" options:0];
 	if(timeStampStart.location != NSNotFound)
 	{
@@ -505,8 +505,11 @@
 		
 		NSLog(@"TrendingFeedUpdated:%@  Date:%@", self.newsFeedUpdated ? @"YES" : @"NO", self.newsFeedDate);
 		
-		if(self.newsFeedUpdated)
+		if(self.newsFeedUpdated || self.newsFeedDate == nil)
 		{
+            if (self.newsFeedDate == nil) {
+                NSLog(@"Trending feed date is nil, err on side of caution and update.");
+            }
 			[appDelegate fetchFestival];
 			[appDelegate fetchVenues];
 			
