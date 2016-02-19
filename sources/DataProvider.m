@@ -578,7 +578,7 @@
 	}
 }
 
-// Get a list of film base on its title and return the film's URL
+// Get a list of films base on its title and return the film's URL
 - (NSData*) filmsByTitle
 {
 	NSLog(@"Getting filmsByTitle...");
@@ -658,7 +658,7 @@
 		{
 			NSLog(@"Getting OLD main feed data...");
 
-			return [NSData dataWithContentsOfURL:fileUrl];
+            return [NSData dataWithContentsOfURL:fileUrl];
 		}
 	}
 	else

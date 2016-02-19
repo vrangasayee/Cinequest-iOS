@@ -50,6 +50,7 @@
 
 - (BOOL) application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
+    self.isFetchingFestival = NO;
 	if([self checkPrefsForDataDeletion])
 	{
 		NSFileManager *fileMgr = [NSFileManager defaultManager];
@@ -181,7 +182,12 @@
 
 - (void) fetchFestival
 {
+    if (self.isFetchingFestival) {
+        return;
+    }
+    self.isFetchingFestival = YES;
 	self.festival = [[ShowsAndFestivalParser new] parseFestival];
+    self.isFetchingFestival = NO;
 }
 
 #pragma mark - Network Reachability

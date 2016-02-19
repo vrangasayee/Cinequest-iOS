@@ -82,19 +82,18 @@
                 [festival.films addObject:film];
                 [shorts setObject:film forKey:show.ID];
                 [self addItem:film to:festival.alphabetToFilmsDictionary];
-            } else if ([eventType count] > 1) {
-                // skipping Show that has more than 1 EventType
-                [errorString appendFormat:@"Show with ID: %@ has more than 1 EventType\n", show.ID];
-                continue;
-            } else if ([eventType containsObject:@"Film"]) {
-                Film *film = [self getFilmFrom:show];
-                [festival.films addObject:film];
-                [shorts setObject:film forKey:show.ID];
-                [self addItem:film to:festival.alphabetToFilmsDictionary];
-            } else if ([eventType containsObject:@"Special"]) {
-                Special *special = [self getSpecialFrom:show];
-                [festival.specials addObject:special];
-                [shorts setObject:special forKey:show.ID];
+            } else {
+                if ([eventType containsObject:@"Special"]) {
+                    Special *special = [self getSpecialFrom:show];
+                    [festival.specials addObject:special];
+                    [shorts setObject:special forKey:show.ID];
+                }
+                if ([eventType containsObject:@"Film"]) {
+                      Film *film = [self getFilmFrom:show];
+                      [festival.films addObject:film];
+                      [shorts setObject:film forKey:show.ID];
+                      [self addItem:film to:festival.alphabetToFilmsDictionary];
+                }
             }
         }
     }
@@ -104,7 +103,6 @@
     for (Show *show in shows) {
         
         CinequestItem *item;
-        
         NSMutableArray *eventType = [show.customProperties objectForKey:@"EventType"];
         if (eventType == nil) {
             [errorString appendFormat:@"Show with ID: %@ has no EventType\n", show.ID];
@@ -114,47 +112,99 @@
             item = [self getFilmFrom:show];
             [self addItem:item to:festival.alphabetToFilmsDictionary];
             [festival.films addObject:item];
-        } else if ([eventType count] > 1) {
-            // skipping Show that has more than 1 EventType
-            [errorString appendFormat:@"Show with ID: %@ has more than 1 EventType\n", show.ID];
-            continue;
-        } else if ([eventType containsObject:@"Film"]) {
-            item = [self getFilmFrom:show];
-            [self addItem:item to:festival.alphabetToFilmsDictionary];
-            [festival.films addObject:item];
-        } else if ([eventType containsObject:@"Special"]) {
-            item = [self getSpecialFrom:show];
-            [festival.specials addObject:item];
-        }
-        
-        NSMutableArray *shortIDs = [show.customProperties objectForKey:@"ShortID"];
-        if (shortIDs != nil) {
-            for (NSString *ID in shortIDs) {
-                CinequestItem *subItem = [shorts objectForKey:ID];
-                if (subItem != nil) {
-                    [item.shortItems addObject:subItem];
+            NSMutableArray *shortIDs = [show.customProperties objectForKey:@"ShortID"];
+            if (shortIDs != nil) {
+                for (NSString *ID in shortIDs) {
+                    CinequestItem *subItem = [shorts objectForKey:ID];
+                    if (subItem != nil) {
+                        [item.shortItems addObject:subItem];
+                    }
+                }
+            }
+
+            for (Showing *showing in show.currentShowings) {
+                Schedule *schedule = [self getScheduleFrom:showing forItem:item];
+                [item.schedules addObject:schedule];
+                [festival.schedules addObject:schedule];
+
+                [self addItemToDictionary:item with:schedule in:festival];
+                [self addItemToCombinedDictionary:item with:schedule in:festival];
+
+                if (![uniqueVenues containsObject:schedule.venue]) {
+                    [uniqueVenues addObject:schedule.venue];
+                    [festival.venueLocations addObject:[self getVenueLocation:showing.venue]];
+                }
+
+                for (CinequestItem *cinequestItem in item.shortItems) {
+                    [cinequestItem.schedules addObject:schedule];
+                }
+            }
+        }  else {
+            if ([eventType containsObject:@"Special"]) {
+                item = [self getSpecialFrom:show];
+                    [festival.specials addObject:item];
+                NSMutableArray *shortIDs = [show.customProperties objectForKey:@"ShortID"];
+                if (shortIDs != nil) {
+                    for (NSString *ID in shortIDs) {
+                        CinequestItem *subItem = [shorts objectForKey:ID];
+                        if (subItem != nil) {
+                            [item.shortItems addObject:subItem];
+                        }
+                    }
+                }
+
+                for (Showing *showing in show.currentShowings) {
+                    Schedule *schedule = [self getScheduleFrom:showing forItem:item];
+                    [item.schedules addObject:schedule];
+                    [festival.schedules addObject:schedule];
+
+                    [self addItemToDictionary:item with:schedule in:festival];
+                    [self addItemToCombinedDictionary:item with:schedule in:festival];
+
+                    if (![uniqueVenues containsObject:schedule.venue]) {
+                        [uniqueVenues addObject:schedule.venue];
+                        [festival.venueLocations addObject:[self getVenueLocation:showing.venue]];
+                    }
+                    
+                    for (CinequestItem *cinequestItem in item.shortItems) {
+                        [cinequestItem.schedules addObject:schedule];
+                    }
+                }
+            }
+            if ([eventType containsObject:@"Film"]) {
+                item = [self getFilmFrom:show];
+                [self addItem:item to:festival.alphabetToFilmsDictionary];
+                [festival.films addObject:item];
+                NSMutableArray *shortIDs = [show.customProperties objectForKey:@"ShortID"];
+                if (shortIDs != nil) {
+                    for (NSString *ID in shortIDs) {
+                        CinequestItem *subItem = [shorts objectForKey:ID];
+                        if (subItem != nil) {
+                            [item.shortItems addObject:subItem];
+                        }
+                    }
+                }
+
+                for (Showing *showing in show.currentShowings) {
+                    Schedule *schedule = [self getScheduleFrom:showing forItem:item];
+                    [item.schedules addObject:schedule];
+                    [festival.schedules addObject:schedule];
+
+                    [self addItemToDictionary:item with:schedule in:festival];
+                    [self addItemToCombinedDictionary:item with:schedule in:festival];
+
+                    if (![uniqueVenues containsObject:schedule.venue]) {
+                        [uniqueVenues addObject:schedule.venue];
+                        [festival.venueLocations addObject:[self getVenueLocation:showing.venue]];
+                    }
+                    
+                    for (CinequestItem *cinequestItem in item.shortItems) {
+                        [cinequestItem.schedules addObject:schedule];
+                    }
                 }
             }
         }
-        
-        for (Showing *showing in show.currentShowings) {
-            Schedule *schedule = [self getScheduleFrom:showing forItem:item];
-            [item.schedules addObject:schedule];
-            [festival.schedules addObject:schedule];
-            
-            [self addItemToDictionary:item with:schedule in:festival];
-            [self addItemToCombinedDictionary:item with:schedule in:festival];
-            
-            if (![uniqueVenues containsObject:schedule.venue]) {
-                [uniqueVenues addObject:schedule.venue];
-                [festival.venueLocations addObject:[self getVenueLocation:showing.venue]];
-            }
-            
-            for (CinequestItem *cinequestItem in item.shortItems) {
-                [cinequestItem.schedules addObject:schedule];
-            }
-        }
-        
+
     }
     
     appDelegate.festivalParsed = YES;
@@ -570,13 +620,11 @@
 								values = [NSMutableArray array];
 								[show.customProperties setObject:values forKey:customPropertyName];
 							}
-							
 							if ([[[customProperty childAtIndex:4] name] isEqualToString:@"Value"])
 							{
 								NSString *customPropertyValue = [[customProperty childAtIndex:4] stringValue];
 								[values addObject:customPropertyValue];
 							}
-                            
                             //Store Sequence Numbers with value Name of Property
                             if ([[[customProperty childAtIndex:2] name]isEqualToString:@"Sequence"] && ![[show.sequenceDictionary allValues] containsObject:customPropertyName]) {
                                 //Neglect sequence number for Submission ID, ShortID, EventType

@@ -657,7 +657,7 @@ static NSString *const kEventCellIdentifier = @"EventCell";
     {
             /// Switched from VIEW_BY_DATE to VIEW_BY_EVENTS
         case VIEW_BY_EVENTS:
-            label.text = [NSString stringWithFormat:@"  %@", [self.sortedKeysInDateToFilmsDictionary objectAtIndex:section]];
+            label.text = [NSString stringWithFormat:@"  %@", [self.sortedKeysInDateToEventsDictionary objectAtIndex:section]];
             break;
             /// Switched from VIEW_BY_TITLE to VIEW_BY_FILMS
         case VIEW_BY_FILMS:

@@ -97,6 +97,7 @@
 @property (nonatomic, assign) BOOL retinaDisplay;
 @property (nonatomic, assign) BOOL iPhone4Display;
 @property (nonatomic, assign) NSInteger deviceIdiom;
+@property (atomic, assign) BOOL isFetchingFestival;
 @property (atomic, assign) BOOL festivalParsed;
 @property (atomic, assign) BOOL venuesParsed;
 @property (nonatomic, assign) BOOL firstLaunch;
